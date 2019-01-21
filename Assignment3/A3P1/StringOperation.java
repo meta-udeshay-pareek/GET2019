@@ -126,9 +126,11 @@ public class StringOperation {
             System.out.println("Enter String12:-");
             str2=input.nextLine(); 
             
-        }else{
+        }else if (userChoice>1&&userChoice<5){
            System.out.println("Enter your String:-");
            str1=input.nextLine(); 
+        }else if (userChoice>5){
+        	System.out.println("Invalid Choice");
         }
     }
     
@@ -140,27 +142,33 @@ public class StringOperation {
         //object Creation
         StringOperation stringOperation = new StringOperation();
         
-        //menu for different choice which return user choice
-        userChoice=stringOperation.choiceMenu();
-        
-        //String Input process
-        stringOperation.inputString(userChoice);
-        
-        switch(userChoice){
-            case 1:
-                System.out.println(stringOperation.compareString(stringOperation.str1, stringOperation.str2));
-            case 2:
-               System.out.println(stringOperation.reverseString(stringOperation.str1));
-            case 3:
-                System.out.println(stringOperation.convertOpposite(stringOperation.str1));
-            case 4:
-                System.out.println(stringOperation.longestWord(stringOperation.str1));
-            case 5:
-                System.exit(0);
-            default:
-                System.out.println("Enter Valid Choice.");
+        while(true){
+	        //menu for different choice which return user choice
+	        userChoice=stringOperation.choiceMenu();
+	        
+	        //String Input process
+	        stringOperation.inputString(userChoice);
+	        
+	        switch(userChoice){
+	            case 1:
+	                System.out.println(stringOperation.compareString(stringOperation.str1, stringOperation.str2));
+	                break;
+	            case 2:
+	               System.out.println(stringOperation.reverseString(stringOperation.str1));
+	               break;
+	            case 3:
+	                System.out.println(stringOperation.convertOpposite(stringOperation.str1));
+	                break;
+	            case 4:
+	                System.out.println(stringOperation.longestWord(stringOperation.str1));
+	                break;
+	            case 5:
+	                System.exit(0);
+	                break;
+	            default:
+	                System.out.println("Enter Valid Choice.");
+	        }
         }
-        
         
         
     }
