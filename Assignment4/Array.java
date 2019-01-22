@@ -8,6 +8,10 @@ public class Array {
 	 * e.g. maxMirror([1, 2, 3, 8, 9, 3, 2, 1]) → 3
 	 * */
 	int maxMirror(int [] arr){
+		
+		//throwing assertion error if array is empty
+		assert arr!=null:"Array is Empty";
+		
 		int max=0;//max length of clump
 		//start from 0th index
 		 for(int start = 0; start < arr.length; start++) {
@@ -38,11 +42,15 @@ public class Array {
 	 * */
 	
 	int countClumps(int [] arr){
+		
+		//throwing assertion error if array is empty
+		assert arr!=null:"Array is Empty";
+				
 		int noOfClumps=0;
 		int i=0;
 		
 		while(i<arr.length){
-			int val = arr[i];
+			int val = arr[i++];
 			int len=1;
 			
 			while(i<arr.length&&arr[i]==val){
@@ -99,6 +107,10 @@ public class Array {
 	 * splitArray([10, 10]) → 1
 	 * */
 	int splitArray(int [] arr){
+		
+		//throwing assertion error if array is empty
+		assert arr!=null:"Array is Empty";
+		
 		int index=-1;
 		int sum1=0,sum2=0;
 			for (int i=0;i<arr.length;i++){
