@@ -10,7 +10,7 @@ public class Array {
 	int maxMirror(int [] arr){
 		
 		//throwing assertion error if array is empty
-		assert arr!=null:"array is empty";
+		//assert arr!=null:"array is empty";
 		
 		int max=0;//max length of clump
 		//start from 0th index
@@ -44,7 +44,7 @@ public class Array {
 	int countClumps(int [] arr){
 		
 		//throwing assertion error if array is empty
-		assert arr!=null:"Array is Empty";
+		//assert arr!=null:"Array is Empty";
 				
 		int noOfClumps=0;
 		int i=0;
@@ -74,7 +74,7 @@ public class Array {
 	 * Let’s say value of X is 4 and Y is 5. Then
 	 * fixXY([5, 4, 9, 4, 9, 5]) → [9, 4, 5, 4, 5, 9]
 	 * */
-	int [] fixXY(int [] arr,int x,int y){
+	int [] fixXY(int [] arr,int x,int y) throws Exception{
 		// for throwing Assertion Error if any
 		assertionErrorForFixXYMethod(arr,x,y);
 		
@@ -113,15 +113,15 @@ public class Array {
 	 * 		3.If two adjacent X values are there.
 	 * 		4.If X occurs at the last index of array.
 	 * */
-	void assertionErrorForFixXYMethod(int [] arr,int x,int y){
+	void assertionErrorForFixXYMethod(int [] arr,int x,int y) throws Exception{
 		int countX=0,countY=0;
 		//1.If array is empty
 		if (arr==null){
-			throw new AssertionError("array is empty");
+			throw new NullPointerException("array is empty");
 		}
 		//4.If X occurs at the last index of array.
 		else if(arr[arr.length-1]==x){
-			throw new AssertionError("X occurs at the last index of array");
+			throw new Exception("X occurs at the last index of array");
 		}
 		else{
 				for(int i=0;i<arr.length;i++){
@@ -135,13 +135,13 @@ public class Array {
 					else {
 						if(i<arr.length-1){
 							if(arr[i]==arr[i+1])
-								throw new AssertionError("two adjacents X values are there");
+								throw new Exception("two adjacents X values are there");
 						}
 					}
 				}
 				//2.If there are unequal numbers of X and Y in input array.
 				if(countX!=countY)
-					throw new AssertionError("there are unequal numbers of X and Y in input array");
+					throw new Exception("there are unequal numbers of X and Y in input array");
 		}
 	}
 	
@@ -156,7 +156,7 @@ public class Array {
 	int splitArray(int [] arr){
 		
 		//throwing assertion error if array is empty
-		assert arr!=null:"Array is Empty";
+		//assert arr!=null:"Array is Empty";
 		
 		int index=-1;
 		int sum1=0,sum2=0;
