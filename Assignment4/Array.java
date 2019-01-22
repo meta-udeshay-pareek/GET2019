@@ -56,12 +56,38 @@ public class Array {
 		return noOfClumps;
 	}
 	
+	/*
+	 * @param arr integer array,x,y, for fix their position
+	 * @return array ,shuffled array with position of it's element according to specification
+	 * Return an array that contains exactly the same numbers as the input array, but rearranged so that every X is immediately followed by a Y. Do not move X within array, but every other number may move.
+	 * Let’s say value of X is 4 and Y is 5. Then
+	 * fixXY([5, 4, 9, 4, 9, 5]) → [9, 4, 5, 4, 5, 9]
+	 * */
 	int [] fixXY(int [] arr,int x,int y){
-		int suffeledArray[] = new int[arr.length];
-			for(int i=0;i<arr.length;i++){
-				
+		int flag=0;
+		for(int i=0;i<arr.length;i++) {
+			if(arr[i]==x) {
+				for(int j=flag;j<arr.length;j++) {
+					//if element is y and it is not placed at immediate right to x then we will swap it with immediate right of x
+					if(arr[j]==y && j!=i+1) {
+						//Swapping 
+						int temp=arr[i+1];
+						arr[i+1]=y;
+						arr[j]= temp;
+						//setting flag to current position so that we can start from in second pass
+						flag=j;
+					}
+					else {
+						continue;
+					}
+				}
 			}
-		return suffeledArray;
+			else {
+				continue;
+			}
+		}
+		
+		return arr;
 	}
 	
 	/*
