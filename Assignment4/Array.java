@@ -10,7 +10,7 @@ public class Array {
 	int maxMirror(int [] arr){
 		
 		//throwing assertion error if array is empty
-		assert arr!=null:"Array is Empty";
+		assert arr!=null:"array is empty";
 		
 		int max=0;//max length of clump
 		//start from 0th index
@@ -64,6 +64,9 @@ public class Array {
 		return noOfClumps;
 	}
 	
+	
+	
+	
 	/*
 	 * @param arr integer array,x,y, for fix their position
 	 * @return array ,shuffled array with position of it's element according to specification
@@ -72,6 +75,9 @@ public class Array {
 	 * fixXY([5, 4, 9, 4, 9, 5]) → [9, 4, 5, 4, 5, 9]
 	 * */
 	int [] fixXY(int [] arr,int x,int y){
+		// for throwing Assertion Error if any
+		assertionErrorForFixXYMethod(arr,x,y);
+		
 		int flag=0;
 		for(int i=0;i<arr.length;i++) {
 			if(arr[i]==x) {
@@ -96,6 +102,47 @@ public class Array {
 		}
 		
 		return arr;
+	}
+	
+	/*
+	 * @param arr,x,y integer array ,x and y's value for suffling
+	 * will throw exception based on specified condition
+	 * 
+	 * 		1.If array is empty
+	 * 		2.If there are unequal numbers of X and Y in input array.
+	 * 		3.If two adjacent X values are there.
+	 * 		4.If X occurs at the last index of array.
+	 * */
+	void assertionErrorForFixXYMethod(int [] arr,int x,int y){
+		int countX=0,countY=0;
+		//1.If array is empty
+		if (arr==null){
+			throw new AssertionError("array is empty");
+		}
+		//4.If X occurs at the last index of array.
+		else if(arr[arr.length-1]==x){
+			throw new AssertionError("X occurs at the last index of array");
+		}
+		else{
+				for(int i=0;i<arr.length;i++){
+					
+					if(arr[i]==x){
+						countX++;
+					}else if(arr[i]==y){
+						countY++;
+					}
+					//3.If two adjacent X values are there.
+					else {
+						if(i<arr.length-1){
+							if(arr[i]==arr[i+1])
+								throw new AssertionError("two adjacents X values are there");
+						}
+					}
+				}
+				//2.If there are unequal numbers of X and Y in input array.
+				if(countX!=countY)
+					throw new AssertionError("there are unequal numbers of X and Y in input array");
+		}
 	}
 	
 	/*
