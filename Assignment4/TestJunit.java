@@ -47,6 +47,11 @@ public class TestJunit {
    public void testCountClumps3() {	  
       assertEquals(1,array.countClumps(new int[]{1, 1, 1, 1, 1}));
    }
+   
+   @Test(expected=NullPointerException.class)
+   public void testCountClumps4() {	  
+      assertEquals("Array is Empty",array.countClumps(null));
+   }
   
    /*******************************************************************************/
    @Test
@@ -70,28 +75,46 @@ public class TestJunit {
    
    /******************************************************************************/
    @Test
-   public void testFixXY1() {	
+   public void testFixXY1() throws Exception {	
 	   int returnedArray[] = array.fixXY(new int[]{5, 4, 9, 4, 9, 5},4,5);
 	   int []expectedArr = new int[]{9, 4, 5, 4, 5, 9};
 	   Assert.assertArrayEquals( expectedArr, returnedArray );
    }
    
    @Test
-   public void testFixXY2() {	
+   public void testFixXY2() throws Exception {	
 	   int returnedArray[] = array.fixXY(new int[]{1, 4, 1, 5},4,5);
 	   int []expectedArr = new int[]{1, 4, 5, 1};
 	   Assert.assertArrayEquals( expectedArr, returnedArray );
    }
    
    @Test
-   public void testFixXY3() {	
+   public void testFixXY3() throws Exception {	
 	   int returnedArray[] = array.fixXY(new int[]{1, 4, 1, 5, 5, 4, 1},4,5);
 	   int []expectedArr = new int[]{1, 4, 5, 1, 1, 4, 5};
 	   Assert.assertArrayEquals( expectedArr, returnedArray );
    }
    
-   @Test(expected=AssertionError.class)
-   public void testFixXY4() {	
+   @Test(expected=NullPointerException.class)
+   public void testFixXY4() throws Exception {	
 	   int returnedArray[] = array.fixXY(null,4,5);
+   }
+   
+   //unequal numbers of X and Y in input array.
+   @Test(expected=Exception.class)
+   public void testFixXY5() throws Exception {	
+	   int returnedArray[] = array.fixXY(new int[]{1, 3, 1, 5, 5, 4, 1},4,5);
+   }
+   
+   // adjacents X values are there
+   @Test(expected=Exception.class)
+   public void testFixXY6() throws Exception {	
+	   int returnedArray[] = array.fixXY(new int[]{1, 4, 4, 5, 5, 4, 1},4,5);
+   }
+   
+// X occurs at the last index of array
+   @Test(expected=Exception.class)
+   public void testFixXY7() throws Exception {	
+	   int returnedArray[] = array.fixXY(new int[]{1, 4, 1, 5, 5, 4, 4},4,5);
    }
 }
