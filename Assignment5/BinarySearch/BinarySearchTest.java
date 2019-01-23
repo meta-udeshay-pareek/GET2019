@@ -19,7 +19,6 @@ import org.junit.runners.Parameterized.Parameters;
 public class BinarySearchTest {
 
 	BinarySearch binarySearch = new BinarySearch();
-	//parameters for passing
 	@Parameter(0)
 	public int arr[];
 	@Parameter(1)
@@ -38,14 +37,11 @@ public class BinarySearchTest {
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
 	
-	//parameters initializing
 	@Parameters
 	public static Collection<Object[]> data() {
-		return Arrays.asList(new Object[][] { {new int[]{1, 1, 1, 2, 1 }, 0,4,2,3,null,null} ,{ new int[]{2, 1, 1, 2, 1},0,4,2,3,null,null},{new int[]{2, 1, 1, 2, 1},0,4,8,-1,null,null}
-		, {new int[]{}, 0,4,2,0,NullPointerException.class,"Array is Empty"}});
+		return Arrays.asList(new Object[][] { {new int[]{1, 1, 1, 2, 1 }, 0,4,2,3,RuntimeException.class,"Array is not sorted"} ,{ new int[]{2, 1, 1, 2, 1},0,4,2,3,RuntimeException.class,"Array is not sorted"},{new int[]{2, 1, 1, 2, 1},0,4,8,-1,RuntimeException.class,"Array is not sorted"}
+		, {new int[]{}, 0,4,2,0,NullPointerException.class,"Array is Empty"}, {new int[]{1, 2,3,4,5 }, 0,4,4,3,null,null},{new int[]{8,15,24,69,74,105}, 0,5,69,3,null,null},{new int[]{-8,-3,-1,0,1,4,6,7,9}, 0,8,0,3,null,null}});
 	}
-	
-	//testing
 	@Test
 	 public void testfindLcm(){
 
