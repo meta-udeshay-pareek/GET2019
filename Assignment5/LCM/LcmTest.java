@@ -39,7 +39,7 @@ public class LcmTest {
 	
 	@Parameters
 	 public static Collection<Object[]> data() {
-		return Arrays.asList(new Object[][] { {5,8,40,null,null},{6,18,18,null,null},{16,0,0,ArithmeticException.class,"0 is invalid for lcm"},{0,10,0,ArithmeticException.class,"0 is invalid for lcm"},{6,10,30,null,null} ,{26,52,52,null,null}});
+		return Arrays.asList(new Object[][] { {5,8,40,null,null},{6,18,18,null,null},{16,0,0,ArithmeticException.class,"0 is invalid for lcm"},{0,10,0,ArithmeticException.class,"0 is invalid for lcm"},{6,10,30,null,null} ,{-26,-52,52,null,null}});
 	 }
 	 @Test
 	 public void testfindLcm(){
