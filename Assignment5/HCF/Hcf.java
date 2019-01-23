@@ -11,17 +11,8 @@ public class Hcf {
 			//converting negative value into positive
 			int a=Math.abs(n1),b=Math.abs(n2);
 
-	        // Everything divides 0  
-	        if (a == 0 || b == 0) 
-	           return 0; 
-	       
-	        // base case 
-	        if (a == b) 
-	            return a; 
-	       
-	        // a is greater 
-	        if (a > b) 
-	            return findHcf(a-b, b); 
-	        return findHcf(a, b-a); 
+			 if (b == 0) 
+			        return a; 
+			    return findHcf(b, a % b);   
 	    } 
 }
