@@ -43,7 +43,7 @@ public class BinarySearchTest {
 		, {new int[]{}, 0,4,2,0,NullPointerException.class,"Array is Empty"}, {new int[]{1, 2,3,4,5 }, 0,4,4,3,null,null},{new int[]{8,15,24,69,74,105}, 0,5,69,3,null,null},{new int[]{-8,-3,-1,0,1,4,6,7,9}, 0,8,0,3,null,null}});
 	}
 	@Test
-	 public void testfindLcm(){
+	 public void testbinarySearch(){
 
 		 //setup expected exception
 		    if (expectedException != null) {
