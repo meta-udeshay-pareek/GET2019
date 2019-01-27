@@ -1,97 +1,127 @@
 package jobscheduler;
 
-import java.util.Scanner;
-
-public class JobSchedulerProcedure {
-	 //object Creation of jobscheduer for using userinput data for operation
-		JobScheduler jobScheduler = new JobScheduler();
-	        
-		/**
-		 * @param two dimensional array which contain
-		 *		process[i][0]=Arrival time
-		 * 		process[i][1]=Burst time
-		 * 						 where i= number of process
-		 * 
-		 * 		completion time = arrivalTime+burstTime 
-		 * will return array which contain completion time of each process respective to index number
-		 * */
-		int[] completionTime(int process[][])
-		{
-			int completionTime[] = new int[process.length];
-			for(int j=0;j<process.length;j++)
-				{
-					for(int k=0;k<2;k++)
-					{
-						completionTime[j] += process[j][k];
-					}
-				}
-			return completionTime;
-		}
-		
-		/**
-		 * @param two dimensional array which contain
-		 *		process[i][0]=Arrival time
-		 * 		process[i][1]=Burst time
-		 * 						 where i= number of process
-		 *@param completionTime[] which contain completion time of each process respective to index number
-		 * will return array which contain turnAroundTime  of each process respective to index number
-		 * */
-		int [] turnAroundTime(int completionTime[], int process[][])
-		{
-			int turnAroundTime[] = new int[process.length];
-			for(int i=0;i<process.length;i++)
-			{
-				turnAroundTime[i]= completionTime[i]-process[i][0];
-			}
-			return turnAroundTime;
-		}
-		
-		
-		/**
-		 * @param two dimensional array which contain
-		 *		process[i][0]=Arrival time
-		 * 		process[i][1]=Burst time
-		 * 						 where i= number of process
-		 *@param  turnAroundTime[] which contain  turnAroundTime of each process respective to index number
-		 * will return array which contain  waitingTime  of each process respective to index number
-		 * */
-		int [] waitingTime(int turnAroundTime[],int process[][])
-		{
-			int waitingTime[] = new int[process.length];
-			//waiting time for first process will be 0
-			waitingTime[0]=0;
-			
-			for(int m=1;m<process.length;m++)
-			{
-				
-				waitingTime[m]=turnAroundTime[m]+process[m][1];
-			}
-			return waitingTime;
-		}
-		
+public class calculation {
 	
-		int averageWaitingTime(int waitingTime[],int numberOfProcesses)
-		{
-			int averageWaitingTime,sum=0;
-			for(int i=0;i<numberOfProcesses;i++)
-			{
-				sum+=waitingTime[i];
-			}
-			averageWaitingTime= sum/numberOfProcesses;
-			return averageWaitingTime;
-		}
-		
-		int maximumWaitingTime(int process[][],int waitingTime[])
-		{
-			int maximumWaitingTime=0;
-			
-            for(int i=0;i<process.length;i++){
-                if(maximumWaitingTime<waitingTime[i])
-                	maximumWaitingTime=waitingTime[i];
-            }
-            return maximumWaitingTime;
-		}
-		
+	 int process[][];
+	 int completionTime[];
+	 int turnAroundTime[];
+	 int waitingTime[];
+	 int arrivalTimeColumn = 0;
+	int burstTimeColumn = 1;
+	 int numberOfProcess;
+	
+	 Scanner sc = new Scanner(System.in);
 
+	public void maximumWaitingTime( )// calculation of maximum waiting time
+	{
+		
+		waitingTime();
+		int maxWaitingTime = waitingTime[0];
+		int indexOfMaxWaitingTime = 0;
+		for(int i = 1; i< numberOfProcess; i++){
+			
+			if(maxWaitingTime < waitingTime[i]){
+				maxWaitingTime = waitingTime[i];
+				indexOfMaxWaitingTime = i;
+			}
+		}
+		
+		System.out.println("Maximum waiting time : "+maxWaitingTime);
+	}
+
+	public void averageWaitingTime() {//calculating  average waiting time
+		
+		waitingTime();
+		int averageWaitingTime = 0;
+		int sumOfWaitingTime = 0;
+		for(int i = 0; i<numberOfProcess; i++){
+			sumOfWaitingTime += waitingTime[i];
+		}
+		averageWaitingTime = sumOfWaitingTime/numberOfProcess;
+		
+		System.out.println("Average waiting time is : "+averageWaitingTime);
+	}
+
+	public int[]  turnAroundTime() {// calculating turn around time
+		
+		completionTime();
+		for(int i = 0; i< numberOfProcess;i++){
+			turnAroundTime[i] = completionTime[i] - process[i][arrivalTimeColumn];
+		}
+		return turnAroundTime;
+	}
+
+	public int[]  waitingTime() {// calculating waiting time
+		
+		turnAroundTime();
+		for(int i = 0; i< numberOfProcess; i++){
+			waitingTime[i] = turnAroundTime[i] - process[i][burstTimeColumn];
+		}
+		return waitingTime;
+	}
+
+	public int[] completionTime() {//calculating completion time
+		
+		completionTime[0] = process[0][burstTimeColumn]; 
+		for(int i= 1; i < numberOfProcess; i++){
+			
+			completionTime[i] = completionTime[i-1] +process[i][burstTimeColumn];
+		}
+		return completionTime;
+	}
+
+	public void initiateOtherArrays(){
+		
+		completionTime = new int[numberOfProcess];
+		waitingTime = new int[numberOfProcess];
+		turnAroundTime = new int[numberOfProcess];
+	}
+	
+	public void inputProcess(){
+		
+		System.out.print("Enter number of process : ");
+		numberOfProcess = sc.nextInt();
+		
+		process = new int[numberOfProcess][2]; //2 columns for Arrival Time  and Burst Time
+		
+		for(int i = 0; i < numberOfProcess; i++){
+			
+			System.out.println("Enter AT for Process"+(i+1)+" : ");
+			process[i][arrivalTimeColumn] = sc.nextInt();
+			
+			System.out.println("Enter BT for Process"+(i+1)+" : ");
+			process[i][burstTimeColumn] = sc.nextInt();
+		}	
+	}
+	
+	public void sortProcess(){
+		
+		int tempForSwappingAT,tempForSwappingBT;
+		for(int i = 0; i< numberOfProcess-1; i++){
+			
+			for(int j = i+1; j < numberOfProcess; j++){
+				
+				if(process[i][arrivalTimeColumn] > process[j][arrivalTimeColumn]){
+					
+					tempForSwappingAT = process[i][arrivalTimeColumn];
+					process[i][arrivalTimeColumn] = process[j][arrivalTimeColumn];
+					process[j][arrivalTimeColumn] = tempForSwappingAT;
+					
+					tempForSwappingBT = process[i][burstTimeColumn];
+					process[i][burstTimeColumn] = process[j][burstTimeColumn];
+					process[j][burstTimeColumn] = tempForSwappingBT;
+				}	
+			}
+		}
+	}
+	
+	public void showOutput(int[] arrayForOutput){
+		
+		System.out.println("AT\tBT\toutput");
+		for(int i = 0; i< numberOfProcess; i++){
+			System.out.println(process[i][arrivalTimeColumn]+"\t"+process[i][burstTimeColumn]+"\t"+arrayForOutput[i]);
+		}
+	}
+	
 
 }
