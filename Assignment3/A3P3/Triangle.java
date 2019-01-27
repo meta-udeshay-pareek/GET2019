@@ -5,7 +5,7 @@ package area;
  *
  * @author udeshay
  */
- public class Triangle extends Shape {
+ public class Triangle implements Shape {
 	 private final double base , height; // sides
 
 	    
