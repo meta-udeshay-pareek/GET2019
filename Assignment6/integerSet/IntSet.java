@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 public final class IntSet {
 	
-	private final int set[];
+	private final int SET[];
 	
 	public IntSet(int []arr){
 		// first removing duplicate element then assigning to set
-		set = this.removeDuplicateElementIfAny(arr);
+		SET = this.removeDuplicateElementIfAny(arr);
 	}
 
 	
@@ -60,7 +60,7 @@ public final class IntSet {
 	public boolean isMember(int value){
 		
 		for(int i=0;i<this.size();i++){
-			if(this.set[i]==value)
+			if(this.SET[i]==value)
 				return true;
 		}
 		return false;
@@ -70,7 +70,7 @@ public final class IntSet {
 	 * @return size of the set object
 	 */
 	public int size(){
-		return this.set.length;
+		return this.SET.length;
 	}
 	
 	/*
@@ -86,7 +86,7 @@ public final class IntSet {
 			
 			for(int j=0;j<this.size();j++){
 				//if value of subset member is found in superset then fix exist status 1 and break because only one similer value will be in super set
-				if(subSet.set[i]==this.set[j]){
+				if(subSet.SET[i]==this.SET[j]){
 					exist=1;
 					break;
 				}
@@ -123,7 +123,7 @@ public final class IntSet {
 		
 		for(int i=1;i<=1000;i++){
 			for(int j=0;j<this.size();j++){
-				if(i==this.set[j]){
+				if(i==this.SET[j]){
 					exist=1;
 					break;
 				}
@@ -161,13 +161,13 @@ public final class IntSet {
 		
 		//Initializing s1 set into unionSet
 		for(int i=0;i<s1.size();i++){
-			tempUnionSet[elementInTempUnionSet++]=s1.set[i];
+			tempUnionSet[elementInTempUnionSet++]=s1.SET[i];
 		}
 		
 		for(int i=0;i<s2.size();i++){
 			//is s2 set value is not member of s1 set then only it will  assign into union set 
-			if(!s1.isMember(s2.set[i])){
-				tempUnionSet[elementInTempUnionSet++]=s2.set[i];
+			if(!s1.isMember(s2.SET[i])){
+				tempUnionSet[elementInTempUnionSet++]=s2.SET[i];
 			}
 		}
 		//initializing unionSet
@@ -182,7 +182,7 @@ public final class IntSet {
 	//will return set element in array form 
 	public int [] getSetElementInArrayForm(){
 		//creating a copy of set and returning it into array form 
-		return Arrays.copyOf(this.set, this.size());
+		return Arrays.copyOf(this.SET, this.size());
 	}
 	
 }
