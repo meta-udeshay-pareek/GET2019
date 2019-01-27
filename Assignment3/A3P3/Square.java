@@ -1,4 +1,5 @@
 package area;
+
 import java.util.*;  
 
 /**
@@ -6,7 +7,7 @@ import java.util.*;
 * @author udeshay
 */
 public class Square implements Shape {
-   private final double side; //sides
+   private  double side; //sides
 
    public Square() {
        sideInput();
