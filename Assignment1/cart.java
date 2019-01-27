@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class Icart {
+public class Cart {
 	static List<Object> cartItemsList;
 	static List<Object> allItemsList;
 	static Scanner sc = new Scanner(System.in);
@@ -27,7 +27,7 @@ public class Icart {
 
 	public static void main(String[] args) {
 		ShopingCart shopingcart =new ShopingCart();
-		Icart cartobj =new Icart();
+		Cart cartobj =new Cart();
 		cartobj.intialiseValue();// intialise the shop list and cart list
 		shopingcart.showAllItems();//show the shop list
 		while(true){
