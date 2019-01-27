@@ -1,7 +1,7 @@
 package area;
 import java.util.*;  
 
-public class Circle extends Shape {
+public class Circle implements Shape {
     private final double radius;
     final double pi = Math.PI;
 
@@ -13,7 +13,7 @@ public class Circle extends Shape {
 	    Scanner sc = new Scanner(System.in);
 	    System.out.println("Enter Radious :");
 	    this.radius = sc.nextDouble();
-	   
+	    this.area();
     }
     @Override
     public double area() {
