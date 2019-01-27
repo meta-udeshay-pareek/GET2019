@@ -22,7 +22,7 @@ public class Rectangle implements Shape {
    @Override
    public double area() {
        // A = w * l
-       return width * length;
+       return this.width * this.length;
    }
 
 }
