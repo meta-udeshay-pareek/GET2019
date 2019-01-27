@@ -6,22 +6,44 @@ package area;
 public class TestShape {
     public static void main(String[] args) {
 
-        // Rectangle test
-        double width = 5, length = 7;
-        Shape rectangle = new Rectangle(width, length);
-        System.out.println("Rectangle width: " + width + " and length: " + length
-                + "\nResulting area: " + rectangle.area() + "\n");
-
-        // Circle test
-        double radius = 5;
-        Shape circle = new Circle(radius);
-        System.out.println("Circle radius: " + radius
-            + "\nResulting Area: " + circle.area() + "\n");
-
-        // Triangle test
-        double a = 5, b = 3, c = 4;
-        Shape triangle = new Triangle(a,b,c);
-        System.out.println("Triangle sides lengths: " + a + ", " + b + ", " + c
-                + "\nResulting Area: " + triangle.area() + "\n");
+        Scanner input  = new Scanner(System.in);
+        int choice;
+        while(true){
+            System.out.println("1.Area of Cicle ");
+            System.out.println("2.Area of Rectangle ");
+            System.out.println("3.Area of Square ");
+            System.out.println("4.Area of Triangle ");
+            System.out.println("5.Exit ");
+            System.out.println("Enter your choice");
+            
+            choice = input.nextInt();
+            
+            switch(choice){
+                case 1 :
+                        Circle circle = new Circle();
+                        System.out.println("Area is : - "+circle.area());
+                        break;
+                case 2:
+                        Rectangle rectangle = new Rectangle();
+                        System.out.println("Area is : - "+rectangle.area());
+                        break;
+                case 3:
+                        Square square = new Square();
+                        System.out.println("Area is : - "+square.area());
+                        break;
+                case 4:
+                        Triangle triangle = new Triangle();
+                        System.out.println("Area is : - "+Triangle.area());
+                        break;
+                case 5:
+                        System.exit(0);
+                        break;
+                default:
+                    System.out.println("Invalid Choice");
+                    
+            }
+            
+        }
+        
     }
 }
