@@ -1,34 +1,46 @@
 package iCart;
+class Item {
 
-import java.util.HashMap;
-
-class Items{
 	
-	HashMap<String, Integer> map = new HashMap<>(); 
-	HashMap<Integer, String> mapi = new HashMap<>(); 
+	private String name;
+	private int quantity;
+	private double price;
 	
-	void create(){
-	
-		map.put("Ball", 80);
-		map.put("Bat", 450);
-		map.put("Sugar", 40);
-		map.put("Mango", 60);
-		map.put("Banana", 40);
+	Item(String name,double price,int quantity){
 		
-		mapi.put(1, "Ball");
-		mapi.put(2, "Bat");
-		mapi.put(3, "Sugar");
-		mapi.put(4, "Mango");
-		mapi.put(5, "Banana");
+		this.name = name;
+		this.price = price;
+		this.quantity = quantity;	
 	}
-	void display(){
-		System.out.println(map);
+	Item(String name,double price){
+		this.name = name;
+		this.price = price;
 	}
 	
-	void displayp(){
-		System.out.println(mapi);
+	public String showCartValues() {
+		return name + "\t" + price+ "\t" + quantity;
+	}
+	public String toString(){
+		return name + "\t" + price;
+	}
+	
+	public double getPrice() {
+		return price;
+	}
+	
+	public String getItemName() {
+		return name;
+	}
+	
+	public int getQuantity() {
+		return quantity;
+	}
+	
+	public void updateQuantity(int quantity) {
+		this.quantity += quantity;
+	}
+	
+	public void setQuantityBy(int val) {
+		this.quantity = val;
 	}
 }
-
-
-
