@@ -63,4 +63,33 @@ public class IntSetTest {
         //set is first converting into array then comparing
         assertArrayEquals(unionSet.getSetElementInArrayForm(),(IntSet.union(s1,s2)).getSetElementInArrayForm());
     }
+    
+    @Test(timeout = 1000)
+    public void getCpmplementTest(){
+        int inputArray[]=new int[]{6,7,8,2,10};
+        //set 1
+        IntSet s1 = new IntSet(inputArray);
+        int complementArray[] = new int[1000];
+        int elementInComplementSet=0;
+        for(int i=1;i<=1000;i++){
+			for(int j=0;j<s1.size();j++){
+				if(i==s1.SET[j]){
+					exist=1;
+					break;
+				}
+			}
+			if(exist==1){
+				exist=0;
+			}
+			//if universal set element doesn't exist in set then assign it's value to tempCompleMentSet
+			else{
+				complementArray[elementInComplementSet++]=i;
+			}
+		}
+        
+        IntSet complementSet = Arrays.copyOf(complementArray,elementInComplementSet);
+         //will check in array form 
+        //set is first converting into array then comparing
+        assertArrayEquals(complementSet.getSetElementInArrayForm(),(s1.getComplement().getSetElementInArrayForm());
+    }
 }
