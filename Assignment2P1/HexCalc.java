@@ -5,14 +5,14 @@ import java.util.Scanner;
 
 public class HexCalc {
 		
-	 //input value object for input process 
-	  static Scanner inputvalue = new Scanner(System.in);
+	//input value object for input process 
+	static Scanner inputvalue = new Scanner(System.in);
 	  
 	//will return userChoice from menu
 	static int operationChoiceMenu(){
 		 
-		  int userChoice;
-		  System.out.println("---------------------------------------------------------------------------");
+	  int userChoice;
+	  System.out.println("---------------------------------------------------------------------------");
      	  System.out.println("1.Add");
      	  System.out.println("2.Subtract");
      	  System.out.println("3.Multiply");
@@ -28,23 +28,23 @@ public class HexCalc {
      	  //user choice input for operation
      	
      	  userChoice=inputvalue.nextInt();
-     	  return userChoice;
-	}
+     	      return userChoice;
+	  }
 	
 	
 	
 	public static void main(String args[])
-	{
+	 {
 		
 		
-		int decimal;//decimal value input
+	    int decimal;//decimal value input
 	    int userChoice;//user choice for operation
 	    HexConversion hexConversion = new HexConversion();
-	    ArithmeticOperation arithmeticOperation = new ArithmeticOperation();
+	   
 		
 		
 		 while(true)
-         {  
+                  {  
 			 //Method calling for Menu Printing
 			 userChoice=operationChoiceMenu();
 			 
@@ -53,44 +53,44 @@ public class HexCalc {
 				 InputValue.inputValueForOperation();
 			 }
 	       	  
-	         switch (userChoice) 
-	         { 
-		         case 1: 
-		        	 //add two decimal and result of them will convert into hexadecimal
-		             System.out.println( hexConversion.numberToString(arithmeticOperation.add(InputValue.getNumber1(),InputValue.getNumber2()))); 
-		             break; 
+	                 switch (userChoice) 
+	                 { 
+		              case 1: 
+		              //add two decimal and result of them will convert into hexadecimal
+		              System.out.println( hexConversion.numberToString(ArithmeticOperation.add(InputValue.getNumber1(),InputValue.getNumber2()))); 
+		              break; 
 		             
-		         case 2: 
+		              case 2: 
 		        	 //subtract two decimal and result of them will convert into hexadecimal
-		             System.out.println( hexConversion.numberToString(arithmeticOperation.subtract(InputValue.getNumber1(),InputValue.getNumber2()))); 
-		             break;
+		              System.out.println( hexConversion.numberToString(ArithmeticOperation.subtract(InputValue.getNumber1(),InputValue.getNumber2()))); 
+		              break;
 		             
-		         case 3: 
+		              case 3: 
 		        	//multiply two decimal and result of them will convert into hexadecimal
-		             System.out.println( hexConversion.numberToString(arithmeticOperation.multiply(InputValue.getNumber1(),InputValue.getNumber2())));
-		             break;
+		              System.out.println( hexConversion.numberToString(ArithmeticOperation.multiply(InputValue.getNumber1(),InputValue.getNumber2())));
+		              break;
 		             
-		         case 4: 
-		        	//divide two decimal and result of them will convert into hexadecimal
-		        	 System.out.println( hexConversion.numberToString(arithmeticOperation.divide(InputValue.getNumber1(),InputValue.getNumber2())));
-		             break;
+		              case 4: 
+		              //divide two decimal and result of them will convert into hexadecimal
+		              System.out.println( hexConversion.numberToString(ArithmeticOperation.divide(InputValue.getNumber1(),InputValue.getNumber2())));
+		              break;
 		             
-		         case 5:  
+		              case 5:  
 		        	 //comparing two hexadecimal values
-		       	     System.out.println(Comparison.compareEqualTo(InputValue.getHexNumber1(), InputValue.getHexNumber2()));
-		             break;
+		       	      System.out.println(Comparison.compareEqualTo(InputValue.getHexNumber1(), InputValue.getHexNumber2()));
+		              break;
 		             
-		         case 6:
+		              case 6:
 		        	//comparing two hexadecimal values
-		       	  	  System.out.println(Comparison.compareGreaterThan(InputValue.getHexNumber1(), InputValue.getHexNumber2()));
-		       	  break;
+		       	      System.out.println(Comparison.compareGreaterThan(InputValue.getHexNumber1(), InputValue.getHexNumber2()));
+		       	      break;
 		       	  
-		         case 7:
+		              case 7:
 		        	//comparing two hexadecimal values
-		       	  	 System.out.println(Comparison.compareLesserThan(InputValue.getHexNumber1(), InputValue.getHexNumber2()));
-		       	  break;
+		       	      System.out.println(Comparison.compareLesserThan(InputValue.getHexNumber1(), InputValue.getHexNumber2()));
+		       	      break;
 		       	  
-		         case 8:
+		              case 8:
 		        	 System.out.print("1.Hex To Decimal\n2.Decimal to Hex\nEnter Choice:-");
 					 userChoice=inputvalue.nextInt();
 					 InputValue.inputValueForConversion(userChoice);
