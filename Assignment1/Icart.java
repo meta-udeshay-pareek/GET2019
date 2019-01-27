@@ -1,56 +1,61 @@
-package iCart;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
-import java.util.*;
 
-class Icart{
-	 int t=1;
-     double t1,total=0;
-	 String str;
-     Items s = new Items();
-     
-	HashMap<Integer,Double> usermp = new HashMap<>();
-	
-	void AddItem()
-	{   int index;
-		double quant;
-		System.out.println("Enter the ID");
-		 Scanner n= new Scanner(System.in);
-         index=n.nextInt();
-         System.out.println("Enter the quantity");
-         quant=n.nextDouble();
-         usermp.put(index, quant);
-     }
-	
-	void DeleteItem()
+public class Icart {
+	static List<Object> cartItemsList;
+	static List<Object> allItemsList;
+	static Scanner sc = new Scanner(System.in);
+	static Item item;
+	/**
+	 * creating the list 
+	 * shop list with parameter
+	 * cart list which is empty
+	 */
+	public void intialiseValue()
 	{
-		if(usermp.size()>0){
-			int index;
-			System.out.println("Enter the ID");
-			 Scanner n= new Scanner(System.in);
-	         index=n.nextInt();
-			usermp.remove(index);
-		}
-		else{
-			System.out.println("Cart Is Empty Now.");
-		}
+		allItemsList = new ArrayList<>();
+		cartItemsList = new ArrayList<>();
 		
+		allItemsList.add(new Item("Shoe",500));
+		allItemsList.add(new Item("Shirt",300));
+		allItemsList.add(new Item("Jeans",700));
+		allItemsList.add(new Item("Bag",400));
+		allItemsList.add(new Item("Wallet",50));
 	}
-	
-	void UpdateCart(){
-		if(usermp.size()>0){
-			int index;
-			double quant;
-			System.out.println("Enter the ID");
-			Scanner n= new Scanner(System.in);
-			index=n.nextInt();
-			System.out.println("Update the Quantity");
-			quant=n.nextDouble();
-			usermp.put(index, quant);
-		}else{
-			System.out.println("Cart Is Empty Now.");
+
+	public static void main(String[] args) {
+		ShopingCart shopingcart =new ShopingCart();
+		Icart cartobj =new Icart();
+		cartobj.intialiseValue();// intialise the shop list and cart list
+		shopingcart.showAllItems();//show the shop list
+		while(true){
+		System.out.println(" 1.Add Item to cart \n 2.Remove Item from cart \n 3.See Items present in cart \n 4.Update cart items quantity \n 5.Billing of cart Items \n");
+		System.out.println("Enter your choice : ");
+		int choice = sc.nextInt();
+		
+		switch(choice) {
+		case 1:
+			shopingcart.addCartItem();
+			break;
+		case 2:
+			shopingcart.removeCartItem();
+			break;
+		case 3:
+			shopingcart.showCartItems();
+			break;
+		case 4:
+			shopingcart.updateCartItem();
+			break;
+		case 5:
+			shopingcart.billingCartItems();
+			break;
+		default:
+			System.out.println("Wrong Input! Try Again...");
 		}
 	}
-	
-	
-	
+
+	}
+
 }
