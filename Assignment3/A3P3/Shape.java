@@ -1,5 +1,5 @@
 package area;
 
-public abstract class Shape {
-	 public abstract double area();
+public interface Shape {
+	double area();
 }
