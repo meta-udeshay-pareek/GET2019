@@ -12,172 +12,166 @@ multiplyPoly(Poly p1, Poly p2) - return the product of polynomials p1 and p2
 You may use private helper methods. addPoly() and multiplyPoly() can make assumptions 
 about size of the resulting polynomial to decide about the size of the array to be created.
 */
-public class Poly {
-    //Power and coefficient  of polynomial
-    private int power[];
-    private int coeff[];
-    
-    
-    //initialising a polynomial
-    public Poly(int power[],int coeff[]){
-        int n = power.length;
-        this.power = new int[n];
-        this.coeff = new int[n];
-        for(int i=0; i<n; i++){
-            this.power[i] = power[i];
-            this.coeff[i] = coeff[i];
-        }
-    }
-    
-    //returning power of polynomial
-    public int[] getPower(){
-        return Arrays.copyOf(power,power.length);
-    }
-    
-   //returning coefficient array of polynomial
-    public int[] getCoeff(){
-        return Arrays.copyOf(coeff, coeff.length);
-    }
-    
-   //evaluating polynomial by putting value at place of variable
-   //x^2+x+1 so x=val
-    public double evaluate(float val){
-        int n = coeff.length;
-        double result=0;
-        double pow_result;
-        for(int i = 0; i < n; i++){
-            pow_result = 1;
-            for(int pow = 0; pow < power[i]; pow++){
-               pow_result = pow_result * val;  
-            }
-            result += coeff[i] * pow_result;
-        }
-        return result;
-    }
-    
-    //returning degree of polynomial
-    //x^2+x+1    degree wil be 2
-    public int degree(){
-        int degree = power[0];
-        for(int i = 1; i < power.length; i++)
-            if(power[i] > degree )
-                degree = power[i];
-        return degree;
-    }
-    
-    /*@param p1 polynomial one 
-     *@param p2 polynomial two
-     *@return p3=p1*p2
-    **/
-    public Poly multiplyPoly(Poly p1,Poly p2){
-        int n1 = p1.power.length;
-        int n2 = p2.power.length;
-        int resultPolyPower[] = new int[n1*n2];
-        int resultPolyCoeff[] = new int[n1*n2];
-        int k =0;
-        for(int i=0;i < n1;i++){
-            for(int j=0; j < n2; j++){
-                resultPolyPower[k] = p1.power[i]+p2.power[j];
-                resultPolyCoeff[k] = p1.coeff[i]*p2.coeff[j];
-                k++;
-            }
-        }
-        Poly resultPoly = new Poly(resultPolyPower,resultPolyCoeff);
-        sort(resultPoly);
-        int countSamePower =0;
-        for(int i=0; i< n1*n2-1;){
-            if(resultPoly.power[i] == resultPoly.power[i+1]){
-                countSamePower++;
-                resultPoly.coeff[i] = resultPoly.coeff[i] + resultPoly.coeff[i+1];
-                for(int j = i+1; j < n1*n2 -countSamePower ; j++){
-                    resultPoly.power[i] = resultPoly.power[i+1];
-                    resultPoly.coeff[i] = resultPoly.coeff[i+1];
-                }
-            }
-            i++;
-        }
-        int multPower[] = new int[n1*n2-countSamePower];
-        int multCoeff[] = new int[n1*n2-countSamePower];
-        for(int i = 0; i< multPower.length; i++){
-            multPower[i] = resultPolyPower[i];
-            multCoeff[i] = resultPolyCoeff[i];
-        }
-        return new Poly(multPower,multCoeff);
-    }
-    
+public final class Poly {
+	private  int[] degree;
+	private int[] coefficient;
+	private int[][] tempArray = new int[20][2];
+	public Poly(int[] degree,int[] coefficient) {
+		this.coefficient=coefficient;
+		this.degree=degree;
+	}
+	/**
+	 * evaluate the value of polynomial of given value
+	 * @param value  as float
+	 * @return evaluatevalue 
+	 */
+	public  float evaluate(float value) {
+		float evaluatevalue=0.0F;
+		for(int index=0;index<degree.length;index++)
+		{
+			evaluatevalue+=coefficient[index]*Math.pow(value,degree[index]);
+		}
+		return evaluatevalue;
+	}
+	/**
+	 * return the highest degree of polynomial
+	 * @return maxdegree
+	 */
+	 public int degreeOfPoly(){
+		 int maxdegree = degree[0]; 
+		    for(int i=1;i<degree.length;i++){ 
+		      if(degree[i] >maxdegree){ 
+		    	  maxdegree = degree[i]; 
+		      } 
+		    } 
+		    return maxdegree; 
+		  } 
+	 /**
+	  * Addition of two polynomial
+	  * @param p1 as object as polynomial
+	  * @param p2 as object as polynomial
+	  * @return degreecoefficient int [][] resultant polynomial
+	  */
+	 public int[][] addPoly(Poly p1,Poly p2){
+		 int indexofadd=0;
+		 boolean flag=false;
+		 for(int index=0;index<p1.degree.length;index++) {
+			 for(int indexofp2=0;indexofp2<p2.degree.length;indexofp2++) {
+				 if(p1.degree[index]==p2.degree[indexofp2]){
+				     tempArray[indexofadd][0]=p1.degree[index];
+				     tempArray[indexofadd][1]=p1.coefficient[index]+p2.coefficient[indexofp2];
+					 indexofadd++;
+					 p1.degree[index]=-1;
+					 p2.degree[indexofp2]=-1;
+					 flag=true;
+					 break;
+				 }
+			 }
+				 if(!flag)
+				 {
+					 tempArray[indexofadd][0]=p1.degree[index];
+					 p1.degree[index]=-1;
+				     tempArray[indexofadd][1]=p1.coefficient[index];
+					 indexofadd++; 	 
+				 }
+			 }
+		
+		 
+			 for(int indexofp2=0;indexofp2<p2.degree.length;indexofp2++) {
+					 if(p2.degree[indexofp2] != -1){
+					     tempArray[indexofadd][0]=p2.degree[indexofp2];
+					     tempArray[indexofadd][1]=p2.coefficient[indexofp2];
+						 indexofadd++; 
+					 }	 
+				 }
+		 
+			 for(int index=0;index<indexofadd-1;index++) {
+                 for(int indexofarray=index;indexofarray<indexofadd-1;indexofarray++) { 
+                     if(tempArray[index][0] <= tempArray[indexofarray][0]) {
+                         
+                         int temp = tempArray[indexofarray][0];
+                         tempArray[indexofarray][0] = tempArray[index][0];
+                         tempArray[index][0] = temp;
+                         
+                         int tempcoeff = tempArray[indexofarray][1];
+                         tempArray[indexofarray][1] = tempArray[index][1];
+                         tempArray[index][1] = tempcoeff;
+                     }
+                 }
+			 }
+			  int [][] degreecoefficient = new int[tempArray[0][0]+1][2];
+	         for(int index=0;index<tempArray[0][0]+1;index++) {
+	               degreecoefficient[index][0] = tempArray[index][0];
+	                 degreecoefficient[index][1] = tempArray[index][1];
+	             
+	         }
+		 return  degreecoefficient;
+	 }
+	 /**
+	  * multiplication of two polynomial
+	  * @param p1 as object of polynomial
+	  * @param p2 as object of polynomial
+	  * @return degreecoefficient int [][] resultant polynomial
+	  */
+	 public int[][] multiplyPoly(Poly p1, Poly p2) {
+		int[][] tempArrayForMultiply = new int[20][2];
+		 int indexofmul=0;
+		 boolean flag = false;
+		 for(int indexofp1=0;indexofp1<p1.degree.length;indexofp1++) {
+			 for(int indexofp2=0;indexofp2<p2.degree.length;indexofp2++) {
+			     tempArrayForMultiply[indexofmul][0]=p2.degree[indexofp2]+p1.degree[indexofp1];
+			     tempArrayForMultiply[indexofmul][1]=p2.coefficient[indexofp2]*p1.coefficient[indexofp1];
+				 indexofmul++;	 
+			 }
+		 }
+		
+		 int indexofmultiply=0;
+		 for(int indexoftemp=0;indexoftemp<indexofmul;indexoftemp++) {
+			 for(int indexoftempnext=indexoftemp+1;indexoftempnext<indexofmul+1;indexoftempnext++) {
+				 if(tempArrayForMultiply[indexoftempnext][0] != -1 && tempArrayForMultiply[indexoftemp][0] != -1){
+					 if(tempArrayForMultiply[indexoftemp][0]==tempArrayForMultiply[indexoftempnext][0]) {
+					     tempArray[indexofmultiply][0]=tempArrayForMultiply[indexoftemp][0];
+					     tempArray[indexofmultiply][1]=(tempArrayForMultiply[indexoftemp][1]+tempArrayForMultiply[indexoftempnext][1]);
+						 indexofmultiply++;
+						 flag=true;
+						 tempArrayForMultiply[indexoftemp][0]=-1;
+						 tempArrayForMultiply[indexoftempnext][0]=-1;
+						 
+					 }
+			    }
+			}
+				if(!flag)
+				 {
+				     tempArray[indexofmultiply][0]=tempArrayForMultiply[indexoftemp][0];
+				     tempArray[indexofmultiply][1]=tempArrayForMultiply[indexoftemp][1];
+					 indexofmultiply++;
+					 tempArrayForMultiply[indexoftemp][0]=-1;
+				 }
+			 
+			 }
+		 
+		 for(int index=0;index<indexofmultiply-1;index++) {
+             for(int indexofarray=index;indexofarray<indexofmultiply-1;indexofarray++) { 
+                 if(tempArray[index][0] < tempArray[indexofarray][0]) {
+                     
+                     int temp = tempArray[indexofarray][0];
+                     tempArray[indexofarray][0] = tempArray[index][0];
+                     tempArray[index][0] = temp;
+                     
+                     int tempcoeff = tempArray[indexofarray][1];
+                     tempArray[indexofarray][1] = tempArray[index][1];
+                     tempArray[index][1] = tempcoeff;
+                 }
+             }
+         }
+		 int [][] degreecoefficient = new int[indexofmultiply][2];
+		
+		 for(int index=0;index<indexofmultiply;index++) {
+		
+		         degreecoefficient[index][0] = tempArray[index][0];
+		         degreecoefficient[index][1] = tempArray[index][1];
+		 }
+		 return degreecoefficient;
+	 }
 
-   /*@param p1 polynomial one 
-     *@param p2 polynomial two
-     *@return p3=p1+p2
-    **/
-    public Poly addPoly(Poly p1,Poly p2){
-        sort(p1);
-        sort(p2);
-        //resultant polynomial with approximating size more than actual
-        int n1 = p1.power.length;
-        int n2 = p2.power.length;
-        int resultPolyPower[] = new int[n1+n2];
-        int resultPolyCoeff[] = new int[n1+n2];
-        int i,j,k;
-        for(i =0,j=0,k=0; i < n1 && j < n2 && k < n1+n2; k++){
-            if(p1.power[i] > p2.power[j]){
-                resultPolyPower[k] = p1.power[i];
-                resultPolyCoeff[k] = p1.coeff[i];
-                i++;
-            }
-            else if(p1.power[i] < p2.power[j]){
-                resultPolyPower[k] = p2.power[j];
-                resultPolyCoeff[k] = p2.coeff[j];
-                j++;
-            }
-            else{
-                resultPolyPower[k] = p2.power[j];
-                resultPolyCoeff[k] = p1.coeff[i] + p2.coeff[j];
-                i++;
-                j++;
-            }
-        }
-        if(i >= n1){
-            while(j < n2){
-                resultPolyPower[k] = p2.power[j];
-                resultPolyCoeff[k] = p2.coeff[j];
-                j++;
-                k++;
-            }
-        }
-        if(j >= n2){
-            while(i < n1){
-                resultPolyPower[k] = p1.power[i];
-                resultPolyCoeff[k] = p1.coeff[i];
-                i++;
-                k++;
-            }
-        }
-        // resultant polynomial of exact size 
-        int added_pow[] = new int[k];
-        int added_coeff[] = new int[k];
-        for(int index =0; index < k; index++){
-            added_pow[index] = resultPolyPower[index];
-            added_coeff[index] = resultPolyCoeff[index];
-        }  
-        return new Poly(added_pow,added_coeff);
-    }
-    
-    //sorting polynomial coefficient and power array
-    private void sort(Poly poly){
-        int n = poly.power.length;
-        for(int i = 0; i < n-1; i++){
-            for(int j = i+1; j < n; j++){
-                if(poly.power[i] < poly.power[j]){
-                    int temp_pow = poly.power[i];
-                    poly.power[i] = poly.power[j];
-                    poly.power[j] = temp_pow;
-                    
-                    int temp_coeff = poly.coeff[i];
-                    poly.coeff[i] = poly.coeff[j];
-                    poly.coeff[j] = temp_coeff;
-                }
-            }
-        }
-    }
-}_
+}
