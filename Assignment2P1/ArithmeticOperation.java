@@ -10,19 +10,19 @@ public class ArithmeticOperation {
 	 * result of operation is passing back to numberToString() Method for hex conversion
 	 * 
 	 **/
-	public int add(int num1,int num2){
+	public static int add(int num1,int num2){
 		return (num1+num2 );
 	}
 	
-	public int subtract(int num1,int num2){
+	public static int subtract(int num1,int num2){
 		return (num1-num2);
 	}
 	
-	public int  multiply(int num1,int num2){
+	public static int  multiply(int num1,int num2){
 		return (num1*num2);
 	}
 	
-	public int  divide(int num1,int num2){
+	public static int  divide(int num1,int num2){
 		int divison=0;
 		try{
 			divison = num1/num2;
