@@ -22,7 +22,7 @@ package area;
           }
 	    @Override
 	    public double area() {
-	        double result = (base*height) / 2;
+	        double result = (this.base*this.height) / 2;
 	        return result;
 	    }
 
