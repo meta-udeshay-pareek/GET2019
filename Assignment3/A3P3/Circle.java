@@ -13,7 +13,6 @@ public class Circle implements Shape {
 	    Scanner sc = new Scanner(System.in);
 	    System.out.println("Enter Radious :");
 	    this.radius = sc.nextDouble();
-	    this.area();
     }
     @Override
     public double area() {
