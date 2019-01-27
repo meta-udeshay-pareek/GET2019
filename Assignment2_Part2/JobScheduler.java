@@ -1,93 +1,55 @@
 package jobscheduler;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class JobScheduler {
-	//object for input process
-    static Scanner input = new Scanner(System.in);
-    
-    //number of process will give input by user
-    static int  numberOfProcess;
-    
-    //Two dimension array process[0][0]=Arrival time
-    //                    process[0][1]=burst time
-    // will be input by user
-    static int process[][];
-    
-    // All these time will calculate in JobScheduler class in respective method
-    static int completionTime[];
-    static int turnAroundTime[];
-    static int waitingTime[];
-    static int averageWaitingTime;
-    static int maximumWaitingTime;
-    
-    //will initialize all the arrays according to number of process
-    static void initializeAllArrays(){
-        process = new int[numberOfProcess][2];
-        completionTime = new int[numberOfProcess];
-        turnAroundTime = new int[numberOfProcess];
-        waitingTime = new int[numberOfProcess];
-    }
-    
-    //will do input process for all data regarding processess
-    static void userInputProcessData(){
-    		//input from user
-            System.out.print("Enter Number of Process : ");
-            numberOfProcess = input.nextInt();
-	
-            //method call for initializing all the array according to number of Processess
-            initializeAllArrays();
-            
-            System.out.println("Enter Arrival time and Burst time for each process:");
-	
-            //assigning Arrival and burst time for each process in two dimensional array
-			for(int i=0;i<numberOfProcess;i++){
-				System.out.print("Process-"+(i+1)+":");
-				for(int j=0;j<2;j++){
-					process[i][j]=input.nextInt();
-				}
-			}
-            
-    }
-    
-    
-    //will printing process of ALL calculated time of each process which is stored in array 
-    static void printProcessAllTime(){
-    	for(int i=0;i<process.length;i++){
-    		System.out.println("process : "+(i+1)+" completionTime: "+completionTime[i]+" turnAroundTime: "+turnAroundTime[i]+" waitingTime: "+waitingTime[i]);	
-    	}
-    	System.out.println("averageWaitingTime : "+averageWaitingTime);
-    	System.out.println("maximumWaitingTime : "+maximumWaitingTime);
-
-
-    }
-    //Main Flow of the Program
-	public static void main(String []args){	
-	            //object creation for calling method for calculating time
-	            JobSchedulerProcedure jobSchedulerProcedure = new JobSchedulerProcedure();
-	        
-	        
-	            //Method Calling for Input data about Processess
-	            userInputProcessData();
-	            
-	            //calculate completion time for each process and will store in array
-	            completionTime=jobSchedulerProcedure.completionTime(process);
-	            
-	            //calculate turnAround time for each process and will assign into array
-	            turnAroundTime =jobSchedulerProcedure.turnAroundTime(completionTime, process);
 		
-	            //waiting time for each process and store in array
-	            waitingTime=jobSchedulerProcedure.waitingTime(turnAroundTime, process);
-	            
-	            
-	            //calculate average waiting for all processess
-	            averageWaitingTime=jobSchedulerProcedure.averageWaitingTime(waitingTime, numberOfProcess);
-	            
-	            //find maximum waiting time among all
-	            maximumWaitingTime=jobSchedulerProcedure.maximumWaitingTime(process,waitingTime);
-	            
-	            //will print all the information with all their data like completion time..etc.
-	            printProcessAllTime();
-
-	}
+	public static void main(String args[]){
+		
+		calculation calc =new calculation();
+		calc.inputProcess();//taking input of arival time and burst time
+		calc.initiateOtherArrays();// initialise the array of waiting time and turn around time
+		calc.sortProcess();//sorting of array
+		
+		while(true){
+		
+		int choice;
+		System.out.println("1.Calculate completion time for each process\r\n"+ 
+				"2.Calculate waiting time for each process\r\n"+
+				"3.Calculate turn around time for each process\r\n"+
+				"4.Average waiting time of processes\r\n"+
+				"5.Maximum waiting time period for a process in queue\r\n"+
+				"6.Exit");
+		System.out.print("Enter your choice : ");
+		Scanner input = new Scanner(System.in);
+		choice = input.nextInt();
+		
+		switch(choice){
+		case 1: 
+			calc.showOutput(calc.completionTime());
+			break;
+		case 2:
+			
+			calc.showOutput(calc.waitingTime());
+			break;
+		case 3:
+			calc.showOutput(calc.turnAroundTime());
+			break;
+		case 4:
+			
+			calc.averageWaitingTime();
+			break;
+		case 5:
+			
+			calc.maximumWaitingTime();
+			break;
+		case 6:
+			System.out.println("Thank you .....");
+			System.exit(0);
+		default:
+			System.out.println("wrong input! Try Again...");
+		}
+		}	
+		
+}
 }
