@@ -5,7 +5,7 @@ import java.util.*;
 *
 * @author udeshay
 */
-public class Square extends Shape {
+public class Square implements Shape {
    private final double side; //sides
 
    public Square() {
