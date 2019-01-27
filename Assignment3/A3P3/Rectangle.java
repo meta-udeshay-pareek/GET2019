@@ -1,4 +1,5 @@
 package area;
+
 import java.util.*;  
 
 /**
@@ -6,7 +7,7 @@ import java.util.*;
 * @author udeshay
 */
 public class Rectangle implements Shape {
-   private final double width, length; //sides
+   private  double width, length; //sides
 
    public Rectangle() {
        widthHeightInput();
@@ -17,7 +18,7 @@ public class Rectangle implements Shape {
 	    System.out.println("Enter width :");
 	    this.width = sc.nextDouble();
        System.out.println("Enter height :");
-	    this.height = sc.nextDouble();
+	    this.length = sc.nextDouble();
     }
    @Override
    public double area() {
@@ -26,3 +27,4 @@ public class Rectangle implements Shape {
    }
 
 }
+
