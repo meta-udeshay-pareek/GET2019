@@ -1,4 +1,5 @@
 package area;
+import java.util.*;  
 
 /**
 *
@@ -7,11 +8,17 @@ package area;
 public class Rectangle extends Shape {
    private final double width, length; //sides
 
-   public Rectangle(double width, double length) {
-       this.width = width;
-       this.length = length;
+   public Rectangle() {
+       widthHeightInput();
    }
 
+   private void widthHeightInput(){
+	    Scanner sc = new Scanner(System.in);
+	    System.out.println("Enter width :");
+	    this.width = sc.nextDouble();
+       System.out.println("Enter height :");
+	    this.height = sc.nextDouble();
+    }
    @Override
    public double area() {
        // A = w * l
