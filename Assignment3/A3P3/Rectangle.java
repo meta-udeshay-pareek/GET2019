@@ -5,7 +5,7 @@ import java.util.*;
 *
 * @author udeshay
 */
-public class Rectangle extends Shape {
+public class Rectangle implements Shape {
    private final double width, length; //sides
 
    public Rectangle() {
