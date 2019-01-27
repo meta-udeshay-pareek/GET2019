@@ -1,4 +1,5 @@
 package area;
+import java.util.*;  
 
 /**
 *
@@ -7,13 +8,17 @@ package area;
 public class Square extends Shape {
    private final double side; //sides
 
-   public Square(double side) {
-       this.side = side;
+   public Square() {
+       sideInput();
    }
-
+   private void sideInput(){
+      System.out.println("Enter Side :");
+      Scanner sc = new Scanner(System.in);
+      this.side = sc.nextDouble();
+   }
    @Override
    public double area() {
        // A = w * l
-       return side*side;
+       return this.side*this.side;
    }
 }
