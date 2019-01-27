@@ -39,7 +39,7 @@ public class HexCalc {
 		
 	    int decimal;//decimal value input
 	    int userChoice;//user choice for operation
-	    HexConversion hexConversion = new HexConversion();
+	   
 	   
 		
 		
@@ -57,22 +57,22 @@ public class HexCalc {
 	                 { 
 		              case 1: 
 		              //add two decimal and result of them will convert into hexadecimal
-		              System.out.println( hexConversion.numberToString(ArithmeticOperation.add(InputValue.getNumber1(),InputValue.getNumber2()))); 
+		              System.out.println( HexConversion.numberToString(ArithmeticOperation.add(InputValue.getNumber1(),InputValue.getNumber2()))); 
 		              break; 
 		             
 		              case 2: 
 		        	 //subtract two decimal and result of them will convert into hexadecimal
-		              System.out.println( hexConversion.numberToString(ArithmeticOperation.subtract(InputValue.getNumber1(),InputValue.getNumber2()))); 
+		              System.out.println( HexConversion.numberToString(ArithmeticOperation.subtract(InputValue.getNumber1(),InputValue.getNumber2()))); 
 		              break;
 		             
 		              case 3: 
 		        	//multiply two decimal and result of them will convert into hexadecimal
-		              System.out.println( hexConversion.numberToString(ArithmeticOperation.multiply(InputValue.getNumber1(),InputValue.getNumber2())));
+		              System.out.println( HexConversion.numberToString(ArithmeticOperation.multiply(InputValue.getNumber1(),InputValue.getNumber2())));
 		              break;
 		             
 		              case 4: 
 		              //divide two decimal and result of them will convert into hexadecimal
-		              System.out.println( hexConversion.numberToString(ArithmeticOperation.divide(InputValue.getNumber1(),InputValue.getNumber2())));
+		              System.out.println( HexConversion.numberToString(ArithmeticOperation.divide(InputValue.getNumber1(),InputValue.getNumber2())));
 		              break;
 		             
 		              case 5:  
