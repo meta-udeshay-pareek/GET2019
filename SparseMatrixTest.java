@@ -1,32 +1,268 @@
-mport static org.junit.Assert.*;
-import org.junit.BeforeClass;
+package sparsematrix;
+
+import static org.junit.Assert.*;
 import org.junit.Test;
+public class SparseMatrixTest {
 
- public class SparseMatrixTest {
-    private static SparseMatrix sparse1;
-    private static SparseMatrix sparse2;
-    private static int matrix1[][];
-    private static int matrix2[][];
-
-     @BeforeClass
-    public static void init(){
-        matrix1 = new int[][]{{1,2,10},{1,4,12},{3,3,5},{4,1,15},{4,2,12}};
-        sparse1 = new SparseMatrix(matrix1);
-        matrix1 = new int[][]{{2,1,10},{4,1,12},{3,3,6},{1,4,5},{0,1,4}};
-        sparse2 = new SparseMatrix(matrix2);
-    }
-    @Test
-    public void transposeTest() {
-        int transposeResult[][] = {{2,1,10},{4,1,12},{3,3,5},{1,4,15},{2,4,12}};
-        assertArrayEquals(transposeResult,sparse1.transpose());
-    }
-    @Test
-    public void isSymmetricFalseTest() {
-        assertEquals(false,sparse1.isSymmetric());
-    }
-    @Test
-    public void isSymmetricTrueTest() {
-        SparseMatrix sparse = new SparseMatrix(new int[][]{{1,1,4},{2,2,8},{3,3,12},{4,4,0},{1,2,4},{2,1,4}});
-        assertEquals(true,sparse.isSymmetric());
-    }
+		@Test
+		public void getTransposeTestCaseWithInput1()
+		{
+			int[][] input = {
+					{1 , 0 , 0},
+					{0 , 1 , 0},
+					{0 , 1 , 1},
+			};
+			int[][] expected = {
+					{1 , 0 , 0},
+					{0 , 1 , 1},
+					{0 , 0 , 1},
+			};
+			assertEquals(true, new MatrixOperation(expected).equals((new MatrixOperation(input).getTranspose())));
+			
+		}
+		
+		@Test
+		public void getTransposeTestCaseWithInput2()
+		{
+			int[][] input = {
+					{1 , 0 },
+					{0 , 1 },
+					{0 , 1 },
+			};
+			int[][] expected = {
+					{1 , 0 , 0},
+					{0 , 1 , 1},
+			};
+			assertEquals(true, new MatrixOperation(expected).equals((new MatrixOperation(input).getTranspose())));
+			
+		}
+		
+		@Test
+		public void getTransposeTestCaseWithInput3()
+		{
+			int[][] input = {
+					{1 , 0 },
+					{0 , 1 },
+					{0 , 1 },
+			};
+			int[][] expected = {
+					{1 , 0 , 1},
+					{0 , 1 , 1},
+			};
+			assertEquals(false, new MatrixOperation(expected).equals((new MatrixOperation(input).getTranspose())));
+			
+		}
+		
+		@Test
+		public void symmetricalTestCaseWithInput1()
+		{
+			int[][] input = {
+					{1 , 0 , 0},
+					{0 , 1 , 0},
+					{0 , 0 , 1},
+			};
+			assertEquals(true, new MatrixOperation(input).symmetrical());
+			
+		}
+		
+		@Test
+		public void symmetricalTestCaseWithInput2()
+		{
+			int[][] input = {
+					{1 , 0 , 0 , 0},
+					{0 , 1 , 0 , 0},
+					{0 , 0 , 1 , 0},
+					{0 , 0 , 0 , 1},
+			};
+			assertEquals(true, new MatrixOperation(input).symmetrical());
+			
+		}
+		
+		@Test
+		public void symmetricalTestCaseWithInput3()
+		{
+			int[][] input = {
+					{1 , 0 , 0 , 0},
+					{0 , 1 , 0 , 0},
+					{0 , 0 , 1 , 0},
+					{0 , 1 , 0 , 1},
+			};
+			assertEquals(false, new MatrixOperation(input).symmetrical());
+			
+		}
+		
+		
+		@Test
+		public void addMatrixTestCaseWithInput1()
+		{
+			int[][] input1 = {
+					{1 , 0 , 0},
+					{0 , 1 , 0},
+					{0 , 0 , 1},
+			};
+			int[][] input2 = {
+					{1 , 1 , 0},
+					{0 , 1 , 0},
+					{0 , 0 , 1},
+			};
+			int[][] expected = {
+					{2 , 1 , 0},
+					{0 , 2 , 0},
+					{0 , 0 , 2},
+			};
+			MatrixOperation matrixOperation = new MatrixOperation(input1);
+			MatrixOperation matrixOperation2 = new MatrixOperation(input2);
+			MatrixOperation result = new MatrixOperation(expected);
+			assertEquals(true, result.equals(matrixOperation.addMatrix(matrixOperation2)));
+			
+		}
+		
+		@Test(expected = AssertionError.class)
+		public void addMatrixTestCaseWithInput2()
+		{
+			int[][] input1 = {
+					{1 , 0 , 0},
+					{0 , 1 , 0},
+					{0 , 0 , 1},
+			};
+			int[][] input2 = {
+					{1 , 1 , 0},
+					{0 , 1 , 0},
+			};
+			int[][] expected = {
+					{2 , 1 , 0},
+					{0 , 2 , 0},
+					{0 , 0 , 2},
+			};
+			MatrixOperation matrixOperation = new MatrixOperation(input1);
+			MatrixOperation matrixOperation2 = new MatrixOperation(input2);
+			MatrixOperation result = new MatrixOperation(expected);
+			assertEquals(true, result.equals(matrixOperation.addMatrix(matrixOperation2)));
+			
+		}
+		
+		@Test
+		public void addMatrixTestCaseWithInput3()
+		{
+			int[][] input1 = {
+					{1 , 0},
+					{0 , 1},
+			};
+			int[][] input2 = {
+					{1 , 1},
+					{0 , 1},
+			};
+			int[][] expected = {
+					{2 , 1},
+					{0 , 2},
+			};
+			MatrixOperation matrixOperation = new MatrixOperation(input1);
+			MatrixOperation matrixOperation2 = new MatrixOperation(input2);
+			MatrixOperation result = new MatrixOperation(expected);
+			assertEquals(true, result.equals(matrixOperation.addMatrix(matrixOperation2)));
+			
+		}
+		
+		@Test(expected = AssertionError.class)
+		public void mulMatrixTestCaseWithInput1()
+		{
+			int[][] input1 = {
+					{1 , 0 , 0},
+					{0 , 1 , 0},
+					{0 , 0 , 1},
+			};
+			int[][] input2 = {
+					{1 , 1 , 0},
+					{0 , 1 , 0},
+			};
+			int[][] expected = {
+					{2 , 1 , 0},
+					{0 , 2 , 0},
+					{0 , 0 , 2},
+			};
+			
+			//matrix can't be multiplied as no. of column if first is not equal to no. of row in second
+			
+			MatrixOperation matrixOperation = new MatrixOperation(input1);
+			MatrixOperation matrixOperation2 = new MatrixOperation(input2);
+			MatrixOperation result = new MatrixOperation(expected);
+			assertEquals(true, result.equals(matrixOperation.addMatrix(matrixOperation2)));
+			
+		}
+		
+		@Test
+		public void mulMatrixTestCaseWithInput2()
+		{
+			int[][] input1 = {
+					{1 , 0 , 0},
+					{0 , 1 , 0},
+					{0 , 0 , 1},
+			};
+			int[][] input2 = {
+					{1 , 0 , 0},
+					{0 , 1 , 0},
+					{0 , 0 , 1},
+			};
+			int[][] expected = {
+					{1 , 0 , 0},
+					{0 , 1 , 0},
+					{0 , 0 , 1},
+			};
+			MatrixOperation matrixOperation = new MatrixOperation(input1);
+			MatrixOperation matrixOperation2 = new MatrixOperation(input2);
+			MatrixOperation result = new MatrixOperation(expected);
+			assertEquals(true, result.equals(matrixOperation.mulMatrix(matrixOperation2)));
+			
+		}
+		
+		@Test
+		public void mulMatrixTestCaseWithInput3()
+		{
+			int[][] input1 = {
+					{1 , 0 , 1},
+					{0 , 1 , 0},
+					{0 , 0 , 1},
+			};
+			int[][] input2 = {
+					{1 , 0 , 0},
+					{0 , 1 , 0},
+					{1 , 0 , 1},
+			};
+			int[][] expected = {
+					{2 , 0 , 1},
+					{0 , 1 , 0},
+					{1 , 0 , 1},
+			};
+			MatrixOperation matrixOperation = new MatrixOperation(input1);
+			MatrixOperation matrixOperation2 = new MatrixOperation(input2);
+			MatrixOperation result = new MatrixOperation(expected);
+			assertEquals(true, result.equals(matrixOperation.mulMatrix(matrixOperation2)));
+			
+		}
+		
+		@Test
+		public void mulMatrixTestCaseWithInput4()
+		{
+			int[][] input1 = {
+					{1 , 0 , 1},
+					{1 , 0 , 0},
+					{0 , 0 , 1},
+			};
+			int[][] input2 = {
+					{1},
+					{0},
+					{0},
+			};
+			int[][] expected = {
+					{1},
+					{1},
+					{0},
+			};
+			MatrixOperation matrixOperation = new MatrixOperation(input1);
+			MatrixOperation matrixOperation2 = new MatrixOperation(input2);
+			MatrixOperation result = new MatrixOperation(expected);
+			assertEquals(true, result.equals(matrixOperation.mulMatrix(matrixOperation2)));
+			
+		}
+		
 }
