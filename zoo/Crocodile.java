@@ -2,6 +2,8 @@ package zoo;
 
 public class Crocodile extends Reptile {
 
+    public Crocodile(){}
+
 	public Crocodile(String name,double age,double weight){
 		this.name= name;
 		this.age = age;
@@ -19,5 +21,26 @@ public class Crocodile extends Reptile {
 	 * */
 	public int getAnimalId(){
 		return this.animalId;
+	}
+      
+	/*
+	* @return AnimalType animal
+	* */
+	public String getAnimalType(){
+	     return "CROCODILE";
+	}
+      
+	/*
+	* @return "true" if any of the information of animal is null or 0 else return "false"
+	* */
+	public boolean isAnimalInfoNull(){
+		if(this.name==null){
+	  		return true;
+	  	}else if (this.age==0){
+	  		return true;
+	  	}else if (this.weight==0){
+	  		return true;
+	  	}
+	  	return false;
 	}
 }
