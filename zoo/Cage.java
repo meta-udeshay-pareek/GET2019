@@ -1,15 +1,25 @@
 package zoo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cage {
 	
-	int capacity;//number of animal capacity in a particular cage
+	/***********Instance Variables********************************/
 	
+	int capacity;//number of animal capacity in a particular cage
+        int numberOfAnimalInCage;//number of animal present in cage
+
 	Animal animalType;//specific type of animal like Lion,Tiger,Dog,etc.
 	
 	List<Animal> animal;//list of animal in this cage
 	
+	
+	
+	
+	
+	
+	/***********************Constructor***************************/
 	/*
 	 * @param capacity ,maximum number of animal who can reside in a cage
 	 * @param animalType, specific animal type which will be in cage like Lion,Peacock etc
@@ -17,27 +27,47 @@ public class Cage {
 	public Cage(int capacity, Animal animalType){
 		this.capacity = capacity;
 		this.animalType = animalType;
+		this.animal = new ArrayList<Animal>();
+		
 	}
 	
 	
+	
+	/************************public Methods*************************/
+	
 	/*
 	 * @param animal , animal which is going to be add in this cage
+	 * @return "true" if animal successfully added else "false"
 	 * */
-	void addAnimal(Animal animal){
-		//if animal type is correct
-		if(this.animalType.getClass()==animal.getClass()){
-			//if number of element in cage is under capacity
-			if(this.animal.size()<this.capacity){
-				this.animal.add(animal);
-				this.capacity++;
-			}else{
-				System.out.println("Cage capacity is full");
-			}
+	public boolean addAnimal(Animal addAnimal){
+		boolean isAdded=false;
+		
+		//checking all basic condition before addition
+		if(isAllConditionIsTrue(addAnimal)){
+			
+				//if number of element in cage is under capacity
+				if(this.animal.size()<this.capacity){
+					
+					//checking is animal already exist in this cage
+					if(!isAnimalExistInCage(addAnimal)){
+						
+						/**************************/
+						this.animal.add(addAnimal);
+						this.numberOfAnimalInCage++;
+						isAdded=true;
+						/**************************/
+						
+					}else{
+						System.out.println("This animal is already exist in this cage you cann't add it");
+					}
+					
+				}else{
+					System.out.println("This Cage capacity is full,Add another cage for this animal");
+				}
 			
 		}
-		else{
-			System.out.println("This Animal cann't be added in this cage as type of animal mismatch");
-		}
+		
+		return isAdded;
 		
 	}
 	
@@ -45,30 +75,95 @@ public class Cage {
 	/*
 	 * @param animal , animal which is going to be remove from this cage
 	 * */
-	void removeAnimal(Animal removeAnimal){
-		//status of removal of animal
-		boolean removed=false;
+	public boolean removeAnimal(Animal removeAnimal){
 		
-		//if animal of same type of cage's animal's type
-		if(this.animalType.getClass()==animal.getClass()){
+		boolean isRemoved=false;
+		
+		
+		//checking all basic condition before addition
+		if(isAllConditionIsTrue(removeAnimal)){
 			
 			//iterating list of animal in this cage
 			for(Animal rAnimal : this.animal){
 				//if animal exist then animal will remove from this list 
-				if(rAnimal== removeAnimal){
+				if(rAnimal.getUniqueId()== removeAnimal.getUniqueId()){
 					this.animal.remove(removeAnimal);
-					removed=true;
-					break;
+	                this.numberOfAnimalInCage--;
+					
+	                isRemoved=true;
+	                break;
 				}
 			}
 			//if animal not removed i.e. animal not exist in this cage
-			if(!removed){
+			if(!isRemoved){
 				System.out.println("This Animal doesn't exist in this cage");
+				return isRemoved;
 			}
 			
 		}
-		else{
-			System.out.println("This Animal doesn't exist in this cage");
-		}
+		
+		
+		return isRemoved;
 	}
+    
+    /*
+    * will return category of animal of this cage
+    *           1.this.animalType.getClass()  will return like..... class zoo.Lion
+                2.this.animalType.getClass().getSuperclass()   will return like  class zoo.Mammal
+                3.(class zoo.Mammal).toString()=> "class zoo.Mammal"
+                4."class zoo.Mammal".split(".")=> String []s={"class zoo","Mammal"}
+                5.s[1].toUpperCase() = >  "MAMMAL"
+                6 animalCategory = "MAMMAL"
+                
+    *@return animalCategory
+    */
+    public String getAnimalCategory(){
+        
+        String animalCategory = this.animalType.getClass().getSuperclass().toString().split("\\.")[1].toUpperCase();
+        return animalCategory;
+    }
+    
+    
+    
+    /*********************private helper method***************/
+    
+    /*
+     * @param existAnimal,for checking that this animal is already exist in this cage or not
+     * @return "true" if animal is already exist else "false"
+     * */
+    private boolean isAnimalExistInCage(Animal existAnimal){
+    	
+    	//iterating list of animal in this cage
+		for(Animal eAnimal : this.animal){
+			//if animal exist then will return true 
+			if(eAnimal.getUniqueId()== existAnimal.getUniqueId()){
+				return true;
+			}
+		}
+		
+    	return false;
+    }
+    
+    
+    /*
+     * @param animal,for checking basic condition for animal object correctness
+     * @return "true" if animal object is correct else "false"
+     * */
+    
+    private boolean isAllConditionIsTrue(Animal animal){
+    	
+    	//is animal info like name ,age ,weight are fulfilled or not
+    	if(!animal.isAnimalInfoNull()){
+    		
+    		//if animal's type is same of  type of cage's animal's type
+	    	if(this.animalType.getClass()==animal.getClass()){
+	    		
+	    			return true;
+	    		
+	    	}else{
+	    		System.out.println("This Animal type mismatch with this cages's animal type");
+	    	}
+    	}
+    	return false;
+    }
 }
