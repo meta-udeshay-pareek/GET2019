@@ -5,5 +5,7 @@ public abstract class Animal {
 	int getUniqueId(){
 		return uniqueId++;
 	}
-	abstract String getSound();
+    abstract String getSound();
+    abstract String getAnimalType();
+    abstract boolean isAnimalInfoNull();
 }
