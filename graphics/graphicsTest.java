@@ -23,13 +23,13 @@ public class graphicsTest {
 
 	        
 	    	//origin of shape on screen new Point(xCordinates,yCordinates)
-	        Point point = new Point(5,5);
+	        Point origin = new Point(5,5);
 	        
 	        //side of square=5 adding to 0th index of list
 	        dimension.add(5);
 	        
 	        //creating square shape from shape factory
-	        Shape shapeSquare = ShapeFactory.createShape(ShapeType.SQUARE, point,dimension);
+	        Shape shapeSquare = ShapeFactory.createShape(ShapeType.SQUARE, origin,dimension);
 	        
 	        /***********AREA*******************/
 	        //calculating area of Square
@@ -46,12 +46,24 @@ public class graphicsTest {
 	        
 	        /*********Point inclusion**********/
 	        //checking point inclusion in 
+	        enclosed = shapeSquare.isPointEnclosed(new Point(5,11));
+	        assertEquals(false, enclosed);
+	        enclosed = shapeSquare.isPointEnclosed(new Point(7,11));
+	        assertEquals(false, enclosed);
 	        enclosed = shapeSquare.isPointEnclosed(new Point(11,11));
 	        assertEquals(false, enclosed);
-	        enclosed = shapeSquare.isPointEnclosed(new Point(2,3));
+	        enclosed = shapeSquare.isPointEnclosed(new Point(4,7));
 	        assertEquals(false, enclosed);
-	        enclosed = shapeSquare.isPointEnclosed(new Point(8,8));
+	        enclosed = shapeSquare.isPointEnclosed(new Point(7,7));
 	        assertEquals(true, enclosed);
+	        enclosed = shapeSquare.isPointEnclosed(new Point(11,7));
+	        assertEquals(false, enclosed);
+	        enclosed = shapeSquare.isPointEnclosed(new Point(2,2));
+	        assertEquals(false, enclosed);
+	        enclosed = shapeSquare.isPointEnclosed(new Point(3,2));
+	        assertEquals(false, enclosed);
+	        enclosed = shapeSquare.isPointEnclosed(new Point(11,2));
+	        assertEquals(false, enclosed);
 	        
 	        //adding shape to screen
 	        screen.addShape(shapeSquare);
@@ -66,14 +78,14 @@ public class graphicsTest {
 	     public void testRectangle() {
 	         
 	         //origin of shape on screen new Point(xCordinates,yCordinates)
-	         Point point = new Point(5,5);
+	         Point origin = new Point(5,5);
 	         
 	         //width and height of rectangle
 	         dimension.add(5);
 	         dimension.add(6);
 
 	         //creating Rectangle shape from shape factory
-	         Shape shapeRectangle = ShapeFactory.createShape(ShapeType.RECTANGLE, point, dimension);
+	         Shape shapeRectangle = ShapeFactory.createShape(ShapeType.RECTANGLE, origin, dimension);
 	         
 	         /***********AREA*******************/
 		     //calculating area of Rectangle
@@ -90,17 +102,27 @@ public class graphicsTest {
 
 	         
 	         /*********Point inclusion**********/
-	         //checking point inclusion in Rectangle
 	         
-	         enclosed = shapeRectangle.isPointEnclosed(new Point(1,1));
-	         assertEquals(false, enclosed);
-	         enclosed = shapeRectangle.isPointEnclosed(new Point(11,11));
-	         assertEquals(false, enclosed);
-	         enclosed = shapeRectangle.isPointEnclosed(new Point(8,8));
-	         assertEquals(true, enclosed);
-	         enclosed = shapeRectangle.isPointEnclosed(new Point(10,11));
-	         assertEquals(true, enclosed);
-
+	         
+	         //checking point inclusion in 
+	        enclosed = shapeRectangle.isPointEnclosed(new Point(5,12));
+	        assertEquals(false, enclosed);
+	        enclosed = shapeRectangle.isPointEnclosed(new Point(7,12));
+	        assertEquals(false, enclosed);
+	        enclosed = shapeRectangle.isPointEnclosed(new Point(11,12));
+	        assertEquals(false, enclosed);
+	        enclosed = shapeRectangle.isPointEnclosed(new Point(4,7));
+	        assertEquals(false, enclosed);
+	        enclosed = shapeRectangle.isPointEnclosed(new Point(7,7));
+	        assertEquals(true, enclosed);
+	        enclosed = shapeRectangle.isPointEnclosed(new Point(11,7));
+	        assertEquals(false, enclosed);
+	        enclosed = shapeRectangle.isPointEnclosed(new Point(2,2));
+	        assertEquals(false, enclosed);
+	        enclosed = shapeRectangle.isPointEnclosed(new Point(3,2));
+	        assertEquals(false, enclosed);
+	        enclosed = shapeRectangle.isPointEnclosed(new Point(11,2));
+	        assertEquals(false, enclosed);
 	         screen.addShape(shapeRectangle);
 	        
 	     }
@@ -112,7 +134,7 @@ public class graphicsTest {
 	      public void testTriangle() {
 	         
 	    	  //origin of shape on screen new Point(xCordinates,yCordinates)
-	          Point point = new Point(5,5);
+	          Point origin = new Point(5,5);
 	         
 	          //3 sides of triangle
 	          dimension.add(2);
@@ -120,13 +142,13 @@ public class graphicsTest {
 	          dimension.add(4);
 
 	          //creating Triangle shape from shape factory
-	          Shape shapeTriangle = ShapeFactory.createShape(ShapeType.TRIANGLE, point, dimension);
+	          Shape shapeTriangle = ShapeFactory.createShape(ShapeType.TRIANGLE, origin, dimension);
 
 	          /***********AREA*******************/
 			  //calculating area of Triangle
 	          
 	          area = shapeTriangle.getArea();
-	          assertEquals(3.464, area, 0.002);
+	          assertEquals(2.904737, area, 0.002);
 	          
 	          
 	          /**********perimeter**************/
