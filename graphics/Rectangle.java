@@ -3,7 +3,7 @@ package graphics;
 class Rectangle extends ShapeDesign{
 	
     private int width,height;
-    private final String SHAPE = "Rectangle"; 
+
     
     public Rectangle(Point p,int width,int height){
         this.p = p;
@@ -26,7 +26,7 @@ class Rectangle extends ShapeDesign{
      *@return TYPE OF THIS SHAPE
      */
     public String getType(){
-    	return this.SHAPE;
+    	return this.getClass().getSimpleName();
     }
     
     /******* Getter end***********/
