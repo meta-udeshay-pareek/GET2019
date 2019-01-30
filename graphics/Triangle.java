@@ -2,33 +2,29 @@ package graphics;
 
 class Triangle extends ShapeDesign{
 	
-    private int side1;
-    private int side2;
-    private int side3;
+	private int base;
+	private int height;
    
     
-    public Triangle(Point p,int side1, int side2, int side3){
+    public Triangle(Point p,int base, int height){
         this.p = p;
-        this.side1 = side1;
-        this.side2 = side2;
-        this.side3 = side3;
+        this.base = base;
+        this.height = height;
+      
     }
     
     
     
     /**** Getter start********/
     
-    public int getSide1(){
-    	return this.side1;
+    public int getHeight(){
+    	return this.height;
     }
     
-    public int getSide2(){
-    	return this.side2;
+    public int getBase(){
+    	return this.base;
     }
     
-    public int getSide3(){
-    	return this.side3;
-    }
     
     /*
      * @return TYPE OF THIS SHAPE
@@ -49,18 +45,10 @@ class Triangle extends ShapeDesign{
     
     /*
     *@return area of Triangle
-              ________________
-    *      A=√s(s−a)(s−b)(s−c)    where s = (a+b+c)/2
     */
     @Override
     public double getArea(){
-        double semiperimeter = getPerimeter()/2;
-        double area = Math.sqrt(
-        					(semiperimeter * (semiperimeter - side1) *(semiperimeter - side2) * (semiperimeter - side3))
-        				);
-      
-        
-        return area;
+    	return 0.5 * this.base * this.height;
     }
     
     
@@ -69,7 +57,7 @@ class Triangle extends ShapeDesign{
     */
     @Override
     public double getPerimeter(){
-        return (this.side1 + this.side2 + this.side3);
+    	return this.base + this.height + Math.sqrt( this.base*this.base + this.height*this.height );
     }
     
     
@@ -87,33 +75,21 @@ class Triangle extends ShapeDesign{
     *@return "true" if exist in shape area else "false"
     */
     @Override
-    public boolean isPointEnclosed(Point p){
-        int xCoordinate = p.getX();
-        int yCoordinate = p.getY();
-
-        int x1 = this.p.getX();
-        int y1 = this.p.getY();
-        
-        int x2 = x1 + this.side1;
-        int y2 = y1 + this.side1;
-
-        int x3 = x2 + side2;
-        int y3 = y2 - side2;
-
-        if ((xCoordinate < x1 || yCoordinate < y1)
-                || (xCoordinate < x2 || yCoordinate < y2)
-                || (xCoordinate < x3 || yCoordinate < y3)) {
-
-            return false;
-        }
-        if ((xCoordinate > x1 || yCoordinate > y1)
-                || (xCoordinate > x2 || yCoordinate > y2)
-                || (xCoordinate > x3 || yCoordinate > y3)) {
-
-            return false;
-        }
-
-        return true;
+    public boolean isPointEnclosed(Point point){
+    	try {
+			Point p1 = new Point(this.p.getX()+this.base, this.p.getY());
+			Point p2 = new Point(this.p.getX(), this.p.getY()+this.height);
+			if(point.getX()>=this.p.getX() && point.getY() >= this.p.getY()) {
+				double left = point.getY()*( p2.getX() - p1.getX() ) - point.getX()*(p2.getY() - p1.getY());
+				double right = p1.getY()*p2.getX() - p1.getX()*p2.getY();
+				if(left >= right) {
+					return true;
+				}
+			}
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		return false;
     }
     
     
