@@ -1,13 +1,21 @@
 package graphics;
 
+import graphics.Point.InvalidCoordinate;
+
 class Circle extends ShapeDesign{
 	
     private int radius;
+    private Point centerPoint;
     
-    
-    public Circle(Point p,int radious){
-        this.p = p;
+    public Circle(Point originPoint,int radious) throws InvalidCoordinate{
+        this.p = originPoint;
         this.radius = radious;
+        
+        //calculating centre of circle
+        double m = this.p.distanceFromPoint(new Point(0,0)) + (double)this.radius;
+        int x1 = (int)( (m * (double)this.p.getX())/ (m - (double)this.radius) );
+	int y1 = (int)( (m * (double)this.p.getY())/ (m - (double)this.radius) );
+	this.centerPoint = new Point(x1, y1);
     }
     
     
@@ -58,12 +66,6 @@ class Circle extends ShapeDesign{
     }
     
     /*
-     * 
-     * slop(m)=(y2-y1)/(x2-x1)
-    *
-    *   (x - x1)^2 + (y - y1)^2 <= r^2
-    *   where x,y will be the center point of the circle and x1,y1 is the point p.
-    *   then p(x,y) will be inside circle
     *
     *@param p , point p(x,y) 
     *@return "true" if exist in shape area else "false"
@@ -71,8 +73,9 @@ class Circle extends ShapeDesign{
     @Override
     public boolean isPointEnclosed(Point p){
         
-        double slop = p.getY()/p.getX();// slop = (y2-y1)/(x2-x1)  but origin(0,0) p(x,y)  so (y-0)/(x-0)=> y/x
-        
-        return false;
+    	if( this.centerPoint.distanceFromPoint(p) <= this.radius ) {
+			return true;
+		}
+		return false;
     }
 }
