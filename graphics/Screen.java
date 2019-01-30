@@ -1,5 +1,7 @@
 package graphics;
 
+import graphics.Shape.ShapeType;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -45,10 +47,8 @@ public class Screen {
      * @param index
      * @throws Exception 
      */
-    public void deleteAllShapeOfType(String s) throws Exception{
+    public void deleteAllShapeOfType(ShapeType shape) throws Exception{
     	
-    	//converting type into upper case for comparison purpose
-    	String shape = s.toUpperCase();
     	
     	// iterating  list of screen element
     	Iterator<ScreenElement> element =  screenElements.iterator();
@@ -59,7 +59,7 @@ public class Screen {
     		
     		ScreenElement shapeGet =  element.next();
     		//if object class name is same as entered type then this object will remove from screen
-    		if(shape.equals(shapeGet.getClass().getSimpleName().toUpperCase())){
+    		if(shape.name().equals(shapeGet.getClass().getSimpleName().toUpperCase())){
     			screenElements.remove(shapeGet);
     		}
     	}  	
