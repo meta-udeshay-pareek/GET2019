@@ -5,7 +5,7 @@ class Triangle extends ShapeDesign{
     private int side1;
     private int side2;
     private int side3;
-    private final String SHAPE = "Triangle"; 
+   
     
     public Triangle(Point p,int side1, int side2, int side3){
         this.p = p;
@@ -34,7 +34,7 @@ class Triangle extends ShapeDesign{
      * @return TYPE OF THIS SHAPE
     */
     public String getType(){
-    	return this.SHAPE;
+    	return this.getClass().getSimpleName();
     }
 
     
@@ -54,11 +54,13 @@ class Triangle extends ShapeDesign{
     */
     @Override
     public double getArea(){
-        double sides = (double) ( (this.side1 + this.side2 + this.side3) / 2);
-        double solution = (sides * ((sides - side1) + (sides - side2) + (sides - side3)));
-        double finalsol = (double) Math.sqrt(solution);
+        double semiperimeter = getPerimeter()/2;
+        double area = Math.sqrt(
+        					(semiperimeter * (semiperimeter - side1) *(semiperimeter - side2) * (semiperimeter - side3))
+        				);
+      
         
-        return finalsol;
+        return area;
     }
     
     
