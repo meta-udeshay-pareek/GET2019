@@ -2,26 +2,26 @@ package graphics;
 
 class Circle extends ShapeDesign{
 	
-    private int radious;
-    private final String SHAPE = "CIRCLE";
+    private int radius;
+    
     
     public Circle(Point p,int radious){
         this.p = p;
-        this.radious = radious;
+        this.radius = radious;
     }
     
     
     
     /**** Getter start********/
     
-    public int getRadious(){
-    	return this.radious;
+    public int getRadius(){
+    	return this.radius;
     }
     /*
      *@return TYPE OF THIS SHAPE
      */
     public String getType(){
-    	return this.SHAPE;
+    	return this.getClass().getSimpleName();
     }
     
     /******* Getter end***********/
@@ -38,7 +38,7 @@ class Circle extends ShapeDesign{
     */
     @Override
     public double getArea(){
-        return (3.14*radious*radious);
+        return (Math.PI*radius*radius);
     }
     
     /*
@@ -46,11 +46,11 @@ class Circle extends ShapeDesign{
     */
     @Override
     public double getPerimeter(){
-        return (2*3.14*radious);
+        return (2*Math.PI*radius);
     }
     
     /*
-    *@return starting point of Square p(x,y)
+    *@return starting point of Circle p(x,y)
     */
     @Override
     public Point getShapeOrigin(){
@@ -58,8 +58,12 @@ class Circle extends ShapeDesign{
     }
     
     /*
+     * 
+     * slop(m)=(y2-y1)/(x2-x1)
     *
-    *   x^2+y^2 <=r^2 then p(x,y) will be inside circle
+    *   (x - x1)^2 + (y - y1)^2 <= r^2
+    *   where x,y will be the center point of the circle and x1,y1 is the point p.
+    *   then p(x,y) will be inside circle
     *
     *@param p , point p(x,y) 
     *@return "true" if exist in shape area else "false"
@@ -67,12 +71,7 @@ class Circle extends ShapeDesign{
     @Override
     public boolean isPointEnclosed(Point p){
         
-        double result = Math.pow(p.getX(),2)+Math.pow(p.getY(),2);
-        double r2 = Math.pow(radious, 2);
-        
-        if( result<=r2 ){
-                return true;
-        }
+        double slop = p.getY()/p.getX();// slop = (y2-y1)/(x2-x1)  but origin(0,0) p(x,y)  so (y-0)/(x-0)=> y/x
         
         return false;
     }
