@@ -7,14 +7,13 @@ public class BinarySearch {
 	 * @return boolean "true" if it is sorted or "false" if it is not sorted
 	 * */
 	public static boolean isSorted(int[] a) {
-	     int i;
-	     for(i = 0; i < a.length; i ++);{
-		if (a[i] < a[i+1]) {
-			return true;
-		} else {
-		 return false;   
+	     for (int i = 0; i < a.length - 1; i++) {
+		if (a[i] > a[i + 1]) {
+		    return false; // It is proven that the array is not sorted.
 		}
-	     }
+    	     }
+
+   `	     return true;
 	 }
 
 	/*
