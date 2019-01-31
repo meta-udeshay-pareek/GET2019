@@ -1,6 +1,6 @@
 package graphics;
 
-class Rectangle implements Shape{
+class Rectangle extends ShapeDesign{
 	
     private int width,height;
 
