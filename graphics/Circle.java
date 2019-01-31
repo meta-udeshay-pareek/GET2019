@@ -2,7 +2,7 @@ package graphics;
 
 import graphics.Point.InvalidCoordinate;
 
-class Circle extends ShapeDesign{
+class Circle implements Shape{
 	
     private int radius;
     private Point centerPoint;
