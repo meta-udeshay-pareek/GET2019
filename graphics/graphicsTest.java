@@ -1,6 +1,7 @@
 package graphics;
 
 import static org.junit.Assert.*;
+import graphics.Point.InvalidCoordinate;
 import graphics.Shape.ShapeType;
 
 import java.util.ArrayList;
@@ -17,11 +18,12 @@ public class graphicsTest {
 
 	    /**
 	    *Function to test for square
+	     * @throws InvalidCoordinate 
 	    */
+	    
 	    @Test
-	    public void testSquare() {
+	    public void testSquare() throws InvalidCoordinate {
 
-	        
 	    	//origin of shape on screen new Point(xCordinates,yCordinates)
 	        Point origin = new Point(5,5);
 	        
@@ -29,7 +31,7 @@ public class graphicsTest {
 	        dimension.add(5);
 	        
 	        //creating square shape from shape factory
-	        Shape shapeSquare = ShapeFactory.createShape(ShapeType.SQUARE, origin,dimension);
+	        Shape shapeSquare = ShapeFactory.createShape(ShapeType.Square, origin,dimension);
 	        
 	        /***********AREA*******************/
 	        //calculating area of Square
@@ -73,9 +75,10 @@ public class graphicsTest {
 	    
 	    /**
 	     *Function to test for Rectangle
+	     * @throws InvalidCoordinate 
 	     */
 	     @Test
-	     public void testRectangle() {
+	     public void testRectangle() throws InvalidCoordinate {
 	         
 	         //origin of shape on screen new Point(xCordinates,yCordinates)
 	         Point origin = new Point(5,5);
@@ -85,7 +88,7 @@ public class graphicsTest {
 	         dimension.add(6);
 
 	         //creating Rectangle shape from shape factory
-	         Shape shapeRectangle = ShapeFactory.createShape(ShapeType.RECTANGLE, origin, dimension);
+	         Shape shapeRectangle = ShapeFactory.createShape(ShapeType.Rectangle, origin, dimension);
 	         
 	         /***********AREA*******************/
 		     //calculating area of Rectangle
@@ -127,35 +130,99 @@ public class graphicsTest {
 	        
 	     }
 	     
+	     
+	     
+	     
 	     /**
-	      *Function to test for Triangle
+	      *Function to test for circle
+	     * @throws InvalidCoordinate 
 	      */
 	      @Test
-	      public void testTriangle() {
+	      public void testCircle() throws InvalidCoordinate {
+	         
+	    	  //origin of shape on screen new Point(xCordinates,yCordinates)
+	          Point origin = new Point(5,5);
+	         
+	          //radius of circle
+	          dimension.add(5);
+	   
+	      
+
+	          //creating circle shape from shape factory
+	          Shape shapeCircle = ShapeFactory.createShape(ShapeType.Circle, origin, dimension);
+
+	          /***********AREA*******************/
+			  //calculating area of circle
+	          
+	          area = shapeCircle.getArea();
+	          assertEquals(78.53981633974483, area, 0.002);
+	          
+	          
+	          /**********perimeter**************/
+	          //calculating perimeter of circle
+	          
+	          perimeter = shapeCircle.getPerimeter();
+	          assertEquals(31.41592653589793, perimeter, 0.002);
+	          
+	          
+	          
+	          /*********Point inclusion**********/
+		      //checking point inclusion in circle
+	          
+	          enclosed = shapeCircle.isPointEnclosed(new Point(0,0));        
+	          assertEquals(false, enclosed);
+	          enclosed = shapeCircle.isPointEnclosed(new Point(0,10));        
+	          assertEquals(false, enclosed);
+	          enclosed = shapeCircle.isPointEnclosed(new Point(0,20));        
+	          assertEquals(false, enclosed);
+	          enclosed = shapeCircle.isPointEnclosed(new Point(2,5));        
+	          assertEquals(false, enclosed);
+	          enclosed = shapeCircle.isPointEnclosed(new Point(5,5));        
+	          assertEquals(true, enclosed);
+	          enclosed = shapeCircle.isPointEnclosed(new Point(10,5));        
+	          assertEquals(true, enclosed);
+	          enclosed = shapeCircle.isPointEnclosed(new Point(5,8));        
+	          assertEquals(true, enclosed);
+	          enclosed = shapeCircle.isPointEnclosed(new Point(5,10));        
+	          assertEquals(true, enclosed);
+	          enclosed = shapeCircle.isPointEnclosed(new Point(5,20));        
+	          assertEquals(false, enclosed);
+	         
+	
+	      }
+	      
+	      
+	     
+	     /**
+	      *Function to test for Triangle
+	     * @throws InvalidCoordinate 
+	      */
+	      @Test
+	      public void testTriangle() throws InvalidCoordinate {
 	         
 	    	  //origin of shape on screen new Point(xCordinates,yCordinates)
 	          Point origin = new Point(5,5);
 	         
 	          //3 sides of triangle
 	          dimension.add(2);
-	          dimension.add(3);
-	          dimension.add(4);
+	          dimension.add(2);
+	      
 
 	          //creating Triangle shape from shape factory
-	          Shape shapeTriangle = ShapeFactory.createShape(ShapeType.TRIANGLE, origin, dimension);
+	          Shape shapeTriangle = ShapeFactory.createShape(ShapeType.Triangle, origin, dimension);
 
 	          /***********AREA*******************/
 			  //calculating area of Triangle
 	          
 	          area = shapeTriangle.getArea();
-	          assertEquals(2.904737, area, 0.002);
+	          assertEquals(2.0, area, 0.002);
 	          
 	          
 	          /**********perimeter**************/
 	          //calculating perimeter of Triangle
 	          
 	          perimeter = shapeTriangle.getPerimeter();
-	          assertEquals(9, perimeter, 0.002);
+	          assertEquals(6.828, perimeter, 0.002);
 	          
 	          
 	          
@@ -163,13 +230,25 @@ public class graphicsTest {
 		      //checking point inclusion in Triangle
 	          
 	          enclosed = shapeTriangle.isPointEnclosed(new Point(3,3));        
+	          assertEquals(false, enclosed);
+	          enclosed = shapeTriangle.isPointEnclosed(new Point(3,2));        
 	          assertEquals(true, enclosed);
-	          enclosed = shapeTriangle.isPointEnclosed(new Point(2,3));        
-	          assertEquals(true, enclosed);
-	          
-	          
-	          screen.addShape(shapeTriangle);
+	
 	      }
-
+	      
+	      
+	      
+	      
+		      @Test(expected = AssertionError.class)
+		      public void invalidOriginPointForShapeTest() {
+		    	  try {
+					Point point  = new Point(-1,5);
+				} catch (AssertionError e) {
+					
+				} catch (InvalidCoordinate e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		      }
 
 }
