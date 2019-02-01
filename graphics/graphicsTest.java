@@ -229,13 +229,15 @@ public class graphicsTest {
 	          /*********Point inclusion**********/
 		      //checking point inclusion in Triangle
 	          
-	          enclosed = shapeTriangle.isPointEnclosed(new Point(3,3));        
+	          enclosed = shapeTriangle.isPointEnclosed(new Point(2,3));        
 	          assertEquals(false, enclosed);
 	          enclosed = shapeTriangle.isPointEnclosed(new Point(3,2));        
-	          assertEquals(true, enclosed);
+	          assertEquals(false, enclosed);
 	
 	      }
 	      
-	     
+	      
+	      
+	      
 
 }
