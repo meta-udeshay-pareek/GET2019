@@ -236,19 +236,6 @@ public class graphicsTest {
 	
 	      }
 	      
-	      
-	      
-	      
-		      @Test(expected = AssertionError.class)
-		      public void invalidOriginPointForShapeTest() {
-		    	  try {
-					Point point  = new Point(-1,5);
-				} catch (AssertionError e) {
-					
-				} catch (InvalidCoordinate e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		      }
+	     
 
 }
