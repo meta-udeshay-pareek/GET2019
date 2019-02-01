@@ -11,19 +11,8 @@ import java.util.List;
 public class Screen {
 	
 	
-	
-//	private TreeMap<Date, Shape> shapeWithTime ;
-//	private TreeMap<Shape, Double> shapeWithArea;
-//	private TreeMap<Double, Shape> shapeWithPerimeter;
-//	private TreeMap<Double, Shape> shapeWithOriginDistance;
-	
-	Screen(){
-		
-//		shapeWithTime = new TreeMap<Date, Shape>();
-//		shapeWithArea = new TreeMap<Shape, Double>();
-//		shapeWithPerimeter = new TreeMap<Double, Shape>();
-//		shapeWithOriginDistance = new TreeMap<Double, Shape>();
-	}
+
+
 	
 	//List of ScreenElements on the screen
     private List <ScreenElement> screenElements= new ArrayList<ScreenElement>();
@@ -43,17 +32,7 @@ public class Screen {
      * @param shape
      */
     public void addShape(Shape shape){
-    
         screenElements.add(new ScreenElement(shape));
-        
-//		this.shapeWithTime.put(new Date(), shape);
-//		this.shapeWithArea.put(shape, shape.getArea());
-//		this.shapeWithPerimeter.put(shape.getPerimeter(), shape);
-//		try {
-//			this.shapeWithOriginDistance.put(shape.getShapeOrigin().distanceFromPoint(new Point(0, 0)), shape);
-//		}catch(Exception e) {
-//			System.out.println(e);
-//		}
     }
     
     
@@ -93,69 +72,7 @@ public class Screen {
 
     }
     
-    
-//    /**
-//	 * 
-//	 * @return - List of Shapes in sorted according to timestamp
-//	 */
-//	public List<Shape> sortShapeWithTimestamp(){
-//		List<Shape> list = new ArrayList<Shape>();
-//		for (Map.Entry<Date, Shape> entry : this.shapeWithTime.entrySet()) {
-//	        list.add(entry.getValue());
-//	    }
-//		return list;
-//	}
-//	
-//	/**
-//	 * 
-//	 * @return - List of Shapes in sorted according to Area
-//	 */
-//	public List<Shape> sortShapeWithArea(){
-//		List<Shape> list = new ArrayList<Shape>();
-//		for (Map.Entry<Shape, Double> entry : this.shapeWithArea.entrySet()) {
-//	        list.add(entry.getKey());
-//	    }
-//		return list;
-//	}
-//	
-//	/**
-//	 * 
-//	 * @return - List of Shapes in sorted according to Perimeter
-//	 */
-//	public List<Shape> sortShapeWithPerimeter(){
-//		List<Shape> list = new ArrayList<Shape>();
-//		for (Map.Entry<Double, Shape> entry : this.shapeWithPerimeter.entrySet()) {
-//	        list.add(entry.getValue());
-//	    }
-//		return list;
-//	}
-//	
-//	/**
-//	 * 
-//	 * @return - List of Shapes in sorted according to Origin Distance
-//	 */
-//	public List<Shape> sortShapeWithOriginDistance(){
-//		List<Shape> list = new ArrayList<Shape>();
-//		for (Map.Entry<Double, Shape> entry : this.shapeWithOriginDistance.entrySet()) {
-//	        list.add(entry.getValue());
-//	    }
-//		return list;
-//	}
-//	
-//	/**
-//	 * 
-//	 * @return - List of Shapes in given Point is Enclosed
-//	 */
-//	public List<Shape> getShapesInPointIsEnclosed(Point point){
-//		List<Shape> list = new ArrayList<Shape>();
-//		for (Map.Entry<Shape, Double> entry : this.shapeWithArea.entrySet()) {
-//	        if(entry.getKey().isPointEnclosed(point)) {
-//	        	list.add(entry.getKey());
-//	        }
-//	    }
-//		return list;
-//	}
-//   
+
     
     /*
      * @param choice , user choice to sort screenElement List on an specific based parameter
@@ -179,9 +96,7 @@ public class Screen {
     		default:
     			
     	}
-    	System.out.println(screenElements.size());
-    	for(ScreenElement screenElement:screenElements)
-    		System.out.println(screenElement.getShape()+" "+screenElement.getShape().getArea()+" "+screenElement.getShape().getPerimeter()+" "+screenElement.getShape().getDistanceFromOrigin());
+    	
     	return screenElements;
     	
     }
