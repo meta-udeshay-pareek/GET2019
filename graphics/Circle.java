@@ -2,26 +2,29 @@ package graphics;
 
 import graphics.Point.InvalidCoordinate;
 
-class Circle extends ShapeDesign{
+class Circle implements Shape{
 	
     private int radius;
+    private Point originPoint;
     private Point centerPoint;
     
     public Circle(Point originPoint,int radious) throws InvalidCoordinate{
-        this.p = originPoint;
+        this.originPoint = originPoint;
         this.radius = radious;
         
         //calculating centre of circle
-        double m = this.p.distanceFromPoint(new Point(0,0)) + (double)this.radius;
-        int x1 = (int)( (m * (double)this.p.getX())/ (m - (double)this.radius) );
-	int y1 = (int)( (m * (double)this.p.getY())/ (m - (double)this.radius) );
-	this.centerPoint = new Point(x1, y1);
+        double m = this.originPoint.distanceFromPoint(new Point(0,0)) + (double)this.radius;
+        int x1 = (int)( (m * (double)this.originPoint.getX())/ (m - (double)this.radius) );
+		int y1 = (int)( (m * (double)this.originPoint.getY())/ (m - (double)this.radius) );
+		this.centerPoint = new Point(x1, y1);
     }
     
     
     
     /**** Getter start********/
-    
+    /*
+     *@return radius of this circle
+     */
     public int getRadius(){
     	return this.radius;
     }
@@ -30,6 +33,14 @@ class Circle extends ShapeDesign{
      */
     public String getType(){
     	return this.getClass().getSimpleName();
+    }
+    
+    /*
+     *@return centerPoint of this circle
+     */
+    
+    public Point getCenterPoint(){
+    	return this.centerPoint;
     }
     
     /******* Getter end***********/
@@ -62,7 +73,7 @@ class Circle extends ShapeDesign{
     */
     @Override
     public Point getShapeOrigin(){
-        return this.p;
+        return this.originPoint;
     }
     
     /*
@@ -78,4 +89,22 @@ class Circle extends ShapeDesign{
 		}
 		return false;
     }
+
+
+
+    /*
+     *@return distance,from origin point to shape origin point
+     */
+	@Override
+	public double getDistanceFromOrigin() {
+		double distance=0 ;
+		try{
+			distance= this.originPoint.distanceFromPoint(new Point(0,0));
+		}catch(Exception e){
+			System.out.print(e);
+		}
+		
+		return distance;
+	}
+		
 }
