@@ -1,0 +1,410 @@
+*{
+	font-family:Arial, Helvetica, sans-serif;
+	margin:0;
+	padding:0;
+}
+/***************************/
+
+body{
+	background-image:url("../images/bodybg.png");
+}
+
+/***************************/
+
+a,a:link,a:active,a:visited{
+	color:black;
+	text-decoration:none;
+}
+
+/***************************/
+ul li{
+	list-style:none;
+}
+
+/***************************/
+
+#header{
+	background:#68f;
+	display:flex;
+	height:auto;
+}
+
+
+#header nav {
+    flex: 1;
+}
+#header ul { 
+    text-align: center;
+}
+
+#header nav ul li{
+	display:inline-block;
+}
+
+#header nav ul li a{
+	color:#fff;
+	display:inline-block;
+	padding:10px;
+	transition: 1s;
+  border-radius: 5px; 
+}
+
+#header nav ul li a:hover {
+    background: #fff;
+    color: #69f;
+}
+
+#header nav ul {
+    text-align: center;
+    padding: 10px 0;  
+}
+
+#header .logo {
+    height: 15px;
+    margin-left: 200px; 
+    margin-top: 20px;
+    
+}
+
+
+i{
+    color: white;
+}
+
+#header ul li {
+    display: inline-block;
+}
+#header .fontImage {
+    margin-right: 150px;
+    margin-top: 10px;
+}
+#header .fontImage li {
+    padding:10px;
+}
+
+/***************************/
+
+#cover{
+	background: url("../images/homebg.png");   
+    background-size: cover;
+    background-position:center;
+    height:800px;
+}
+
+#cover .container{
+	color:white;
+	font-size:250%;
+	padding:110px 30px 50px 180px;
+}
+
+#cover img {
+    margin-left: 55%;
+    margin-top: 100px;
+    height:500px;
+   
+}
+
+#cover #leftcover {
+    margin-left: 200px;
+    max-width: 450px;
+    position:absolute;
+    margin-top: 100px;
+}
+
+#cover #leftcover h1 {
+    font-size: 55px;
+    color:white;
+
+}
+
+#cover #leftcover button {
+    width: 100px;
+    height:40px;
+    margin-top:20px;
+    display: inline-block;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+     
+}
+
+#cover #leftcover #download{
+    background: #f52;
+    color:white;
+		cursor:pointer;
+}
+#cover #leftcover #feature {
+    background: #46f;
+    margin-left: 20px;
+		cursor:pointer;
+}
+
+
+.heading{
+    text-align: center;
+
+}
+.heading h1{
+    text-align: center;
+    color:#69f;
+    margin-top: 50px;
+    font-size: 30px;
+}
+.heading p {
+    text-align: center;
+    color:#888;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+/*********************************/
+
+#features{
+		text-align:center;
+}
+
+#features .feature {
+		text-align:left;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+
+
+#features .feature div {
+    display: inline-block;
+    margin-top: 100px;
+}
+
+#features .feature img{
+    padding-left: 20px;
+}
+#features .feature div h2{
+    font-size:20px;
+    padding: 10px; 
+}
+#features .feature div p{
+    font-size: 12px;
+    color:#888;   
+}
+
+#perfectFeatures #featureimg {
+    margin-top: 100px;
+		height:auto;
+		width:100%;
+}
+/***************************/
+
+#screenshots{
+	width:100%;
+	padding:10px 0;
+	margin-top: 50px;
+	
+}
+
+#screenshots .screenshot{
+
+	display: flex;
+  margin-top: 100px;
+}
+
+
+
+.screenshot{
+	margin:auto;
+	width:60%;
+}
+
+.screenshot-info{
+	padding-top:60px;
+	padding-left:80px;
+	padding-right:80px;
+	
+}
+
+.screenshot-info img{
+	margin:30px;
+}
+
+.screenshot-info p{
+	margin-top:20px;
+	color: #888;
+	font-size:20px;
+}
+
+.screenshot-info h2{
+	font-size:40px;
+	font-family:Comic Sans MS;
+}
+
+#screen2{
+	padding-left:0;
+}
+
+
+
+
+/************************/
+
+
+#reviews{
+	
+	margin:auto;
+	margin-top:100px;
+	width:70%;
+}
+#reviewBox{
+		
+    display: flex;
+  
+}
+
+#reviewBox div p{
+    padding: 10px;
+}
+
+
+#reviews #reviewBox .review .thought{
+    font-size: 20px;
+    color:#222;
+}
+#reviews #reviewBox .review .name{
+    font-size: 15px;
+    color:#555;
+}
+
+.review{
+	
+	padding:20px;
+	width:50%;
+	height:auto;
+}
+
+.close-quote{
+	font-size:60px;
+	color:#69f;
+}
+
+
+.open-quote{
+	font-size:60px;
+	color:#69f;
+}
+/*****************************/
+
+
+#downloadapp{
+		height:auto;
+    display: flex;
+    background: url("../images/downloadbg.png")
+}
+
+#downloadapp div{
+	margin: auto;
+  width: 60%;
+  padding: 10px;
+}
+
+#downloadapp #howTo h1{
+    color: white;
+    font-size: 40px;
+		vertical-align: middle;
+}
+
+#downloadapp #howTo p{
+    color: white;
+}
+
+
+#downloadimg img{
+    margin-right: 20px;
+}
+
+#appimg{
+		margin-top:100px;
+		margin-right:100px;
+		height:auto;
+}
+
+
+
+
+#footer{
+	 background: #555;
+	display:flex;
+	height:auto;
+}
+
+
+#footer nav {
+    flex: 1;
+}
+
+#footer ul { 
+    text-align: center;
+}
+
+#footer nav ul li{
+	display:inline-block;
+}
+
+#footer nav ul li a{
+	color:#fff;
+	display:inline-block;
+	padding:10px;
+	transition: 1s;
+  border-radius: 5px; 
+}
+
+#footer nav ul li a:hover {
+    background: #fff;
+    color: #69f;
+}
+
+#footer nav ul {
+    text-align: center;
+    padding: 10px 0;  
+}
+
+#footer .logo {
+    height: 15px;
+    margin-left: 100px; 
+    margin-top: 20px;
+    
+}
+
+
+i{
+    color: white;
+}
+
+#footer ul li {
+    display: inline-block;
+}
+
+#footer .fontImage {
+    margin-right: 150px;
+    margin-top: 10px;
+}
+
+#footer .fontImage li {
+    padding:10px;
+}
+
+#line{
+    background: #555;
+}
+
+#line p{
+    height:1px;
+    background: #999;
+    margin: 0 150px 0 100px;
+}
+
+#reserved{
+    text-align: center;
+    font-size: 15px;
+    background: #555;
+    color: #888;
+    padding-top: 20px;
+}
