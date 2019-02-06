@@ -1,0 +1,43 @@
+.box{
+    left:600px;
+    top:250px;
+    animation:2s infinite;
+    animation-name:move;
+    position:absolute;
+}
+
+#blue-box{
+    display:inline-block;
+    border:1px solid blue;
+    border-width:50px;
+    animation-delay:0.5s;
+}
+
+@keyframes move{
+    0%   {left:600px; top:250px;}
+  25%  {left:600px; top:350px;}
+  50%  {left:700px; top:350px;}
+  75%  {left:700px; top:250px;}
+  100% {left:600px; top:250px;}
+}
+
+#red-box{
+    display:inline-block;
+    border:1px solid red;
+    border-width:50px;
+    animation-delay:1s;
+}
+
+#green-box{
+    display:inline-block;
+    border:1px solid green;
+    border-width:50px;
+    animation-delay:1.5s;
+}
+
+#yellow-box{
+    display:inline-block;
+    border:1px solid yellow;
+    border-width:50px;
+    animation-delay:2s;
+}
