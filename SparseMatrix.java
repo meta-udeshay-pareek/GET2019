@@ -2,7 +2,7 @@ package sparsematrix;
 
 import java.util.Arrays;
 
-public class SparseMatrix {
+public final class SparseMatrix {
 	
 	private final int row;//number of rows in matrix
 	private final int col;//number of column in matrix
