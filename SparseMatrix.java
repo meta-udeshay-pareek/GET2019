@@ -82,9 +82,9 @@ public final class SparseMatrix {
 	
 	/*
 	 * @param sm  sparse matrix for addition -->this.sparseMatrix+sm.sparseMatirx
-	 * @return result result array after addition
+	 * @return object of SparseMatrix  after addition
 	 * */
-	public int[][] addMatrix(SparseMatrix sm){
+	public SparseMatrix addMatrix(SparseMatrix sm){
 		
 		//creating an array of length of maximum possible no. of non zero value after addition of two matrix +1 extra for information row about matrix
 		int [][] result=new int[this.getRow()*this.getColumn()+1][3];;//result after addition of two sparse matrix
@@ -98,7 +98,7 @@ public final class SparseMatrix {
 	
 		// if matrices don't have same dimensions 
         if (this.getRow() != sm.getRow() || this.getColumn() != sm.getColumn()) { 
-            	System.out.println("Matrices can't be added"); 
+            	throw new RuntimeException("Matrices arn't of same dimension so can't be added");
         }
         else{
         
@@ -175,15 +175,15 @@ public final class SparseMatrix {
             result[0][2]=row;
         }
         
-        return Arrays.copyOf(result, row);
+        return new SparseMatrix(Arrays.copyOf(result, row));
 	}
 	
 	
 	
 	/*
-	 * @return result transpose of this matrix
+	 * @return object of SparseMatrix after transpose of this matrix
 	 * */
-	public int[][] transpose(){
+	public SparseMatrix transpose(){
 		
 		int [][] result=new int[this.getSize()][3];;//result after transpose of  sparse matrix
 		
@@ -232,12 +232,15 @@ public final class SparseMatrix {
         // the above method ensures 
         // sorting of transpose matrix 
         // according to row-col value 
-        return result; 
+        return   new SparseMatrix(result); 
 	}
 	
 	
-	
-	public int [][] multiplyMatrix(SparseMatrix sm){
+	/*
+	 * @param sm  sparse matrix for multiply -->this.sparseMatrix*sm.sparseMatirx
+	 * @return object of SparseMatrix  after multiply
+	 * */
+	public SparseMatrix multiplyMatrix(SparseMatrix sm){
 		
 		//creating an array of length of maximum possible no. of non zero value after addition of two matrix +1 extra for information row about matrix
 		int [][] result=new int[this.getRow()*this.getColumn()+1][3];//result after Multiplication of two sparse matrix
@@ -253,13 +256,12 @@ public final class SparseMatrix {
 		if (this.getColumn() != sm.getRow()){ 
 			  
             // Invalid multiplication 
-            System.out.println("Can't multiply, "
-                               + "Invalid dimensions"); 
+            throw new RuntimeException("Can't multiply Invalid dimensions");
         }
 		else {
 			// transpose sm to compare row 
 	        // and col values and to add them at the end 
-	        sm = new SparseMatrix(sm.transpose()); //transposing and converting returned array into sparse matrix form
+	        sm = new SparseMatrix(sm.transpose().getMatrix()); //transposing and converting returned array into sparse matrix form
 	        
 	        
 	        // iterate over all elements of this 
@@ -329,16 +331,17 @@ public final class SparseMatrix {
         result[0][1]=this.getColumn();
         result[0][2]=this.getNumberOfValue();
 		/**********************/
-		return Arrays.copyOf(result,resultRow);
+		return new SparseMatrix(Arrays.copyOf(result,resultRow));
 	}//method closing 
 	
 	
 	/*
-	 * @return status "true" if sparse matrix is symmetric else "false"*/
+	 * @return status "true" if sparse matrix is symmetric else "false"
+	 * */
 	boolean isSymmetric(){
 		
 		boolean status=false;
-		if (equal(this.getMatrix(), this.transpose())) {			 
+		if (equal(this.getMatrix(), this.transpose().getMatrix())) {			 
 			status=true;
 		} 
 		return status;
@@ -360,6 +363,11 @@ public final class SparseMatrix {
 		result[insertAtRow][2]=value;			
 	}
 	
+	/*
+	 * @param arr1 array 1 
+	 * @param arr2 array 2
+	 * @return "true" if both are equal else "false"
+	 * */
 	private static boolean equal(final int[][] arr1, final int[][] arr2) {
 		 
 		  if (arr1 == null) {
