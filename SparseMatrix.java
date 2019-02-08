@@ -76,8 +76,7 @@ public final class SparseMatrix {
 	}
 	
 	/**************Getter End*****************/
-	
-	
+		
 	
 	
 	/*
@@ -172,7 +171,7 @@ public final class SparseMatrix {
         	
             
             //assigning number of non zero values to result 0th row 2nd col which contain info
-            result[0][2]=row;
+            result[0][2]=row-1;
         }
         
         return new SparseMatrix(Arrays.copyOf(result, row));
@@ -338,7 +337,7 @@ public final class SparseMatrix {
 	/*
 	 * @return status "true" if sparse matrix is symmetric else "false"
 	 * */
-	boolean isSymmetric(){
+	public boolean isSymmetric(){
 		
 		boolean status=false;
 		if (equal(this.getMatrix(), this.transpose().getMatrix())) {			 
@@ -368,7 +367,7 @@ public final class SparseMatrix {
 	 * @param arr2 array 2
 	 * @return "true" if both are equal else "false"
 	 * */
-	private static boolean equal(final int[][] arr1, final int[][] arr2) {
+	public static boolean equal(final int[][] arr1, final int[][] arr2) {
 		 
 		  if (arr1 == null) {
 		 	return (arr2 == null);
