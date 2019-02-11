@@ -1,268 +1,42 @@
 package sparsematrix;
 
 import static org.junit.Assert.*;
-import org.junit.Test;
-public class SparseMatrixTest {
 
-		@Test
-		public void getTransposeTestCaseWithInput1()
-		{
-			int[][] input = {
-					{1 , 0 , 0},
-					{0 , 1 , 0},
-					{0 , 1 , 1},
-			};
-			int[][] expected = {
-					{1 , 0 , 0},
-					{0 , 1 , 1},
-					{0 , 0 , 1},
-			};
-			assertEquals(true, new MatrixOperation(expected).equals((new MatrixOperation(input).getTranspose())));
-			
-		}
+import org.junit.Test;
+
+public class TestSparseMatrix {
+
+	
+	SparseMatrix s1 = new SparseMatrix(new int[][]{{4,5,6},{0,0,1},{0,4,1},{1,2,1},{2,1,1},{2,4,1},{3,1,1}});
+	SparseMatrix s2 = new SparseMatrix(new int[][]{{4,5,5},{0,1,1},{0,2,1},{1,4,1},{2,0,1},{3,2,1}});
+	SparseMatrix adds1s2 = new SparseMatrix(new int[][]{{4,5,11},{0,0,1},{0,1,1},{0,2,1},{0,4,1},{1,2,1},{1,4,1},{2,0,1},{2,1,1},{2,4,1},{3,1,1},{3,2,1}});
+	
+	SparseMatrix s3 = new SparseMatrix(new int[][]{{4,4,4},{0,1,1},{0,2,1},{2,0,1},{3,2,1}});
+	SparseMatrix s4 = new SparseMatrix(new int[][]{{4,4,4},{0,0,1},{1,2,1},{2,1,1},{3,1,1}});	
+	
+	SparseMatrix adds3s4 = new SparseMatrix(new int[][]{{4,4,8},{0,0,1},{0,1,1},{0,2,1},{1,2,1},{2,0,1},{2,1,1},{3,1,1},{3,2,1}});
+	
+	
+	SparseMatrix muls4s3 = new SparseMatrix(new int[][]{{4,4,3},{0,1,1},{0,2,1},{1,0,1}});
+	SparseMatrix muls3s1 = new SparseMatrix(new int[][]{{4,5,7},{0,1,1},{0,2,1},{0,4,1},{2,0,1},{2,4,1},{3,1,1},{3,4,1},});
+	
+	@Test(expected=RuntimeException.class)
+	public void sparseMatrixOperationTest() {
 		
-		@Test
-		public void getTransposeTestCaseWithInput2()
-		{
-			int[][] input = {
-					{1 , 0 },
-					{0 , 1 },
-					{0 , 1 },
-			};
-			int[][] expected = {
-					{1 , 0 , 0},
-					{0 , 1 , 1},
-			};
-			assertEquals(true, new MatrixOperation(expected).equals((new MatrixOperation(input).getTranspose())));
-			
-		}
-		
-		@Test
-		public void getTransposeTestCaseWithInput3()
-		{
-			int[][] input = {
-					{1 , 0 },
-					{0 , 1 },
-					{0 , 1 },
-			};
-			int[][] expected = {
-					{1 , 0 , 1},
-					{0 , 1 , 1},
-			};
-			assertEquals(false, new MatrixOperation(expected).equals((new MatrixOperation(input).getTranspose())));
-			
-		}
-		
-		@Test
-		public void symmetricalTestCaseWithInput1()
-		{
-			int[][] input = {
-					{1 , 0 , 0},
-					{0 , 1 , 0},
-					{0 , 0 , 1},
-			};
-			assertEquals(true, new MatrixOperation(input).symmetrical());
-			
-		}
-		
-		@Test
-		public void symmetricalTestCaseWithInput2()
-		{
-			int[][] input = {
-					{1 , 0 , 0 , 0},
-					{0 , 1 , 0 , 0},
-					{0 , 0 , 1 , 0},
-					{0 , 0 , 0 , 1},
-			};
-			assertEquals(true, new MatrixOperation(input).symmetrical());
-			
-		}
-		
-		@Test
-		public void symmetricalTestCaseWithInput3()
-		{
-			int[][] input = {
-					{1 , 0 , 0 , 0},
-					{0 , 1 , 0 , 0},
-					{0 , 0 , 1 , 0},
-					{0 , 1 , 0 , 1},
-			};
-			assertEquals(false, new MatrixOperation(input).symmetrical());
-			
-		}
+		//Matrix addition checking
+		assertEquals(true , SparseMatrix.equal(s1.addMatrix(s2).getMatrix(),adds1s2.getMatrix()));
+		assertEquals(true , SparseMatrix.equal(s3.addMatrix(s4).getMatrix(),adds3s4.getMatrix()));
 		
 		
-		@Test
-		public void addMatrixTestCaseWithInput1()
-		{
-			int[][] input1 = {
-					{1 , 0 , 0},
-					{0 , 1 , 0},
-					{0 , 0 , 1},
-			};
-			int[][] input2 = {
-					{1 , 1 , 0},
-					{0 , 1 , 0},
-					{0 , 0 , 1},
-			};
-			int[][] expected = {
-					{2 , 1 , 0},
-					{0 , 2 , 0},
-					{0 , 0 , 2},
-			};
-			MatrixOperation matrixOperation = new MatrixOperation(input1);
-			MatrixOperation matrixOperation2 = new MatrixOperation(input2);
-			MatrixOperation result = new MatrixOperation(expected);
-			assertEquals(true, result.equals(matrixOperation.addMatrix(matrixOperation2)));
-			
-		}
+		//Matrix multiplication
+		assertEquals(true ,s1.multiplyMatrix(s2).getMatrix());//Runtime exception in it
+		assertEquals(true ,s1.multiplyMatrix(s4).getMatrix());//Runtime exception in it
 		
-		@Test(expected = AssertionError.class)
-		public void addMatrixTestCaseWithInput2()
-		{
-			int[][] input1 = {
-					{1 , 0 , 0},
-					{0 , 1 , 0},
-					{0 , 0 , 1},
-			};
-			int[][] input2 = {
-					{1 , 1 , 0},
-					{0 , 1 , 0},
-			};
-			int[][] expected = {
-					{2 , 1 , 0},
-					{0 , 2 , 0},
-					{0 , 0 , 2},
-			};
-			MatrixOperation matrixOperation = new MatrixOperation(input1);
-			MatrixOperation matrixOperation2 = new MatrixOperation(input2);
-			MatrixOperation result = new MatrixOperation(expected);
-			assertEquals(true, result.equals(matrixOperation.addMatrix(matrixOperation2)));
-			
-		}
 		
-		@Test
-		public void addMatrixTestCaseWithInput3()
-		{
-			int[][] input1 = {
-					{1 , 0},
-					{0 , 1},
-			};
-			int[][] input2 = {
-					{1 , 1},
-					{0 , 1},
-			};
-			int[][] expected = {
-					{2 , 1},
-					{0 , 2},
-			};
-			MatrixOperation matrixOperation = new MatrixOperation(input1);
-			MatrixOperation matrixOperation2 = new MatrixOperation(input2);
-			MatrixOperation result = new MatrixOperation(expected);
-			assertEquals(true, result.equals(matrixOperation.addMatrix(matrixOperation2)));
-			
-		}
+		assertEquals(true ,SparseMatrix.equal(s4.multiplyMatrix(s3).getMatrix(),muls4s3.getMatrix()));
+		assertEquals(true ,SparseMatrix.equal(s3.multiplyMatrix(s1).getMatrix(),muls3s1.getMatrix()));
 		
-		@Test(expected = AssertionError.class)
-		public void mulMatrixTestCaseWithInput1()
-		{
-			int[][] input1 = {
-					{1 , 0 , 0},
-					{0 , 1 , 0},
-					{0 , 0 , 1},
-			};
-			int[][] input2 = {
-					{1 , 1 , 0},
-					{0 , 1 , 0},
-			};
-			int[][] expected = {
-					{2 , 1 , 0},
-					{0 , 2 , 0},
-					{0 , 0 , 2},
-			};
-			
-			//matrix can't be multiplied as no. of column if first is not equal to no. of row in second
-			
-			MatrixOperation matrixOperation = new MatrixOperation(input1);
-			MatrixOperation matrixOperation2 = new MatrixOperation(input2);
-			MatrixOperation result = new MatrixOperation(expected);
-			assertEquals(true, result.equals(matrixOperation.addMatrix(matrixOperation2)));
-			
-		}
-		
-		@Test
-		public void mulMatrixTestCaseWithInput2()
-		{
-			int[][] input1 = {
-					{1 , 0 , 0},
-					{0 , 1 , 0},
-					{0 , 0 , 1},
-			};
-			int[][] input2 = {
-					{1 , 0 , 0},
-					{0 , 1 , 0},
-					{0 , 0 , 1},
-			};
-			int[][] expected = {
-					{1 , 0 , 0},
-					{0 , 1 , 0},
-					{0 , 0 , 1},
-			};
-			MatrixOperation matrixOperation = new MatrixOperation(input1);
-			MatrixOperation matrixOperation2 = new MatrixOperation(input2);
-			MatrixOperation result = new MatrixOperation(expected);
-			assertEquals(true, result.equals(matrixOperation.mulMatrix(matrixOperation2)));
-			
-		}
-		
-		@Test
-		public void mulMatrixTestCaseWithInput3()
-		{
-			int[][] input1 = {
-					{1 , 0 , 1},
-					{0 , 1 , 0},
-					{0 , 0 , 1},
-			};
-			int[][] input2 = {
-					{1 , 0 , 0},
-					{0 , 1 , 0},
-					{1 , 0 , 1},
-			};
-			int[][] expected = {
-					{2 , 0 , 1},
-					{0 , 1 , 0},
-					{1 , 0 , 1},
-			};
-			MatrixOperation matrixOperation = new MatrixOperation(input1);
-			MatrixOperation matrixOperation2 = new MatrixOperation(input2);
-			MatrixOperation result = new MatrixOperation(expected);
-			assertEquals(true, result.equals(matrixOperation.mulMatrix(matrixOperation2)));
-			
-		}
-		
-		@Test
-		public void mulMatrixTestCaseWithInput4()
-		{
-			int[][] input1 = {
-					{1 , 0 , 1},
-					{1 , 0 , 0},
-					{0 , 0 , 1},
-			};
-			int[][] input2 = {
-					{1},
-					{0},
-					{0},
-			};
-			int[][] expected = {
-					{1},
-					{1},
-					{0},
-			};
-			MatrixOperation matrixOperation = new MatrixOperation(input1);
-			MatrixOperation matrixOperation2 = new MatrixOperation(input2);
-			MatrixOperation result = new MatrixOperation(expected);
-			assertEquals(true, result.equals(matrixOperation.mulMatrix(matrixOperation2)));
-			
-		}
-		
+	}
+	
+
 }
