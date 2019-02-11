@@ -34,7 +34,7 @@ public class Zone {
 	 * @param cage, the cage which is going to be add in this zone
 	 * @return "true" if successfully added else "false"
 	 * */
-	boolean addCage(Cage cage){
+	public boolean addCage(Cage cage){
 		
 		//Zone animal category class and super class of cage animal type must be same 
 		//e.g. If zone is of Mammal type and cage animal type is Lion then it is OK
