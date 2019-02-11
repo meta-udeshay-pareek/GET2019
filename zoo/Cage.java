@@ -8,12 +8,11 @@ public class Cage {
 	/***********Instance Variables********************************/
 	
 	int capacity;//number of animal capacity in a particular cage
-        int numberOfAnimalInCage;//number of animal present in cage
+    int numberOfAnimalsInCage;//number of animal present in cage
 
 	Animal animalType;//specific type of animal like Lion,Tiger,Dog,etc.
 	
-	List<Animal> animal;//list of animal in this cage
-	
+	List<Animal> animals;//list of animal in this cage
 	
 	
 	
@@ -27,7 +26,7 @@ public class Cage {
 	public Cage(int capacity, Animal animalType){
 		this.capacity = capacity;
 		this.animalType = animalType;
-		this.animal = new ArrayList<Animal>();
+		this.animals = new ArrayList<Animal>();
 		
 	}
 	
@@ -46,14 +45,14 @@ public class Cage {
 		if(isAllConditionIsTrue(addAnimal)){
 			
 				//if number of element in cage is under capacity
-				if(this.animal.size()<this.capacity){
+				if(this.animals.size()<this.capacity){
 					
 					//checking is animal already exist in this cage
 					if(!isAnimalExistInCage(addAnimal)){
 						
 						/**************************/
-						this.animal.add(addAnimal);
-						this.numberOfAnimalInCage++;
+						this.animals.add(addAnimal);
+						this.numberOfAnimalsInCage++;
 						isAdded=true;
 						/**************************/
 						
@@ -84,11 +83,11 @@ public class Cage {
 		if(isAllConditionIsTrue(removeAnimal)){
 			
 			//iterating list of animal in this cage
-			for(Animal rAnimal : this.animal){
+			for(Animal rAnimal : this.animals){
 				//if animal exist then animal will remove from this list 
 				if(rAnimal.getUniqueId()== removeAnimal.getUniqueId()){
-					this.animal.remove(removeAnimal);
-	                this.numberOfAnimalInCage--;
+					this.animals.remove(removeAnimal);
+	                this.numberOfAnimalsInCage--;
 					
 	                isRemoved=true;
 	                break;
@@ -134,7 +133,7 @@ public class Cage {
     private boolean isAnimalExistInCage(Animal existAnimal){
     	
     	//iterating list of animal in this cage
-		for(Animal eAnimal : this.animal){
+		for(Animal eAnimal : this.animals){
 			//if animal exist then will return true 
 			if(eAnimal.getUniqueId()== existAnimal.getUniqueId()){
 				return true;
