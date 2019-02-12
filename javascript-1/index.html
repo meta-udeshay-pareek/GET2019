@@ -1,0 +1,84 @@
+<html>
+    <head>
+
+        <title>Queue</title>
+
+        <link href="default.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="queue.js"></script><!--script for queue implementation-->
+        <script type="text/javascript" src="stack.js"></script><!--script for stack implementation-->
+        
+
+
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        
+        <div class="container outest-div ">
+            <section class="blog-header px-0" >
+                <p>Queue</p>
+            </section>
+
+            <div class="contaier-fluid main py-3">
+                <div class="row">
+                    
+                    <div class="col-sm-4">
+                        <input type="number" placeholder="Enque value" id="queueInput" required> 
+                    </div>
+                    <div class="col-sm-4" >
+                        <input type="submit"  value="Enque" onclick="addElement()"> 
+                    </div>
+                    
+                    <div class="col-sm-4" >
+                        <input type="button"  value="Deque" onclick="removeElement()" > 
+                    </div>
+                </div>
+            </div>
+            <div class="contaier-fluid main py-3 Queue">
+                    <div class="row">
+                        <div class="col-sm-12">
+                                <p id="QueueElements">Queue:</p>
+                        </div>
+                    </div>           
+            </div>
+
+        </div>
+
+        <div class="container outest-div ">
+            <section class="blog-header px-0" >
+                    <p>Stack</p>
+            </section>
+
+            <div class="contaier-fluid main py-3">
+                    <div class="row">
+                        
+                        <div class="col-sm-4">
+                            <input type="number" placeholder="Push value" id="stackInput" required> 
+                        </div>
+                        <div class="col-sm-4" >
+                            <input type="submit"  value="push" onclick="pushIn()"> 
+                        </div>
+                        
+                        <div class="col-sm-4" >
+                            <input type="button"  value="pop" onclick="popOut()" > 
+                        </div>
+                    </div>
+            </div>
+            <div class="contaier-fluid main py-3 Queue">
+                    <div class="row">
+                        <div class="col-sm-12">
+                                <p id="StackElements">Stack:</p>
+                        </div>
+                    </div>           
+            </div>
+        </div>
+    </body>
+</html>
