@@ -39,15 +39,15 @@ class Queue{
 var queue = new Queue();
 
 function addElement(){
-     queue.enque(document.getElementById("queueInput").value);
-     document.getElementById("queueInput").value="";
+    	 queue.enque(document.getElementById("queueInput").value);
+     	 document.getElementById("queueInput").value="";
 	 queue.display();
 }
 
 function removeElement(){
 	try{
-        queue.dequeue();
-		this.display();
+        	queue.dequeue();
+		queue.display();
 	}catch(err){
 		document.getElementById("QueueElements").innerHTML= err; 
 	}
