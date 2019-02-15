@@ -5,7 +5,6 @@ class Stack{
 
     pushElement(element){
         this.elements.push(element);
-        this.display();
     }
 
     popElement() { 
@@ -13,10 +12,9 @@ class Stack{
         // returns underflow when called  
         // on empty queue 
         if(this.isEmpty()){ 
-            document.getElementById("StackElements").innerHTML= "Stack:Underflow"; 
+						throw "Stack:Underflow";//throwing an exception when stack underflow
         }else{
             this.elements.pop(); 
-            this.display();
         }
     } 
 
@@ -41,10 +39,16 @@ class Stack{
 var stack = new Stack();
 
 function pushIn(){
-   stack.pushElement(document.getElementById("stackInput").value);
-   document.getElementById("stackInput").value="";
+     stack.pushElement(document.getElementById("stackInput").value);
+     document.getElementById("stackInput").value="";
+	 stack.display() ;
 }
 
 function popOut(){
+	try{
     stack.popElement();
+		stack.display() ;
+	}catch(err){
+		document.getElementById("StackElements").innerHTML= err; 
+	}
 }
