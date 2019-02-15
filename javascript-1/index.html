@@ -6,7 +6,7 @@
         <link href="default.css" rel="stylesheet" type="text/css">
         <script type="text/javascript" src="queue.js"></script><!--script for queue implementation-->
         <script type="text/javascript" src="stack.js"></script><!--script for stack implementation-->
-        
+        <script type="text/javascript" src="remove.js"></script><!--script for Remove repeted character from string implementation-->
 
 
 
@@ -31,7 +31,7 @@
                 <div class="row">
                     
                     <div class="col-sm-4">
-                        <input type="number" placeholder="Enque value" id="queueInput" required> 
+                        <input type="text" placeholder="Enque value" id="queueInput" required> 
                     </div>
                     <div class="col-sm-4" >
                         <input type="submit"  value="Enque" onclick="addElement()"> 
@@ -61,7 +61,7 @@
                     <div class="row">
                         
                         <div class="col-sm-4">
-                            <input type="number" placeholder="Push value" id="stackInput" required> 
+                            <input type="text" placeholder="Push value" id="stackInput" required> 
                         </div>
                         <div class="col-sm-4" >
                             <input type="submit"  value="push" onclick="pushIn()"> 
@@ -76,6 +76,31 @@
                     <div class="row">
                         <div class="col-sm-12">
                                 <p id="StackElements">Stack:</p>
+                        </div>
+                    </div>           
+            </div>
+        </div>
+        <div class="container outest-div ">
+            <section class="blog-header px-0" >
+                    <p>Remove Repeated Character From String </p>
+            </section>
+
+            <div class="contaier-fluid main py-3">
+                    <div class="row">
+                        
+                        <div class="col-sm-6">
+                            <input type="text" placeholder="Enter string" id="sringInput" required> 
+                        </div>
+                       
+                        <div class="col-sm-6" >
+                            <input type="button"  value="Remove" onclick="removeRepetedCharacter()" > 
+                        </div>
+                    </div>
+            </div>
+            <div class="contaier-fluid main py-3 Queue">
+                    <div class="row">
+                        <div class="col-sm-12">
+                                <p id="outputString">Result String:</p>
                         </div>
                     </div>           
             </div>
