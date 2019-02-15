@@ -5,7 +5,6 @@ class Queue{
 
      enque(element){
         this.elements.push(element);
-        this.display();
     }
 
      dequeue() { 
@@ -13,10 +12,9 @@ class Queue{
         // returns underflow when called  
         // on empty queue 
         if(this.isEmpty()){ 
-            document.getElementById("QueueElements").innerHTML= "Queue:Underflow"; 
+            throw "Queue:Underflow";//throwing an exception when Queue underflow
         }else{
             this.elements.shift(); 
-            this.display();
         }
     } 
 
@@ -41,10 +39,16 @@ class Queue{
 var queue = new Queue();
 
 function addElement(){
-   queue.enque(document.getElementById("queueInput").value);
-   document.getElementById("queueInput").value="";
+     queue.enque(document.getElementById("queueInput").value);
+     document.getElementById("queueInput").value="";
+	 queue.display();
 }
 
 function removeElement(){
-    queue.dequeue();
+	try{
+        queue.dequeue();
+		this.display();
+	}catch(err){
+		document.getElementById("QueueElements").innerHTML= err; 
+	}
 }
