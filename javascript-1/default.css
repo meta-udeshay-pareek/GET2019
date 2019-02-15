@@ -19,7 +19,7 @@
     border: 2px solid black;
     padding: 5rem;
 }
-input[type=number]{
+input[type=text]{
     width:100%;
     height: auto;
     padding: 15px 32px;
