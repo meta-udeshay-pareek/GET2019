@@ -7,6 +7,8 @@
         <script type="text/javascript" src="queue.js"></script><!--script for queue implementation-->
         <script type="text/javascript" src="stack.js"></script><!--script for stack implementation-->
         <script type="text/javascript" src="remove.js"></script><!--script for Remove repeted character from string implementation-->
+		<script type="text/javascript" src="repeatify.js"></script><!--script for Remove repeted character from string implementation-->
+
 
 
 
@@ -101,6 +103,35 @@
                     <div class="row">
                         <div class="col-sm-12">
                                 <p id="outputString">Result String:</p>
+                        </div>
+                    </div>           
+            </div>
+        </div>
+
+        <div class="container outest-div ">
+            <section class="blog-header px-0" >
+                    <p>Repeatify String </p>
+            </section>
+
+            <div class="contaier-fluid main py-3">
+                    <div class="row">
+                        
+                        <div class="col-sm-4">
+                            <input type="text" placeholder="Enter string" id="rstringInput" required> 
+                        </div>
+                       
+                       <div class="col-sm-4">
+                            <input type="number" placeholder="Enter repetation number" id="rnumberInput" required> 
+                        </div>
+                        <div class="col-sm-4" >
+                            <input type="button"  value="show" onclick="repeatifyString()" > 
+                        </div>
+                    </div>
+            </div>
+            <div class="contaier-fluid main py-3 Queue">
+                    <div class="row">
+                        <div class="col-sm-12">
+                                <p id="repetedString">Result :</p>
                         </div>
                     </div>           
             </div>
