@@ -1,10 +1,10 @@
 package dao;
 
-import Enum.Status;
-import modal.Customer;
 import modal.Product;
+import Enum.Status;
 
-public interface ProductDao extends BaseDao {
-	public Status updateName(Product product,String name);
-	public Status updatePrice(Product product,double price);
+public interface ProductDao {
+	public Status updateProductname(Product product,String name);
+	public Status updateProductPrice(Product product,double price);
+	public Status updateProductType(Product product,String type);
 }

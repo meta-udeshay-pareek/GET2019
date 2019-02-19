@@ -3,6 +3,6 @@ package dao;
 import modal.Product;
 import Enum.Status;
 
-public interface StockItemDao extends BaseDao {
+public interface StockItemDao{
 	public Status updateQuantity(Product product,int quantity);
 }
