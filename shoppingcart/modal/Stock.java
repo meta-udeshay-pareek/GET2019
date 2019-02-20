@@ -33,25 +33,18 @@ public class Stock {
 	
  
     /*
-   	 * @return cartItems list of Item added in cart 
+   	 * @return stockItems list of Item added in stock 
    	 * */
     public List<StockItem> getItemList() {
         return this.stockItems;
     }
     
-   
     
     /*
-   	 * @param Item 
+   	 * @param stockItems list of stock item
    	 * */
-    public void addItem(StockItem stockItem){
-    	this.stockItems.add(stockItem);
+    public void setItemList(List<StockItem> stockItems) {
+        this.stockItems =stockItems;
     }
     
-    /*
-   	 * @param index of item in item list 
-   	 * */
-    public void deleteItem(int index){
-    	this.stockItems.remove(index);
-    }
 }

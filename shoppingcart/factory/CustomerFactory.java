@@ -19,6 +19,7 @@ public class CustomerFactory {
 		customer.setEmail(email);
 		customer.setPhone(phone);
 		
+		
 		return customer;
 	}
 }

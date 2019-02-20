@@ -8,16 +8,15 @@ import modal.Customer;
 
 public class Cart {
 	
-	private int cartId;
+	private int pk;//primary key
 	private List<CartItem> cartItems;
-	private static int id=1;
+	private static int id=1;//for generation of unique primary key 
 	
 	
 	private Customer customer;//cart's user
 	
-	public Cart(Customer customer){
-		this.cartId = genrateUniqueId();
-		this.customer = customer;
+	public Cart(){
+		this.pk = genrateUniqueId();
 		this.cartItems = new ArrayList<CartItem>();
 	}
 	
@@ -25,7 +24,7 @@ public class Cart {
 	 * @return cartId
 	 * */
 	public int getId(){
-		return this.cartId;
+		return this.pk;
 	}
 	
  
@@ -44,41 +43,20 @@ public class Cart {
     }
  
     /*
-   	 * @return cartItems list of Item added in cart 
+   	 * @return cartItems list of cart 
    	 * */
-    public List<CartItem> getCartItems() {
+    public List<CartItem> getCartItemList() {
         return this.cartItems;
     }
     
-    
-	 /*
-     * @param pId cartItem Id
-     * @return cartItem cartItem which found in cart by id 
-     *     else "null" if not found in cart
-     * */
-    public CartItem getItemById(int pId) {
-        for (CartItem cartItem : this.cartItems) {
-            if (cartItem.getId()==(pId)) {
-                return cartItem;
-            }
-        }
-        return null;
-    }
-    
     /*
-   	 * @param Item 
+   	 * @param cartItems list of Item added in cart 
    	 * */
-    public void addItem(CartItem cartItem){
-    	this.cartItems.add(cartItem);
+    public void setCartItemList(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
     }
     
-    /*
-   	 * @param index of item in item list 
-   	 * */
-    public void deleteItem(int index){
-    	this.cartItems.remove(index);
-    }
-    
+     
     
     /*
      * @return id unique id for each user

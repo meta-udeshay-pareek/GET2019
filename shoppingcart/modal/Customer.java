@@ -1,6 +1,5 @@
 package modal;
 
-import factory.CartFactory;
 import modal.Cart;
 
 public class Customer {
@@ -9,15 +8,17 @@ public class Customer {
     private String address;
     private String email;
     private String phone;
-    private int userId;
-    private static int id=1;
- 
+    private int pk;//Primary key
     private Cart cart;//cart of customer
+    
+  
+	private static int id=1;//for generation of unique primary key 
+ 
+    
     
     
     public Customer(){
-    	this.userId = genrateUniqueId();
-    	cart = CartFactory.getCartInstance(this);//cart has created for this customer
+    	this.pk = genrateUniqueId();
     }
  
     /*
@@ -85,12 +86,20 @@ public class Customer {
     public Cart getCart(){
     	return this.cart;
     }
+    /*
+   	 * @param cart ,customer cart
+   	 * */
+    public void setCart(Cart cart) {
+  		this.cart = cart;
+  	}
+
+
     
     /*
      * @return userId
      * */
     public int getId(){
-    	return this.userId;
+    	return this.pk;
     }
  
     

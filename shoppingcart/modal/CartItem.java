@@ -4,19 +4,20 @@ public class CartItem {
 	
 	private Product product;
 	private int quantity;
-	private int id;
+	private int pk;//primary key
+	private int cartId;//in which cart this cartItem is going to be added
 	
-	
+	private static int id=1;//for generation of unique primary key 
 	
 	public CartItem() {
-		this.id = this.product.getId();//cartItemid and product id is same
+		this.pk = genrateUniqueId();
 	}
 	
 	/*
 	 * @return id cartItemid
 	 * */
 	public int getId() {
-		return id;
+		return pk;
 	}
 	
 	/*
@@ -40,6 +41,8 @@ public class CartItem {
 		return this.quantity;
 	}
 	
+	
+
 	/*
 	 * @param quantity i.e. product quantity
 	 * */
@@ -47,5 +50,29 @@ public class CartItem {
 		this.quantity = quantity;
 	}
 	
+	
+	
+	/*
+	 * @return cartId  in which cart this cartItem exist
+	 * */
+	public int getCartId() {
+		return cartId;
+	}
+
+	/*
+	 * @param cartId i.e. in which cart this cartItem is going to be added
+	 * */
+	public void setCartId(int cartId) {
+		this.cartId = cartId;
+	}
+	
+	
+	/////////////////////////////////////////////
+	 /*
+     * @return id unique id for each user
+     * */
+    private static int genrateUniqueId(){
+    	return id++;//static instance variable
+    }
 	
 }

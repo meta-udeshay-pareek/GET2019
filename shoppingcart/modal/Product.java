@@ -2,21 +2,21 @@ package modal;
 
 public class Product {
 	
-	private int pid;
+	private int pk;//primary key
 	private String name;
 	private double price;
 	private String type;
 	private static int id=1;//instance variable for generation unique id
 	
 	public Product(){
-		this.pid = genrateUniqueId();
+		this.pk = genrateUniqueId();
 	}
 	
 	/*
 	 * @return product Id
 	 * */
 	public int getId(){
-		return this.pid;
+		return this.pk;
 	}
 	
 

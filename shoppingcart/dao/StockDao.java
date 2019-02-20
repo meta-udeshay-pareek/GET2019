@@ -2,12 +2,10 @@ package dao;
 
 import java.util.List;
 
-import Enum.Status;
 import modal.StockItem;
+import Enum.Status;
+
 
 public interface StockDao {
-	public List<StockItem> getAllItem();
-	public StockItem getItemById(int id);
-	public Status addItem(StockItem stockItem);
-	public Status deleteItem(StockItem stockItem);
+	public Status updateStock(List<StockItem> stockItems);
 }

@@ -4,19 +4,19 @@ public class StockItem {
 	
 	private Product product;
 	private int quantity;
-	private int id;
+	private int pk;//primary key
 	
-	
+	private static int id=1;//for generation of unique primary key 
 	
 	public StockItem() {
-		this.id = this.product.getId();//cartItemid and product id is same
+		this.pk = genrateUniqueId();
 	}
 	
 	/*
 	 * @return id cartItemid
 	 * */
 	public int getId() {
-		return id;
+		return pk;
 	}
 	
 	/*
@@ -45,5 +45,14 @@ public class StockItem {
 	 * */
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+	
+	
+	/////////////////////////////////////////////
+	/*
+	* @return id unique id for each user
+	* */
+	private static int genrateUniqueId(){
+		return id++;//static instance variable
 	}
 }

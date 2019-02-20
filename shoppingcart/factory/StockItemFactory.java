@@ -10,7 +10,7 @@ public class StockItemFactory {
 	 * @param product
 	 * @return Object of StockItem
 	 *  */
-	public static StockItem getCartItemInstance(Product product,int quantity){
+	public static StockItem getStockItemInstance(Product product,int quantity){
 		StockItem stockItem= new StockItem();
 		stockItem.setProduct(product);
 		stockItem.setQuantity(quantity);

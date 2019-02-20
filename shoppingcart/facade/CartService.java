@@ -17,7 +17,7 @@ public class CartService {
 	 * */
 	public Status addItem(Cart cart,CartItem cartItem){
 		
-		List<CartItem> cartItems = cart.getCartItems();//for traversing cartItem list
+		List<CartItem> cartItems = cart.getCartItemList();//for traversing cartItem list
 		
 		for(CartItem item:cartItems){
 			//if item is already in cart than return Duplicate
@@ -43,7 +43,7 @@ public class CartService {
     public Status deleteItem(Cart cart,CartItem cartItem){
     	
     	int index=0;
-    	List<CartItem> cartItems = cart.getCartItems();//for traversing cartItem list
+    	List<CartItem> cartItems = cart.getCartItemList();//for traversing cartItem list
     	
     	
     	for (CartItem item : cartItems) {
@@ -69,7 +69,7 @@ public class CartService {
     public Status updatedItem(Cart cart,CartItem cartItem,int quantity){
     	
   
-    	List<CartItem> cartItems = cart.getCartItems();//for traversing cartItem list
+    	List<CartItem> cartItems = cart.getCartItemList();//for traversing cartItem list
     	
     	
     	for (CartItem item : cartItems) {
@@ -93,7 +93,7 @@ public class CartService {
      * */
     public CartItem getItemById(Cart cart,int pId) {
     	
-    	List<CartItem> cartItems = cart.getCartItems();//for traversing cartItem list
+    	List<CartItem> cartItems = cart.getCartItemList();//for traversing cartItem list
     	
         for (CartItem cartItem : cartItems) {
             if (cartItem.getId()==(pId)) {
