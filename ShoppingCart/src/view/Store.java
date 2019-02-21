@@ -8,10 +8,9 @@ import controller.CartController;
 import controller.CustomerController;
 import controller.StockController;
 import facade.CartService;
-import factory.CartItemFactory;
-import factory.CustomerFactory;
-import factory.ProductFactory;
-import factory.StockItemFactory;
+
+import factory.Factory;
+
 import modal.CartItem;
 import modal.Customer;
 import modal.Product;
@@ -83,7 +82,7 @@ public class Store {
 		String phone = input.next();
 		
         //calling controller for saving customer
-		CustomerController.saveCustomer(CustomerFactory.getCustomerInstance(name, address, email, phone));
+		CustomerController.saveCustomer(Factory.getCustomerInstance(name, address, email, phone));
 	}
 	
 	
@@ -98,7 +97,7 @@ public class Store {
 		int quantity = input.nextInt();
 		
 		//calling stockController for adding item in stock
-		Status status = StockController.addItemInStock(StockItemFactory.getStockItemInstance(ProductFactory.getProductInstance(name, price, type), quantity) );
+		Status status = StockController.addItemInStock(Factory.getStockItemInstance(Factory.getProductInstance(name, price, type), quantity) );
 		
 		System.out.print(status.name());
 	}
@@ -131,7 +130,7 @@ public class Store {
 		if(customer!=null && stockItem!=null){
 			
 			int cartId=(customer.getCart().getId());//getting cartId for cartItem
-			Status status= CartController.addCartItemInCart(customer.getCart(), CartItemFactory.getCartItemInstance(stockItem.getProduct(), quantity,cartId));//creating cartItem and adding that cart item into user cart
+			Status status= CartController.addCartItemInCart(customer.getCart(), Factory.getCartItemInstance(stockItem.getProduct(), quantity,cartId));//creating cartItem and adding that cart item into user cart
 			
 			System.out.print(status.name());
 		}else{

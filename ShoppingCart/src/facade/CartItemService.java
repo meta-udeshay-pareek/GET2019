@@ -7,7 +7,7 @@ package facade;
 
 
 import Enum.Status;
-import factory.CartItemDaoImplFactory;
+import factory.Factory;
 import java.util.List;
 import modal.CartItem;
 
@@ -23,7 +23,7 @@ public class CartItemService {
 	 * @return  "Status.SUCCESS"
 	 * */
 	public static  Status addItem(CartItem cartItem){
-		return CartItemDaoImplFactory.getCartItemDaoImplInstance().saveCartItem(cartItem);
+		return Factory.getCartItemDaoImplInstance().saveCartItem(cartItem);
 		 
 	}
 	
@@ -39,7 +39,7 @@ public class CartItemService {
     	
     	int index=0;
     	//calling dao for getting stock item list
-    	List<CartItem> cartItems = CartItemDaoImplFactory.getCartItemDaoImplInstance().getAllCartItem();
+    	List<CartItem> cartItems = Factory.getCartItemDaoImplInstance().getAllCartItem();
     	
     	
     	for (CartItem item : cartItems) {
@@ -47,7 +47,7 @@ public class CartItemService {
     		//If item found then delete it by index
             if (item.getId()==cartItem.getId()) {
             	//calling dao for deleting item
-            	CartItemDaoImplFactory.getCartItemDaoImplInstance().deleteCartItem(index);
+            	Factory.getCartItemDaoImplInstance().deleteCartItem(index);
                 return Status.SUCCESS;
             }
             
@@ -66,7 +66,7 @@ public class CartItemService {
     public static Status updateItem(CartItem cartItem,int quantity){
     	
     	//calling dao for getting stock item list
-    	List<CartItem> cartItems = CartItemDaoImplFactory.getCartItemDaoImplInstance().getAllCartItem();
+    	List<CartItem> cartItems = Factory.getCartItemDaoImplInstance().getAllCartItem();
     	
     	
     	for (CartItem item : cartItems) {
@@ -91,7 +91,7 @@ public class CartItemService {
     public static CartItem getItemById(int pId) {
     	
     	//calling dao for getting stock item list
-    	List<CartItem> cartItems = CartItemDaoImplFactory.getCartItemDaoImplInstance().getAllCartItem();
+    	List<CartItem> cartItems = Factory.getCartItemDaoImplInstance().getAllCartItem();
     	
     	for (CartItem item : cartItems) {
     		//If item found then update quantity
@@ -109,7 +109,7 @@ public class CartItemService {
      * */
     public static List<CartItem> getAllCartItem(){
     	//calling Dao for All stock item list
-    	return CartItemDaoImplFactory.getCartItemDaoImplInstance().getAllCartItem();
+    	return Factory.getCartItemDaoImplInstance().getAllCartItem();
     }
     
 }

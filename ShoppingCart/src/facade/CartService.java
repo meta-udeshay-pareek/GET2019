@@ -4,7 +4,7 @@ package facade;
 import java.util.List;
 
 import controller.CartController;
-import factory.CartDaoImplFactory;
+import factory.Factory;
 import Enum.Status;
 import modal.Cart;
 import modal.CartItem;
@@ -118,7 +118,7 @@ public class CartService {
     
     
     public static Cart getCartById(int id){
-    	List<Cart> carts = CartDaoImplFactory.getCartDaoImplInstance().getAllCart();
+    	List<Cart> carts = Factory.getCartDaoImplInstance().getAllCart();
     	
     	for(Cart cart : carts){
     		if(cart.getId()==id){
@@ -131,7 +131,7 @@ public class CartService {
     
     
     public static Status addCart(Cart cart){
-    	return CartDaoImplFactory.getCartDaoImplInstance().saveCart(cart);
+    	return Factory.getCartDaoImplInstance().saveCart(cart);
     }
     
     
@@ -140,12 +140,12 @@ public class CartService {
     	int index=0;//index for cart
     	
     	//calling dao for getting list
-    	List<Cart> carts = CartDaoImplFactory.getCartDaoImplInstance().getAllCart();
+    	List<Cart> carts = Factory.getCartDaoImplInstance().getAllCart();
     	
     	for(Cart tempCart : carts){
     		if(tempCart.getId()==cart.getId()){
     			//calling dao for deleting cart
-    			return CartDaoImplFactory.getCartDaoImplInstance().deleteCart(index);
+    			return Factory.getCartDaoImplInstance().deleteCart(index);
     		}
     		index++;
     	}
@@ -153,7 +153,7 @@ public class CartService {
     }
     
     public static List<Cart> getAllcart() {
-		return CartDaoImplFactory.getCartDaoImplInstance().getAllCart();
+		return Factory.getCartDaoImplInstance().getAllCart();
 	}
     
     

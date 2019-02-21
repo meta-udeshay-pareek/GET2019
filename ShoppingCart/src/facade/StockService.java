@@ -3,7 +3,7 @@ package facade;
 import java.util.List;
 
 
-import factory.StockItemDaoImplFactory;
+import factory.Factory;
 import Enum.Status;
 import modal.StockItem;
 
@@ -17,7 +17,7 @@ public class StockService {
 	 * */
 	public static  Status addItem(StockItem stockItem){
 		//calling dao for getting stock item list
-		List<StockItem> stockItems = StockItemDaoImplFactory.getStockItemDaoImplInstance().getAllStockItem();
+		List<StockItem> stockItems = Factory.getStockItemDaoImplInstance().getAllStockItem();
 		
 		for(StockItem item:stockItems){
 			//if item is already in cart than return Duplicate
@@ -28,7 +28,7 @@ public class StockService {
 		
 		//if item is not in Stock list then add item in list
 		//calling Dao saveStockItem
-		StockItemDaoImplFactory.getStockItemDaoImplInstance().saveStockItem(stockItem);
+		Factory.getStockItemDaoImplInstance().saveStockItem(stockItem);
 		
 		
 		
@@ -47,7 +47,7 @@ public class StockService {
     	
     	int index=0;
     	//calling dao for getting stock item list
-    	List<StockItem> stockItems = StockItemDaoImplFactory.getStockItemDaoImplInstance().getAllStockItem();
+    	List<StockItem> stockItems = Factory.getStockItemDaoImplInstance().getAllStockItem();
     	
     	
     	for (StockItem item : stockItems) {
@@ -55,7 +55,7 @@ public class StockService {
     		//If item found then delete it by index
             if (item.getId()==stockItem.getId()) {
             	
-            	return StockItemDaoImplFactory.getStockItemDaoImplInstance().deleteStockItem(index);//deleting item by index from list
+            	return Factory.getStockItemDaoImplInstance().deleteStockItem(index);//deleting item by index from list
                
             }
             
@@ -74,7 +74,7 @@ public class StockService {
     public static Status updatedItem(StockItem stockItem,int quantity){
     	
     	//calling dao for getting stock item list
-    	List<StockItem> stockItems = StockItemDaoImplFactory.getStockItemDaoImplInstance().getAllStockItem();
+    	List<StockItem> stockItems = Factory.getStockItemDaoImplInstance().getAllStockItem();
     	
     	
     	for (StockItem item : stockItems) {
@@ -99,7 +99,7 @@ public class StockService {
     public static StockItem getItemById(int pId) {
     	
     	//calling dao for getting stock item list
-    	List<StockItem> stockItems = StockItemDaoImplFactory.getStockItemDaoImplInstance().getAllStockItem();
+    	List<StockItem> stockItems = Factory.getStockItemDaoImplInstance().getAllStockItem();
     	
     	for (StockItem item : stockItems) {
     		//If item found then update quantity
@@ -117,7 +117,7 @@ public class StockService {
      * */
     public static List<StockItem> getAllStockItem(){
     	//calling Dao for All stock item list
-    	return StockItemDaoImplFactory.getStockItemDaoImplInstance().getAllStockItem();    
+    	return Factory.getStockItemDaoImplInstance().getAllStockItem();    
     }
     
 	
