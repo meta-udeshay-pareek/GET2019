@@ -153,10 +153,10 @@ public class Store {
 		//calling controller for getting Customer object from customer id
 		Customer customer = CustomerController.getCustomerById(userId);
 		
-		//getting StockItem by id from Stock Controller which item we have to add in cart
+		//getting cartItem by id from Cart Controller which item we have to delete
 		CartItem cartItem = CartController.getCartItemByIdInCart(customer.getCart(), itemId);
 		
-		//if customer exist and stockItem exist
+		//if customer exist and cartItem exist
 		if(customer!=null && cartItem!=null){
 			
 			Status status=CartController.deleteCartItemFromCart(customer.getCart(), cartItem);
@@ -196,7 +196,7 @@ public class Store {
 		//calling controller for getting Customer object from customer id
 		Customer customer = CustomerController.getCustomerById(userId);
 		
-		//getting StockItem by id from Stock Controller which item we have to add in cart
+		//getting cartItem by id from Cart Controller which item we have to update
 		CartItem cartItem = CartController.getCartItemByIdInCart(customer.getCart(), itemId);
 		
 		Status status = CartService.updateCartItemInCart(customer.getCart(), cartItem, quantity);

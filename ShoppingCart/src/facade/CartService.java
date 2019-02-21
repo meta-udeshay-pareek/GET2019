@@ -15,7 +15,7 @@ public class CartService {
 	 * @param cart  on which cart we have to apply operation
 	 * @param cartItem the item which you have to add in list
 	 * 
-	 * @return "Status.DUPLICATE" if item is already in cartItem list else return "Status.SUCCESS"
+	 * @return "Status.UPDATED" if item is already in cartItem list else return "Status.SUCCESS"
 	 * */
 	public static Status addItemInCart(Cart cart,CartItem cartItem){
 		
@@ -75,6 +75,7 @@ public class CartService {
     /*
 	 * @param cart  on which cart we have to apply operation
      * @param pId cartItem Id
+     * @param quantity
      * @return "Status.SUCCESS" if item quantity has updated else return "Status.NOT_EXIST"
      * */
     public static Status updateCartItemInCart(Cart cart,CartItem cartItem,int quantity){

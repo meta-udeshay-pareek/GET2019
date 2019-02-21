@@ -19,7 +19,7 @@ public class ProductData {
 	
 	
 	/*
-	 * @return customerData instance of this class
+	 * @return ProductData instance of this class
 	 * */
 	
 	public static ProductData getInstance(){

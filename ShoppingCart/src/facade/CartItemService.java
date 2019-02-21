@@ -59,7 +59,8 @@ public class CartItemService {
     
     
     /*
-	 * @param stockItem the item which quantity you have to update in list
+	 * @param cartItem the item which quantity you have to update in list
+	 * @param quantity 
      *
      * @return "Status.SUCCESS" if item quantity has updated else return "Status.NOT_EXIST"
      * */
@@ -84,13 +85,13 @@ public class CartItemService {
     
     /*
 	 * 
-     * @param pId stockItem Id
+     * @param pId CartItem Id
      * @return stockItem stockItem which found in Stock by id 
      *     else "null" if not found in Stock
      * */
     public static CartItem getItemById(int pId) {
     	
-    	//calling dao for getting stock item list
+    	//calling dao for getting cart item list
     	List<CartItem> cartItems = Factory.getCartItemDaoImplInstance().getAllCartItem();
     	
     	for (CartItem item : cartItems) {
@@ -108,7 +109,7 @@ public class CartItemService {
      * @return list of item which are in stock
      * */
     public static List<CartItem> getAllCartItem(){
-    	//calling Dao for All stock item list
+    	//calling Dao for All cart items list
     	return Factory.getCartItemDaoImplInstance().getAllCartItem();
     }
     
