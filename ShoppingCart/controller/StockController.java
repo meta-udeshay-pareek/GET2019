@@ -39,4 +39,8 @@ public class StockController {
 		//calling facade/service getStockItemById
 		return StockService.getItemById(id);
 	}
+	
+	public static Status updateStockItem(StockItem stockItem,int quantity){
+		return StockService.updatedItem(stockItem, quantity);
+	}
 }

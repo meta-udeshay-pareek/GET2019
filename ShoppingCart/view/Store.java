@@ -8,9 +8,7 @@ import controller.CartController;
 import controller.CustomerController;
 import controller.StockController;
 import facade.CartService;
-
 import factory.Factory;
-
 import modal.CartItem;
 import modal.Customer;
 import modal.Product;
@@ -127,11 +125,13 @@ public class Store {
 		StockItem stockItem = StockController.getStockItemById(itemId);
 		
 		//if customer exist and stockItem exist
-		if(customer!=null && stockItem!=null){
+		if(customer!=null && stockItem!=null && stockItem.getQuantity()>=quantity){
 			
 			int cartId=(customer.getCart().getId());//getting cartId for cartItem
 			Status status= CartController.addCartItemInCart(customer.getCart(), Factory.getCartItemInstance(stockItem.getProduct(), quantity,cartId));//creating cartItem and adding that cart item into user cart
-			
+			if(status == Status.SUCCESS){
+				StockController.updateStockItem(stockItem, stockItem.getQuantity()-quantity);
+			}
 			System.out.print(status.name());
 		}else{
 			if(customer==null){
@@ -144,6 +144,7 @@ public class Store {
 	}
 	
 	
+	@SuppressWarnings("unused")
 	private static void deleteProductfromcart(){
 		System.out.print("Enter your userId");
 		int userId=input.nextInt();
@@ -160,8 +161,25 @@ public class Store {
 		if(customer!=null && cartItem!=null){
 			
 			Status status=CartController.deleteCartItemFromCart(customer.getCart(), cartItem);
+			//if has sucussfully deleted then updating stockItem quantity
+			if(status==Status.SUCCESS){
+				//getting all the list of stock item
+				List<StockItem> stockItems = StockController.getAllStockItem();
+				for(StockItem stockItem:stockItems){
+					//if stockItem product and cart item priduct is same the setting quantity of stock
+					if(stockItem.getProduct().getId()==cartItem.getProduct().getId()){
+						StockController.updateStockItem(stockItem, stockItem.getQuantity()+cartItem.getQuantity());
+					}
+				}
+			}
 			
 			System.out.print(status.name());
+		}else{
+			if(customer==null){
+				System.out.println("User Id is wrong");
+			}else{
+				System.out.println("cartItem not exist");
+			}
 		}
 		
 	}
@@ -199,9 +217,39 @@ public class Store {
 		//getting cartItem by id from Cart Controller which item we have to update
 		CartItem cartItem = CartController.getCartItemByIdInCart(customer.getCart(), itemId);
 		
-		Status status = CartService.updateCartItemInCart(customer.getCart(), cartItem, quantity);
+		//if customer exist and cartItem exist
+		if(customer!=null && cartItem!=null){
+			
+			int oldQuantityOfCartItem = cartItem.getQuantity();//for updating stockItem quantity
 		
-		System.out.print(status.name());
+			//updating cartItem quantity
+			Status status = CartService.updateCartItemInCart(customer.getCart(), cartItem, quantity);
+			
+			//if has sucussfully updated then updating stockItem quantity
+			if(status==Status.SUCCESS){
+				//getting all the list of stock item
+				List<StockItem> stockItems = StockController.getAllStockItem();
+				
+				for(StockItem stockItem:stockItems){
+					//if stockItem product and cart item priduct is same the setting quantity of stock
+					if(stockItem.getProduct().getId()==cartItem.getProduct().getId()){
+						
+						//adding back product quantity in stock and then retrive updated quantity
+						int updatedQuantity=(stockItem.getQuantity()+oldQuantityOfCartItem)-quantity;//updated quantity os stockItem
+						StockController.updateStockItem(stockItem, updatedQuantity);//updating quantity of stockItem
+					}
+				}
+				
+			}
+			
+			System.out.print(status.name());
+		}else{
+			if(customer==null){
+				System.out.println("User Id is wrong");
+			}else{
+				System.out.println("cartItem not exist");
+			}
+		}
 		
 	}
 }
