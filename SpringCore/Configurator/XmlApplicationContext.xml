@@ -6,13 +6,13 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
     
+    <bean id="Email" class="Services.EmailService"/>
+    <bean id="Twitter" class="Services.TwitterService"/>
     
-    <!-- It will create the object of EmailService.java class -->
-    
-    <bean id="email" class="EmailService.java"/>
-    
-    
-	<!-- It will create the object of TwitterService.java class -->
-	
-     <bean id="twitter" class="TwitterService.java"/>
+    <bean id="appEmail" class="Consumer.MyXMLApplication">
+    <constructor-arg ref="Email"></constructor-arg>
+    </bean>
+    <bean id="appTwitter" class="Consumer.MyXMLApplication">
+     <constructor-arg ref="Twitter"></constructor-arg>
+    </bean>
 </beans>
