@@ -1,8 +1,0 @@
-com/metacube/training/dao/impl/UserDAOmpl.class
-com/metacube/training/controller/WebSiteController.class
-com/metacube/training/mapper/UserMapper.class
-com/metacube/training/model/User.class
-com/metacube/training/controller/UserController.class
-com/metacube/training/service/impl/UserServiceImpl.class
-com/metacube/training/dao/UserDAO.class
-com/metacube/training/service/UserService.class
