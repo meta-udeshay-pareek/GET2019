@@ -48,7 +48,7 @@ public class CategoryResource {
 	 * 
 	 * @return
 	 */
-	public String getList(String authorizationString) {
+	public String getList() {
 
 		List<Category> listOfCategory = categoryfacade.getList();
 		Gson gson = new Gson();
