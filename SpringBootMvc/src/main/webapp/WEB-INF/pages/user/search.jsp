@@ -13,7 +13,7 @@
 		<select name="searchUserBy">
 		  <option value="firstName">First Name</option>
 		  <option value="lastName">Last Name</option>
-		  <option value="phoneNumber">Phone Number</option>
+		  <option value="contactNo">Phone Number</option>
 		  <option value="email">Email</option>
 		</select>
 		<input  name="userInfo" placeholder="Enter selected user Info" type="text"/>
