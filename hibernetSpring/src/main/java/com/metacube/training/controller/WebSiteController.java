@@ -26,7 +26,7 @@ public class WebSiteController {
 	 * */
 	  @RequestMapping(value = "/", method = RequestMethod.GET)
 	    public String loginPage() {
-	        
+	     
 	        return "login";
 	    
 	    }
@@ -37,8 +37,8 @@ public class WebSiteController {
 	   * @return "welcome"(i.e. will open welcome.jsp) if [username and userpassword is valid] else will open login.jsp page back
 	   * */
 	  @RequestMapping(value = "/login", method = RequestMethod.POST)
-	    public String logedIn(@RequestParam("username")String username,@RequestParam("userpassword")String userpassword) {
-	       boolean status = userService.isUserExist(username,userpassword);
+	    public String logedIn(@RequestParam("userName")String userName,@RequestParam("userPassword")String userPassword) {
+	       boolean status = userService.isUserExist(userName,userPassword);
 	       
 	       if(status==true) {
 	    	   return "home";

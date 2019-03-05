@@ -18,5 +18,4 @@ public interface UserDAO {
 
 	public List<User> searchBy(String searchBy, String value);
 
-	public boolean isAdminExist(String username, String userpassword);
 }

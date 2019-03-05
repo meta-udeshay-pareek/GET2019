@@ -7,9 +7,11 @@
 <title>User Portal</title>
 </head>
 <body>
-	<a href="user/add">Add User</a>
-	<a href="user/all">View All User</a>
-	<a href="user/search">Search User</a>
-	<a href="/userPortal">logout</a>
+	<form action="login" method="post">
+		
+		<input  name="userName" placeholder="Enter username" type="text"/>
+		<input name="userPassword" type="password" placeholder="enter password"/>
+		<input type="submit" value="submit"/>
+	</form>
 </body>
-</html>
+</body>

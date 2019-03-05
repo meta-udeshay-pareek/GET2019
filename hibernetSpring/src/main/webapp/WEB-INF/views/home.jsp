@@ -7,11 +7,9 @@
 <title>User Portal</title>
 </head>
 <body>
-	<form action="login" method="post">
-		
-		<input  name="username" placeholder="Enter username" type="text"/>
-		<input name="userpassword" type="password" placeholder="enter password"/>
-		<input type="submit" value="submit"/>
-	</form>
+	<a href="user/add">Add User</a>
+	<a href="user/all">View All User</a>
+	<a href="user/search">Search User</a>
+	<a href="/hibernetSpring">logout</a>
 </body>
-</body>
+</html>

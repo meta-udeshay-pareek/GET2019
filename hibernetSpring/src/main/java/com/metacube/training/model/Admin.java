@@ -10,14 +10,19 @@ import javax.persistence.Table;
 @Table(name="admin")
 public class Admin {
 	
-	int id;
-	String userName;
-	String password;
-	
-	
 	@Id
 	@Column(name = "id")
 	@GeneratedValue
+	int id;
+	
+	@Column(name = "user_name")
+	String userName;
+	
+	@Column(name = "user_password")
+	String userPassword;
+	
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -26,22 +31,23 @@ public class Admin {
 		this.id = id;
 	}
 	
-	@Column(name = "user_name")
+	
 	public String getUsername() {
-		return userName;
+		String user_name=userName;
+		return user_name;
 	}
 	
 	public void setUsername(String userName) {
 		this.userName = userName;
 	}
 	
-	@Column(name = "user_password")
+	
 	public String getPassword() {
-		return password;
+		return userPassword;
 	}
 	
 	public void setPassword(String password) {
-		this.password = password;
+		this.userPassword = password;
 	}
 	
 	
