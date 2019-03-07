@@ -1,3 +1,5 @@
+
+
 public class LinkedList {
 
 	private Node head;
@@ -19,6 +21,24 @@ public class LinkedList {
 	public LinkedList() {
 		head=null;
 	}
+	
+
+	/*
+	 * @param element, to be insert din linked lists*/
+	public boolean insertAtFront(int element) 
+	{ 
+	    /* 1 & 2: Allocate the Node & 
+	              Put in the data*/
+	    Node node = new Node(element); 
+	  
+	    /* 3. Make next of new Node as head */
+	    node.setNext(this.getHead()); 
+	  
+	    /* 4. Move the head to point to new Node */
+	   this.setHead(node);
+	   
+	   return true;
+	} 
 
 	/*
 	 * @param currentNode, reference of last node
@@ -47,7 +67,9 @@ public class LinkedList {
 	 * @param R,the ending position in list of sublist
 	 * @return list,updated whole list after apply rotation 
 	 * */
-	public LinkedList rotate(LinkedList list,int L, int R,int N){
+	public static LinkedList rotate(LinkedList list,int L, int R,int N){
+		
+		boolean subListHeadIsStartingNode=false;
 		
 		//currentNode first will point to head of the linked list
 		Node currentNode = list.getHead();
@@ -58,9 +80,15 @@ public class LinkedList {
 		//count for reaching at L and R
 		int count=1;
 		
+		//when sublistHead is starting node of list
+		if(L==count) {
+			subListHead =list.getHead();
+			parentSubListHead=list.getHead();
+			subListHeadIsStartingNode=true;
+		}
 		
 		//fetching sublist from the whole list for apply rotation part on that
-		while(currentNode.getNext()!=null) {
+		while(currentNode!=null) {
 			
 			//if count+1==L then psh will be current node and next node will be sublistHead
 			if(count+1==L) {
@@ -98,14 +126,24 @@ public class LinkedList {
 			//separated node is now added at head and this node is head of subList
 			subListHead = subListTail;
 			
-			//parentSubListHead will be parent of subListHead
-			parentSubListHead.setNext(subListHead);
+			//if from starting node the subList begin
+			if(subListHeadIsStartingNode) {
+				//if firstNode of List is subListhead then parentSubListHead will be same as subListHead(both will be same)
+				parentSubListHead=subListHead;
+			}else {
+				//parentSubListHead will be parent of subListHead
+				parentSubListHead.setNext(subListHead);
+			}
 			
 			//currentNode will be last node of the sublist
 			subListTail=currentNode;
 			N--;
 		}
 	
+		//if subListhead was Starting Node of LinkedList then we have to set head as subListHead of LinkedList
+		if(subListHeadIsStartingNode) {
+			list.setHead(subListHead);
+		}
 
 		//returning updated list
 		return list;
@@ -130,6 +168,22 @@ public class LinkedList {
 		}
 		
 		return false;
+	}
+	
+	
+	/*
+	 * @param list, for converting list into array
+	 * @return array, the converted array
+	 * */
+	public int[] toArray( ) {
+		int[] array = new int[this.getSize()];
+		Node currentNode=this.getHead();
+		for(int i=0;i<array.length&&currentNode!=null;i++) {
+			array[i]=currentNode.getData();
+			currentNode = currentNode.getNext();
+		}
+		
+		return array;
 	}
 	
 
