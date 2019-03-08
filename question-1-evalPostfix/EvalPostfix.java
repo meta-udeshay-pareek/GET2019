@@ -1,5 +1,5 @@
 package evalPostfix;
-import java.util.Stack;
+
 
 public class EvalPostfix {
 
@@ -11,7 +11,7 @@ public class EvalPostfix {
 	public static int evaluatePostfixExpression(String postfixExp) {
 
 		//create a stack 
-		Stack<Integer> stack = new Stack<Integer>(); 
+		Stack stack = new StackLinkedListImplimentation(); 
 
 
 		String expressionElements[] = postfixExp.split(" ");
@@ -32,7 +32,7 @@ public class EvalPostfix {
 			else
 			{ 
 				//if stack doesn't have two operand for an operator  then postfix expression is invalid
-				if(stack.size()<2) {
+				if(stack.getSize()<2) {
 					throw new RuntimeException("Invalid Postfix  Expression");
 				}
 				
@@ -62,7 +62,7 @@ public class EvalPostfix {
 		}
 		
 		//at last only one value must be remain
-		if(stack.size()!=1) {
+		if(stack.getSize()!=1) {
 			throw new RuntimeException("Invalid Postfix  Expression");
 		}
 		//at last the stack will contain only resultant value
