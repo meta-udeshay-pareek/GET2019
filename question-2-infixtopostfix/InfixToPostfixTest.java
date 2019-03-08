@@ -12,6 +12,7 @@ public class InfixToPostfixTest {
 		assertEquals("ab+", InfixToPostfix.infixToPostfixConversion("( a + b )"));
 		assertEquals("xy^5z*/10+", InfixToPostfix.infixToPostfixConversion("x ^ y / ( 5 * z ) + 10") );
 		assertEquals("AB+CDE/*-F+", InfixToPostfix.infixToPostfixConversion("( ( A + B ) - C * ( D / E ) ) + F") );
+		assertEquals("ab==ab*2+&&", InfixToPostfix.infixToPostfixConversion( "( ( a == b ) && ( a * b ) + 2 )" ));
 		
 	}
 	
