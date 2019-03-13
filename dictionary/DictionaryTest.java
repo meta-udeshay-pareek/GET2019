@@ -43,5 +43,13 @@ public class DictionaryTest {
 		assertEquals("847339282", bst.getValue("mobile"));
 		assertEquals("John", bst.getValue("name"));
 	}
+	
+	@Test
+	public void testDelete() {
+		
+		assertEquals(true, bst.delete("4"));
+		assertEquals(false, bst.delete("8"));
+		assertEquals(true, bst.delete("1"));
+	}
 
 }
