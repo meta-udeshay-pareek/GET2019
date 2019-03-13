@@ -13,9 +13,9 @@ public interface Dictionary {
 	
 	/**
 	 * @param key,deleting a node(Key:value pair) based on key
-	 * @return node, deleted node from BST
+	 * @return true, false 
 	 * */
-	Node delete(String key);
+	boolean delete(String key);
 	
 	/**
 	 * @param key, for getting value based on Key from BST
