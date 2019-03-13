@@ -9,6 +9,21 @@ import java.util.List;
 
 public class BstService {
 
+
+	//will hold status of deletion of node
+	static boolean deleteStatus=false;
+	
+	
+	
+	public static boolean getDeleteStatu() {
+		return deleteStatus;
+	}
+
+	public static void setDeleteStatu(boolean deleteStatus) {
+		BstService.deleteStatus = deleteStatus;
+	}
+
+
 	//for purpose of returning a sorted list of BST element
 	List<String> sortedList;
 
@@ -27,15 +42,15 @@ public class BstService {
 	 *  */
 	public Node addRecursive(Node root,Node node){
 
-		/* If the tree is empty*/
+		//if tree is empty
 		if (root == null) { 
 			root = node;
 			return root; 
 		} 
 
-		/* Otherwise, recur down the tree */
+	
 
-		//if key is greater than current node then move right of current node 
+		//if key is larger than current node then move right of current node 
 		if (node.getKey().compareTo(root.getKey())>=1) { 
 			root.setRight(addRecursive(root.getRight(), node));
 		}
@@ -64,14 +79,15 @@ public class BstService {
 	 * */
 	public Node deleteRecursive(Node root,String key) {
 
-		/* Base Case: If the tree is empty */
+		
+		//If tree is empty
 		if (root == null)  return root; 
 
-		/* Otherwise, recur down the tree */
+	
 
 		//if key is greater than current node then move right of current node 
 		if (key.compareTo(root.getKey())>=1) {
-			root.setRight(deleteRecursive(root.getRight(), key));
+			root.setRight(deleteRecursive(root.getRight(), key)); //deleteRecursive(
 		}   
 		//if key is lesser than current node then move left of current node 
 		else if (key.compareTo(root.getKey())<0) { 
@@ -82,20 +98,24 @@ public class BstService {
 		// to be deleted 
 		else
 		{ 
+			System.out.println("Hello");
+			deleteStatus = true;//setting node deetion status
 			// node with only one child or no child 
 			if (root.getLeft() == null) 
 				return root.getRight(); 
 			else if (root.getRight() == null) 
 				return root.getLeft(); 
 
-			// node with two children: Get the inorder successor (smallest 
-			// in the right subtree) 
+			// node with two children: Get the inorder successor (smallest in the right subtree) 
 			//setting root node as smallest node in it's right subtree
-			root = (minValue(root.getRight())); 
+			Node root1 = (minValue(root.getRight())); 
+			root.setKey(root1.getKey());
+			root.setValue(root1.getValue());
 
 			// Delete the inorder successor the smallest key value node which has put as a root node now
 			root.setRight(deleteRecursive(root.getRight(), root.getKey())); 
 		} 
+		
 		return root;
 	}
 
