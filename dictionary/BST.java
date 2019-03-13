@@ -103,11 +103,17 @@ public class BST implements Dictionary{
 
 	/**
 	 * @param key,deleting a node(Key:value pair) based on key
-	 * @return node, deleted node from BST
+	 * @return @return true, false 
 	 * */
 	@Override
-	public Node delete(String key) {
-		return bstService.deleteRecursive(this.getRoot(),key);
+	public boolean delete(String key) {
+		BstService.setDeleteStatu(false);
+		bstService.deleteRecursive(this.getRoot(),key);
+		
+		if(BstService.getDeleteStatu()) {
+			return true;
+		}
+		return false;
 	}
 
 
