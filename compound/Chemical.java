@@ -9,6 +9,7 @@ import java.util.Stack;
 public class Chemical {
 
 	
+
 	//stack for storing atom
 	Stack<Character> stack = new Stack<Character>();
 
@@ -45,11 +46,18 @@ public class Chemical {
 
 
 	public int solveCompound(String formula) {
+		
+		if(formula == null){
+			return 0;
+		}
+		
+		int flag;//using for checking  if we have numeric value after closing bracs or not
 		//starting character will compound always
 		stack.push(formula.charAt(0));
 
 		for(int index=1;index<formula.length();index++) {
 
+			flag =0;
 			char d=formula.charAt(index);
 
 			if(Character.isDigit(d)) {
@@ -85,23 +93,27 @@ public class Chemical {
 
 				//fetching numeric part from string
 				while(tempIndex<formula.length()) {
-					if(Character.isDigit(formula.charAt(tempIndex)))
+					if(Character.isDigit(formula.charAt(tempIndex))) {
+						flag =1;
 						tempIndex++;
+					}
 					else
 						break;
 				}
 
 				//fetching numeric string
-				String s=formula.substring(index+1,tempIndex);
+				if(flag == 1) {
+					String s=formula.substring(index+1,tempIndex);
 
-				//converting numeric strig into number
-				int n=Integer.parseInt(s);
+					//converting numeric strig into number
+					int n=Integer.parseInt(s);
 
-				//updataing index
-				index=tempIndex-1;
+					//updataing index
+					index=tempIndex-1;
 
-				//poping element and pushing back them n times
-				pushBracket(n);
+					//poping element and pushing back them n times
+					pushBracket(n); 
+				}
 			}
 			else {
 				this.stack.push(d);
@@ -112,7 +124,7 @@ public class Chemical {
 		return calculate();
 	}
 
-	
+
 
 
 	/**
