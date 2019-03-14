@@ -211,10 +211,28 @@ public class Command {
 	}
 
 	public void tree() {
-		
+		printTree(this.getCurrentFolder(),0);
 	
 	}
 
+	 /**
+     * method to display the tree of the given directory
+     * 
+     * @param currentDirectory
+     * @param nesting          is the level of the subfolder
+     */
+
+    private void printTree(Folder currentDirectory, int nesting) {
+        for (Folder subDirectory : currentDirectory.getSubFolders()) {
+            for (int i = 0; i < nesting; i++)
+                System.out.print("|    ");
+            if (subDirectory.getSubFolders().size() != 0) {
+                System.out.println("|---" + subDirectory.getName());
+                printTree(subDirectory, nesting + 1);
+            } else
+                System.out.println("|___" + subDirectory.getName());
+        }
+    }
 
 	/*
 	 * Will print the whole path of current working directory
