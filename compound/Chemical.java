@@ -47,7 +47,7 @@ public class Chemical {
 
 	public int solveCompound(String formula) {
 		
-		if(formula == null){
+		if(formula.length()==0){
 			return 0;
 		}
 		
