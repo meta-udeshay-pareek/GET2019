@@ -6,10 +6,7 @@ public class CricketTest {
 
 	@Test
 	public void testfindOrderOfBolres() throws Exception {
-		System.out.println(Cricket.findOrderOfBolres(5, 2, new int[] {3,2}));
-		for(int x :Cricket.findOrderOfBolres(5, 2, new int[] {3,2})) {
-			System.out.println(x);
-		}
+		
 		assertArrayEquals(new int[] {1,1,2,1,2}, Cricket.findOrderOfBolres(5, 2, new int[] {3,2}));
 		assertArrayEquals(new int[] {2,2,1,2,3}, Cricket.findOrderOfBolres(5, 3, new int[] {1,3,1}));
 		assertArrayEquals(new int[] {2,2,1,2,1,2,3}, Cricket.findOrderOfBolres(7, 3, new int[] {2,4,1}));
