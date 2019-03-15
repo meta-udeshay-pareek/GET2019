@@ -1,7 +1,7 @@
 
-import java.util.Comparator;
+
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Cricket {
@@ -52,46 +52,28 @@ public class Cricket {
 		}
 
 
+		int i=0;//for arrangedOrderOfBowlers array
 		
-		//Main Logic for storing arranging order of bowler
-		for(int i=0;i<numberOfBalls;i++) {	
-
-			//Calling sort method which is returning entry set and getting it's first key(bowlerNumber) because it is descending sorted manner
-			int bowlerNumber = (int) sort(bowlerData).entrySet().iterator().next().getKey();
-			//storing order in array
-			arrangedOrderOfBowlers[i]=bowlerNumber;
-			//getting balls associated with that bowler
-			Integer balls = bowlerData.get(new Integer(bowlerNumber));
-			//updating the number of balls associated with that bowler as he
-			bowlerData.put(bowlerNumber, --balls);
-
+		while(numberOfBalls!=0) {
+			
+			//getting maximum value stored in hashMap
+			int maxBalls = Collections.max(bowlerData.values());
+			
+			for(Map.Entry<Integer, Integer> entry : bowlerData.entrySet()) {
+				//if value matches get it's key 
+				if(entry.getValue() == maxBalls) {
+					int bowlerNumber = entry.getKey();//getting bowlerNumber as it stored as key
+					arrangedOrderOfBowlers[i++] = bowlerNumber; //storing order of bowler
+					bowlerData.put(bowlerNumber, --maxBalls);//updating number of balls for particular bowler
+					numberOfBalls--;//decrementing value of balls 
+					break;//after updating all the  information break from this loop 
+				}
+			}
+			
 		}
-
-
-
+		
 
 		return arrangedOrderOfBowlers;
 	}
-
-
-
-	/**
-	 * @param bowlerData
-	 * @return reverseSortedMap,sorted map based on values in descending order
-	 *  */
-	private static LinkedHashMap<Integer, Integer> sort(HashMap<Integer, Integer> bowlerData){
-		//LinkedHashMap preserve the ordering of elements in which they are inserted
-		LinkedHashMap<Integer, Integer> reverseSortedMap = new LinkedHashMap<>();
-
-		//sorting HashMap by Value and storing it into reverseSortedMap
-		bowlerData.entrySet()
-		.stream()
-		.sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-		.forEachOrdered(x -> reverseSortedMap.put(x.getKey(), x.getValue()));
-
-		return reverseSortedMap;
-	}
-
-
 
 }
