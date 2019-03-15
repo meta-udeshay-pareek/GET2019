@@ -3,15 +3,27 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 
 public class Cricket {
 
-	public static int [] findOrderOfBolres(int numberOfBalls,int numberOfBowler,int ballsForEachBowler[]) throws Exception {
+	/**
+	 * @param numberOfBalls  which virat going to play
+	 * @param numberOfBowlers
+	 * @param ballsForEachBowler[]
+	 * 
+	 * @return arrangedOrderOfBowlers[] order of bowlers for each balls which virat going to play
+	 * i.e. which ball will throw by which bowler
+	 * */
+	public static int [] findOrderOfBolres(int numberOfBalls,int numberOfBowlers,int ballsForEachBowler[]) throws Exception {
 
+		//for storing arranging of bowler 
+		int arrangedOrderOfBowlers[] = new int[numberOfBalls];
 
-		//if bowls allocation per boller is incorrect then throw exception
-		if(numberOfBowler!=ballsForEachBowler.length) {
+		
+		/*************Validation checking******************/
+		
+		//if bowls allocation per baller is incorrect then throw exception
+		if(numberOfBowlers!=ballsForEachBowler.length) {
 			throw new Exception("bowls allocation per boller is incorrect");
 		}
 
@@ -27,13 +39,47 @@ public class Cricket {
 			throw new Exception("numberOfBalls and sum of all allocated balls to bowler are not equal");
 		}
 
+		/****************************************************/
+		
 
+		
+		//putting data in hashmap
+		//Key is BowlerNumber Value balls associated with that bowler
 		HashMap<Integer, Integer> bowlerData = new HashMap<Integer, Integer>();
 		int key=0;
-		for(int i=0;i<numberOfBowler;i++) {
+		for(int i=0;i<numberOfBowlers;i++) {
 			bowlerData.put(++key, ballsForEachBowler[i]);
 		}
 
+
+		
+		//Main Logic for storing arranging order of bowler
+		for(int i=0;i<numberOfBalls;i++) {	
+
+			//Calling sort method which is returning entry set and getting it's first key(bowlerNumber) because it is descending sorted manner
+			int bowlerNumber = (int) sort(bowlerData).entrySet().iterator().next().getKey();
+			//storing order in array
+			arrangedOrderOfBowlers[i]=bowlerNumber;
+			//getting balls associated with that bowler
+			Integer balls = bowlerData.get(new Integer(bowlerNumber));
+			//updating the number of balls associated with that bowler as he
+			bowlerData.put(bowlerNumber, --balls);
+
+		}
+
+
+
+
+		return arrangedOrderOfBowlers;
+	}
+
+
+
+	/**
+	 * @param bowlerData
+	 * @return reverseSortedMap,sorted map based on values in descending order
+	 *  */
+	private static LinkedHashMap<Integer, Integer> sort(HashMap<Integer, Integer> bowlerData){
 		//LinkedHashMap preserve the ordering of elements in which they are inserted
 		LinkedHashMap<Integer, Integer> reverseSortedMap = new LinkedHashMap<>();
 
@@ -43,17 +89,7 @@ public class Cricket {
 		.sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
 		.forEachOrdered(x -> reverseSortedMap.put(x.getKey(), x.getValue()));
 
-
-
-		//setting sorted keys based on value in array
-		int arrangedOrderBowler[] = new int[numberOfBowler];
-		int i=0;
-		for (Entry<Integer, Integer> entry : reverseSortedMap.entrySet()) {
-			arrangedOrderBowler[i++] = entry.getKey();
-		}
-
-
-		return arrangedOrderBowler;
+		return reverseSortedMap;
 	}
 
 
