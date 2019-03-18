@@ -7,10 +7,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.Set;
 import java.util.Stack;
 
-public class GraphImplementaion implements Graph {
+public class GraphImplementation implements Graph {
 
 	/*** Property of graph****/
 
@@ -45,7 +46,7 @@ public class GraphImplementaion implements Graph {
 	 * Constructor
 	 * @param numberOfVertices, number of nodes in graph
 	 * */
-	public GraphImplementaion(int numberOfVertices) {
+	public GraphImplementation(int numberOfVertices) {
 		this.numberOfVertices = numberOfVertices;
 		vertices = new Vertex[numberOfVertices];
 		edgeList = new LinkedList<Edge>();
@@ -204,22 +205,55 @@ public class GraphImplementaion implements Graph {
 	 * @return parent,parent of the given vertex
 	 * */
 	private int parent(HashMap<Integer, Integer> parentVertices,int vertex) {
-		int parent = vertex;//as initially we set vertex is parent of itself in hashMap
 		
-		//if entry contain diferent parent for the vertex
-		while(parentVertices.get(vertex)!=parent) {
+		//if entry contain different parent for the vertex
+		while(parentVertices.get(vertex)!=vertex) {
 			
-			parent = parentVertices.get(vertex);//fetch the parent then in next cycle condition will false 
+			vertex = parentVertices.get(vertex);//fetch the parent then in next cycle condition will false 
 		}
 		
-		return parent;
+		return vertex;
 	}
 
-	@Override
-	public List<Edge> shortestPath(int vertex1, int vertex2) {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * Dijkstra algorithm implementation
+	 * @param source - Source vertex
+	 * @return - Distance of all vertices from source
+	 */
+	private int[] dijkstra(int source) {
+		int dist[] = new int[this.getNumberOfVertices()];//creating array which will hold distance from source to all vertices
+		for(int i=0; i<this.getNumberOfVertices(); i++) {
+			dist[i] = Integer.MAX_VALUE;
+		}
+		Set<Integer> visited = new HashSet<Integer>();//creating set for tracking visited node
+		dist[source] = 0;//distance of source from itself
+		PriorityQueue<Pair> pq = new PriorityQueue<Pair>(this.getNumberOfVertices(), Pair.sortPairByWeight);
+		pq.add(new Pair(0, source));//adding a pair of tw nodes
+		while(!pq.isEmpty()) {
+			Pair pair = pq.peek();
+			pq.remove();
+			if(visited.contains(pair.getVertex())) {
+				continue;
+			}
+			visited.add(pair.getVertex());
+			for(Neighbour neighbour : this.vertices[pair.getVertex()].getNeighbourList()) {
+				if(dist[neighbour.getNeighbourVertex()] > dist[pair.getVertex()] + neighbour.getEdgeWeight()) {
+					dist[neighbour.getNeighbourVertex()] = dist[pair.getVertex()] + neighbour.getEdgeWeight();
+					pq.add(new Pair(dist[neighbour.getNeighbourVertex()], neighbour.getNeighbourVertex()));
+				}
+			}
+		}
+		return dist;
 	}
-
 	
+	/**
+	 * Find shortest path distance between two vertex
+	 * @param source - starting vertex
+	 * @param destination - ending vertex
+	 * @return Shortest distance between source and destination
+	 */
+	public int shortestPath(int source, int destination) {
+		int dist[] = this.dijkstra(source);
+		return dist[destination];
+	}
 }
