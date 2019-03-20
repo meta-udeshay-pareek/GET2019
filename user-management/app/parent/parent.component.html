@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+
+      <!--This will make Header to of light blue color-->
+      <div class="row text-center header py-2">
+        <p>User Management</p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+          <div class="col-md-10">
+            <p>Users</p>
+          </div>
+          <div class="col-md-2">
+              <button class="btn btn-primary">Add User</button>
+          </div>
+      </div>
+
+      <div class="row">
+        <div class="d-flex justify-content-between user-div col-md-10">    
+            <input type="text" class=" col-md-11 fa form-control empty" id="input-search" placeholder="&#xF002; Search User by Name...">
+        </div>
+        <div class="col-md-2">
+            <input type="button" class="btn btn-info" value="Search"/>
+        </div>
+      </div>
+
+
+        <!--This will call the card component in this page-->
+      
+          <app-card></app-card>
+        
+
+        </div>
+  </body>
+</html>

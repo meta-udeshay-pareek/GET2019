@@ -1,0 +1,20 @@
+Follow the steps the run the aaplication
+
+Step 1:
+Install the node.js version 10 or higher 
+
+Step 2:
+Install angular/cli with the help of following command "npm install -g @angular/cli"
+
+Step 3:
+Now create the project name UserManagement with the help of command "ng new UserManagement"
+
+Step 4: 
+Now paste the src folder in place of the src folder created
+
+Step 5:
+Now to run this application, change the directory in cmd and open that application folder and run
+command "ng serve --open"
+
+Step 6:
+Open localhost:4200 in chrome
