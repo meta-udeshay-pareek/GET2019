@@ -1,0 +1,18 @@
+.card{
+    display: flex;
+    border: solid rgb(66, 64, 64);
+    margin: 30px;
+    width: auto;
+    padding: 20px 30px 20px 30px;
+}
+
+#user-list{
+    list-style: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font: bold;
+}
+
+.btn-circle{
+    border-radius: 50%;
+    background-color:#94E6FD;;
+}

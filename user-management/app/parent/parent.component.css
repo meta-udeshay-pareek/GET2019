@@ -1,0 +1,24 @@
+.header {
+    background:#94E6FD;;
+    color: black;
+    font-size: 22px;
+}
+input{
+    margin-top:10px;
+}
+.btn{
+    margin-top: 10px;
+    width: 80%;
+}
+
+p{
+    font-size: 20px;
+    margin: 10px 5px;
+}
+
+input.empty {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+   
+}
