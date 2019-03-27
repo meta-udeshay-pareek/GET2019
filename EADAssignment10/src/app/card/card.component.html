@@ -1,0 +1,22 @@
+<!-- card html template values are provided from card.component.ts -->
+    <div class="col usercard" >
+        <div class="card" >
+       <div class="row">
+          <div class="userlogo col-6">
+            <i class="fas fa-user-tie" alt="Card image" ></i>
+          </div>
+          <div class="card-body col-6 ">
+            <h4 class="card-title">{{person.name}}</h4>
+            <p class="card-text"> <i class="fas fa-id-card-alt"></i> {{person.id}}</p>
+            <p class="card-text"> <i class="fas fa-mobile-alt"></i> {{person.phone}}</p>
+            <p class="card-text"><i class="fas fa-city"></i> {{person.city}}</p>
+            </div>
+            <div class="col-6 extra">
+           <a routerLink="/edit/{{person.id}}" routerLinkActive="active"><i class="fas fa-edit edit"></i></a>
+            </div>
+            <div class="col-6 extra">
+                <i class="fas fa-trash-alt delete"></i>
+            </div>
+         </div>
+      </div>
+    </div>
