@@ -1,0 +1,17 @@
+<h2>User details</h2>
+    <div class=" justify-content-end ">
+        <a routerLink="/add" class="btn btn-primary ">Add User</a>
+        <button class="btn btn-outline-danger m-3" (click)="rock()" >Acess</button>
+    </div>
+    <div class="input-group mb-3 search">
+        <input type="text" class="form-control" placeholder="search" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <div class="input-group-append">
+          <button class=" btn btn-success" type="button" id="button-addon2">search</button>
+        </div>
+      </div>
+<!-- creating different card for different person  -->
+<div class="row">
+      <!-- every card take input a person and shows it's details -->
+      <app-card *ngFor="let person of persons$" 
+      [person]="person"></app-card>
+</div>

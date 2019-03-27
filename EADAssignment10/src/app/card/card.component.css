@@ -1,0 +1,30 @@
+.usercard {
+  margin-top: 50px;
+}
+.userlogo{
+  font-size: 150px;
+  text-align: center;
+}
+.edit  {
+  font-size: 40px;
+  font-display: center;
+  color: blue;
+}
+.delete {
+  font-size: 40px;
+  font-display: center;
+  color:red;   
+}
+.extra {
+  text-align: center;
+}
+.selected {
+  background-color: #CFD8DC !important;
+  color: white;
+}
+
+.search {
+  width: 70%;
+  text-align: center;
+  margin-left: 15%;
+}

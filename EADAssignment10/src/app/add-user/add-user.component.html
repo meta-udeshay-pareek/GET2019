@@ -1,0 +1,37 @@
+<!-- main container for form -->
+<div class="row justify-content-center">
+    <!-- form with angular attributes i.e. [formGroup], [ngSubmit] -->
+  <form class="col-8" [formGroup]="messageForm" (ngSubmit)="add()">
+    <div class="form-group">
+      <label>
+        Name:
+        <input type="text" formControlName="name" class="form-control" placeholder="Name">
+        <!-- for validation alert -->
+        <div *ngIf="submitted && messageForm.controls.name.errors" class="error">
+           <div *ngIf="messageForm.controls.name.errors.required">Your name is required</div>
+        </div>
+      </label>
+    </div>
+    <div class="form-group">
+      <label>
+        Phone:
+        <input type="text" formControlName="phone" class="form-control" placeholder="Phone">
+        <!-- for validation alert -->
+        <div *ngIf="submitted && messageForm.controls.phone.errors" class="error">
+          <div *ngIf="messageForm.controls.name.errors.required">phone number is required</div>
+        </div>
+      </label>
+    </div> 
+    <div class="form-group">
+      <label>
+          City:
+          <input type="text" formControlName="city" class="form-control" placeholder="City">
+          <!-- for validation alert -->
+          <div *ngIf="submitted && messageForm.controls.city.errors" class="error">
+            <div *ngIf="messageForm.controls.name.errors.required">city is required</div>
+          </div>
+      </label>
+    </div>
+    <input type="submit" value="add" class="cta">
+  </form>
+</div>
